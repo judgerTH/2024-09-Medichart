@@ -4,6 +4,23 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: root
     password: ${SPRING_DATASOURCE_PASSWORD}
+<<<<<<< HEAD
+=======
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: sch5229@gmail.com
+      password: zwei hyub xdrt taac
+
+      # Gmail 앱 비밀번호 또는 계정 비밀번호 입력
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+>>>>>>> 3f4f9053c680cd1b33293c489dc40f59592e661a
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
