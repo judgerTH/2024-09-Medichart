@@ -9,6 +9,7 @@
   padding: 10px; /* 패딩을 추가하여 텍스트와 테두리 사이에 공간을 만듦 */
   font-weight: bold;
   font-size: large;
+  z-index: 1000;
 }
 .logo {
   width: 62px;
@@ -29,11 +30,64 @@
 }
 
 .navigation {
-  ul {
-    display: flex;
-    list-style: none;
-  }
-  li + li {
-    margin-left: 30px;
-  }
+  display: flex;
+}
+
+.navigation ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.navigation li {
+  margin: 0 20px 0 10px;
+  cursor: pointer;
+  position: relative; /*드롭다운 메뉴를 위한 스타일*/
+  display: flex;
+  align-items: center;
+}
+.navigation li:hover {
+  color: #1a76d1;
+}
+
+/* 드롭다운 css  */
+.dropdown {
+  position: absolute;
+  top: 140%; /*드롭다운이랑 상위항목 간격 넓히기*/
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  list-style: none;
+  padding: 0;
+  width: auto; /*드롭다운 메뉴의 너비 자동맞춤*/
+  z-index: 1000; /* 드롭다운이 다른 요소들 위에 표시되도록 */
+  text-align: left;
+}
+
+.dropdown li {
+  padding: 15px 10px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+  color: black;
+}
+
+/* 삼각형 아이콘 스타일 */
+.triangle {
+  display: inline-block;
+  margin-left: 5px; /* 삼각형과 텍스트 사이의 여백 */
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black; /* 삼각형 크기와 색상 */
+}
+
+.triangle.open {
+  border-top: none;
+  border-bottom: 5px solid black; /* 드롭다운이 열렸을 때의 삼각형 */
 }
