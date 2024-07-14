@@ -4,12 +4,12 @@ import java.util.Map;
 
 public class NaverResponse implements OAuth2Response {
 
-    private final Map<String, Object> attribute;
-    private final String id;
+    private final Map<String, Object> attributes;
+    private final Long id;
 
     public NaverResponse(Map<String, Object> attributes) {
-        this.attribute = (Map<String, Object>) attributes.get("response");
-        this.id = (String) attribute.get("id");
+        this.attributes = attributes;
+        this.id = (Long) attributes.get("id");
     }
 
     @Override
@@ -18,17 +18,24 @@ public class NaverResponse implements OAuth2Response {
     }
 
     @Override
+    public String getUserID() {
+        return getProviderId(); // User ID를 Provider ID로 설정
+    }
+
+    @Override
     public String getProviderId() {
-        return this.id;
+        return this.id.toString();
     }
 
     @Override
     public String getEmail() {
-        return attribute.get("email").toString();
+        Map<String, Object> naverAccount = (Map<String, Object>) attributes.get("naver_account");
+        return naverAccount != null ? (String) naverAccount.get("email") : null;
     }
 
     @Override
     public String getName() {
-        return attribute.get("name").toString();
+        Map<String, Object> profile = (Map<String, Object>) attributes.get("profile");
+        return profile != null ? (String) profile.get("nickname") : null;
     }
 }

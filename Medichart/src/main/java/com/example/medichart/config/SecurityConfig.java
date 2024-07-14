@@ -4,9 +4,11 @@ import com.example.medichart.service.OauthUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -17,25 +19,32 @@ public class SecurityConfig {
     private final OauthUserService oauthUserService;
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf((auth) -> auth.disable());
-        http
-                .formLogin((auth) -> auth.disable());
-        http
-                .httpBasic((auth) -> auth.disable());
-        http
-                .oauth2Login((auth) -> auth
-                       .loginPage("/login")
-                        .userInfoEndpoint(userInfoEndpointConfig ->
-                                userInfoEndpointConfig.userService(oauthUserService)));
-        http
+                .csrf((auth) -> auth.disable())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/oauth2/**", "/login/**").permitAll()
-                        .anyRequest().authenticated());
-
+                        .requestMatchers("/", "/oauth2/**", "/login/**", "/signup", "/css/**", "/js/**").permitAll()
+                        .anyRequest().authenticated())
+                .oauth2Login((auth) -> auth
+                        .loginPage("/login")
+                        .userInfoEndpoint(userInfoEndpointConfig ->
+                                userInfoEndpointConfig.userService(oauthUserService)))
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .permitAll())
+                .logout((logout) -> logout
+                        .permitAll());
 
         return http.build();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withUsername("user")
+                .password("{noop}password")
+                .roles("USER")
+                .build());
+        return manager;
     }
 }
