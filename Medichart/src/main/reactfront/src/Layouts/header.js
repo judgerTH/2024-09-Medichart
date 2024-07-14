@@ -1,7 +1,7 @@
 import styles from "./header.module.css";
 import logo from "../MediChart.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 function Header() {
   const [dropdownOpen, setDropdownOpen] = useState([false, false]);
@@ -55,9 +55,7 @@ function Header() {
               )}
             </li>
             <li>FAQ / 문의</li>
-            <li>
-              <Link to="/translate">로그인/회원가입</Link>
-            </li>
+            <li>로그인/회원가입</li>
           </ul>
         </nav>
       </div>
