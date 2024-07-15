@@ -1,5 +1,5 @@
 import styles from "./header.module.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../MediChart.png";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.contents}>
         <div style={{ display: "flex" }}>
-          <img className={styles.logo} src={logo}></img>
+          <img className={styles.logo} src={logo} alt="Logo"></img>
           <p>MediChart</p>
         </div>
 
@@ -32,9 +32,9 @@ function Header() {
               ></span>
               {dropdownOpen[0] && (
                 <ul className={styles.dropdown}>
-                  <li>-한국어</li>
-                  <li>-Eng</li>
-                  <li>-汉文</li>
+                  <li><Link to="/translate">-한국어</Link></li>
+                  <li><Link to="/translate">-Eng</Link></li>
+                  <li><Link to="/translate">-汉文</Link></li>
                 </ul>
               )}
             </li>

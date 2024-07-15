@@ -1,5 +1,5 @@
-import styles from "../components/translate.css";
-
+import React from 'react';
+import styles from './translate.css';
 function Translate() {
   return (
     <div className={styles.container}>

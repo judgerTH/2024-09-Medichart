@@ -1,21 +1,19 @@
 import "./App.css";
-import Home from "./components/home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Translate from "./components/translate";
-import Admin from "./components/admin";
+import { Routes, Route } from "react-router-dom";
+import AdminLayout from "./components/AdminLayout";
+import Layout from "./components/layout";
+import Home from "./pages/home";
+import Translate from "./pages/translate";
+import AdminMain from "./pages/AdminMain";
 
 function App() {
   return (
-    <>
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/translate" element={<Translate />} />
-
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </BrowserRouter> */}
-    </>
+    <Routes>
+      <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/home" element={<Layout><Home /></Layout>} />
+      <Route path="/translate" element={<Layout><Translate /></Layout>} />
+      <Route path="/admin/main" element={<AdminLayout><AdminMain /></AdminLayout>} />
+    </Routes>
   );
 }
 

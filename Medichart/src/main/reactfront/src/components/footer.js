@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./footer.module.css";
 import logo from "../MediChart_clear.png";
-import PrivacyModal from "./PrivacyModal.js";
+import PrivacyModal from "../pages/PrivacyModal.js";
 // import { Link } from "react-router-dom";
 
 function Footer() {

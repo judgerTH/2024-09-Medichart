@@ -1,4 +1,5 @@
-import styles from "../components/home.module.css";
+import { useLocation } from "react-router-dom";
+import styles from "./home.module.css";
 
 function Home() {
   return (
