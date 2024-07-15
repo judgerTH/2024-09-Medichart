@@ -1,7 +1,7 @@
+import React from "react";
 import Header from "./header";
 import Footer from "./footer";
-import React from "react";
-import styles from "../Layouts/layout.module.css";
+import styles from "./layout.module.css";
 
 const Layout = (props: { children: React.ReactNode }) => {
   return (

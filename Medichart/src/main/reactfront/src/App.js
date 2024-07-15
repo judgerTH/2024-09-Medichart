@@ -1,20 +1,55 @@
-import "./App.css";
-import Home from "./components/home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import AdminLayout from "./components/AdminLayout";
+import Layout from "./components/layout";
+import Home from "./pages/home";
+import Translate from "./pages/translate";
+import AdminMain from "./pages/AdminMain";
 import Korean from "./components/korean";
-import Admin from "./components/admin";
-import Header from "./Layouts/header"; // Header 컴포넌트를 추가
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Korean" element={<Korean />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
+      <Route
+        path="/translate"
+        element={
+          <Layout>
+            <Translate />
+          </Layout>
+        }
+      />
+      <Route
+        path="/admin/main"
+        element={
+          <AdminLayout>
+            <AdminMain />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/Korean"
+        element={
+          <Layout>
+            <Korean />
+          </Layout>
+        }
+      />
+    </Routes>
   );
 }
 
