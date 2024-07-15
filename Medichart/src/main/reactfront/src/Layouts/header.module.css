@@ -1,8 +1,8 @@
-/* Global styles to remove default margin and padding */
 body,
 html {
+  width: 100%;
+  height: 100%;
   margin: 0;
-  padding: 0;
 }
 
 .header {
@@ -97,4 +97,15 @@ html {
 .triangle.open {
   border-top: none;
   border-bottom: 5px solid black; /* 드롭다운이 열렸을 때의 삼각형 */
+}
+
+/* Responsive Design using Media Queries */
+@media (max-width: 768px) {
+  .headerBanner {
+    flex-direction: column;
+  }
+
+  .headerNav ul {
+    flex-direction: column;
+  }
 }

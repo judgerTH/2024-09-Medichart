@@ -3,7 +3,6 @@
   padding: 150px;
   display: flex;
   justify-content: space-around;
-
   position: relative;
   height: 200px;
 }
@@ -21,4 +20,18 @@
 }
 .featureItem p {
   margin-top: 30px;
+}
+
+/* Responsive Design using Media Queries */
+@media (max-width: 768px) {
+  .featureContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featureItem {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 0; /* Reset bottom margin */
+  }
 }
