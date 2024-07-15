@@ -11,7 +11,7 @@ function Home() {
       </div>
       <div className={styles.featureItem}>
         <h2>질병 예측 </h2>
-        <p>예측 소개 같이 말을 해주세요 아ㅏㅏㅏㅏㅏㅏㅏ 폰트 아직 안 바꿈</p>
+        <p>왜 안되냐고 오류 좀 그만떠라 </p>
       </div>
       <div className={styles.featureItem}>
         <h2>건강검진센터 찾기</h2>

@@ -1,5 +1,5 @@
 import styles from "./header.module.css";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../MediChart.png";
 import { useState } from "react";
 
@@ -17,7 +17,7 @@ function Header() {
     <header className={styles.header}>
       <div className={styles.contents}>
         <div style={{ display: "flex" }}>
-          <img className={styles.logo} src={logo}></img>
+          <img className={styles.logo} src={logo} alt="Logo"></img>
           <p>MediChart</p>
         </div>
 
@@ -32,9 +32,21 @@ function Header() {
               ></span>
               {dropdownOpen[0] && (
                 <ul className={styles.dropdown}>
-                  <li>-한국어</li>
-                  <li>-Eng</li>
-                  <li>-汉文</li>
+                  <li>
+                    <Link to="/Korean" className={styles.link}>
+                      -한국어
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/English" className={styles.link}>
+                      -Eng
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Chinese" className={styles.link}>
+                      -汉文
+                    </Link>
+                  </li>
                 </ul>
               )}
             </li>
@@ -47,9 +59,21 @@ function Header() {
               ></span>
               {dropdownOpen[1] && (
                 <ul className={styles.dropdown}>
-                  <li>-건강검진정보</li>
-                  <li>-질병 예측</li>
-                  <li>-건강검진 센터 찾기</li>
+                  <li>
+                    <Link to="/MedicalInform" className={styles.link}>
+                      -건강검진정보
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Prediction" className={styles.link}>
+                      -질병 예측
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/Find" className={styles.link}>
+                      -건강검진 센터 찾기
+                    </Link>
+                  </li>
                 </ul>
               )}
             </li>

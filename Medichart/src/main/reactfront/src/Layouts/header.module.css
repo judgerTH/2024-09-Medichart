@@ -55,10 +55,19 @@ html {
   display: flex;
   align-items: center;
 }
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 .navigation li:hover {
   color: #1a76d1;
 }
 
+.link:hover {
+  color: #1a76d1;
+}
 /* 드롭다운 css  */
 .dropdown {
   position: absolute;
