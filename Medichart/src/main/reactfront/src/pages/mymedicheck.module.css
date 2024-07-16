@@ -1,0 +1,13 @@
+.inner {
+  position: static;
+  width: auto;
+  max-width: 1300px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.title {
+  padding: 15px 39px;
+  color: #fff;
+  background-color: #58606b;
+}
