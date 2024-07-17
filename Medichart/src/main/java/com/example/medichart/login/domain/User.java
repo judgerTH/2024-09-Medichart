@@ -8,12 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class User {
-
-<<<<<<< HEAD
-//    @Id
-=======
-    //    @Id
->>>>>>> 3f4f9053c680cd1b33293c489dc40f59592e661a
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
