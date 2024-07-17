@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -21,8 +23,15 @@ public class AdminController {
     @GetMapping("/dashboard")
     public String adminDashboard(Model model) {
         long todaySignupCount = userStatisticsService.getTodaySignupCount();
-        model.addAttribute("오늘가입자수", todaySignupCount); // "오늘가입자수" 속성 추가
+        List<Long> last7DaysSignupCounts = userStatisticsService.getLast7DaysSignupCounts();
+        List<Long> last12MonthsSignupCounts = userStatisticsService.getLast12MonthsSignupCounts();
+        List<Long> last3YearsSignupCounts = userStatisticsService.getLast3YearsSignupCounts();
+
+        model.addAttribute("오늘가입자수", todaySignupCount);
+        model.addAttribute("일별가입자수", last7DaysSignupCounts);
+        model.addAttribute("월별가입자수", last12MonthsSignupCounts);
+        model.addAttribute("연도별가입자수", last3YearsSignupCounts);
+
         return "admin";
     }
-
 }

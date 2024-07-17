@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.admin.service;
 
 import com.example.medichart.admin.entity.Notice;
@@ -10,17 +11,17 @@ import java.util.Optional;
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
-    private List<Notice> notices = new ArrayList<>();
+    private List<Notice> noticeList = new ArrayList<>();
     private Long nextId = 1L;
 
     @Override
     public List<Notice> getAllNotices() {
-        return notices;
+        return noticeList;
     }
 
     @Override
     public Optional<Notice> getNoticeById(Long id) {
-        return notices.stream()
+        return noticeList.stream()
                 .filter(notice -> notice.getId().equals(id))
                 .findFirst();
     }
@@ -28,7 +29,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public Notice createNotice(String title, String content) {
         Notice newNotice = new Notice(nextId++, title, content);
-        notices.add(newNotice);
+        noticeList.add(newNotice);
         return newNotice;
     }
 
@@ -46,6 +47,12 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public boolean deleteNotice(Long id) {
-        return notices.removeIf(notice -> notice.getId().equals(id));
+        Optional<Notice> optionalNotice = getNoticeById(id);
+        if (optionalNotice.isPresent()) {
+            noticeList.remove(optionalNotice.get());
+            return true;
+        }
+        return false;
     }
 }
+*/
