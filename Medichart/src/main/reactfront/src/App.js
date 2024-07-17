@@ -2,9 +2,9 @@ import { Routes, Route } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
 import Layout from "./components/layout";
 import Home from "./pages/home";
-import Translate from "./pages/translate";
 import AdminMain from "./pages/AdminMain";
-import Korean from "./components/korean";
+import Korean from "./pages/korean";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -25,14 +25,7 @@ function App() {
           </Layout>
         }
       />
-      <Route
-        path="/translate"
-        element={
-          <Layout>
-            <Translate />
-          </Layout>
-        }
-      />
+
       <Route
         path="/admin/main"
         element={
@@ -46,6 +39,14 @@ function App() {
         element={
           <Layout>
             <Korean />
+          </Layout>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Layout>
+            <Login />
           </Layout>
         }
       />

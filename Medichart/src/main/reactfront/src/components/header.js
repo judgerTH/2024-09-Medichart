@@ -1,6 +1,6 @@
 import styles from "./header.module.css";
 import { Link } from "react-router-dom";
-import logo from "../MediChart.png";
+import logo from "../MediChart_clear.png";
 import { useState } from "react";
 
 function Header() {
@@ -16,14 +16,19 @@ function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
-        <div style={{ display: "flex" }}>
-          <img className={styles.logo} src={logo} alt="Logo"></img>
-          <p>MediChart 브랜치 됐나</p>
+        <div>
+          <Link to="/" className={styles.link1}>
+            <img className={styles.logo} src={logo} alt="Logo"></img>
+            <p>MediChart</p>
+          </Link>
         </div>
 
         <nav className={styles.navigation}>
           <ul>
-            <li onClick={() => toggleDropdown(0)}>
+            <li
+              className={styles.titleHeader}
+              onClick={() => toggleDropdown(0)}
+            >
               건강진단서 해석
               <span
                 className={`${styles.triangle} ${
@@ -50,7 +55,10 @@ function Header() {
                 </ul>
               )}
             </li>
-            <li onClick={() => toggleDropdown(1)}>
+            <li
+              className={styles.titleHeader}
+              onClick={() => toggleDropdown(1)}
+            >
               나의 메디체크
               <span
                 className={`${styles.triangle} ${
@@ -77,8 +85,10 @@ function Header() {
                 </ul>
               )}
             </li>
-            <li>FAQ / 문의</li>
-            <li>로그인/회원가입</li>
+            <li className={styles.titleHeader}>FAQ / 문의</li>
+            <Link to="/login" className={styles.link}>
+              <li className={styles.titleHeader}>로그인/회원가입</li>
+            </Link>
           </ul>
         </nav>
       </div>

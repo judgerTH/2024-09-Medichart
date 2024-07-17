@@ -5,8 +5,6 @@ import PrivacyModal from "../pages/PrivacyModal.js";
 // import { Link } from "react-router-dom";
 
 function Footer() {
-  if (window.location.pathname === "/admin") return null;
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
