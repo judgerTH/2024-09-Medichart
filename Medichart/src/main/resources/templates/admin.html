@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+<p>Welcome, Admin!</p>
+<p>오늘의 가입자 수: <span th:text="${오늘가입자수}"></span></p>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>

@@ -47,18 +47,14 @@ spring:
           naver:
               client-id: J9e7ZObddUCfs_4uICkI
               client-secret: BGNHd8raRh
-              scope:
-                - name
-                - email
+              scope: profile,email
               client-name: Naver
               authorization-grant-type: authorization_code
               redirect-uri: http://localhost:8080/login/oauth2/code/naver
           google:
             client-id: 709796471451-hdg13q22jmbruh79om4k0vb4t4b2plmp.apps.googleusercontent.com
             client-secret: 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
-            scope:
-              - email
-              - profile
+            scope: profile,email
 
         provider:
           kakao:
@@ -76,5 +72,5 @@ spring:
             authorization-uri: https://accounts.google.com/o/oauth2/auth
             token-uri: https://oauth2.googleapis.com/token
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-            user-name-attribute: sub
+            user-name-attribute: id
 
