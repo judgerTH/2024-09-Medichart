@@ -1,4 +1,4 @@
-.footer {
+/* .footer {
   background-color: #d0e5ff;
   color: #000000;
   text-align: center;
@@ -6,8 +6,17 @@
   height: 40px;
   margin: 0;
   position: absolute;
-  bottom: 0; /* 페이지 하단에 고정 */
+  bottom: 0; 
+  width: 100%; 
+} */
+.footer {
+  background-color: #d0e5ff;
+  color: #000000;
+  text-align: center;
+  padding: 40px 0 0 0;
+  /* height: 100px; 푸터의 높이 지정 */
   width: 100%; /* 페이지 너비를 가득 채움 */
+  margin-top: auto; /* 자동 마진을 사용하여 푸터를 하단으로 이동 */
 }
 
 .contents {

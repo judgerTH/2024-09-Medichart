@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./mymedicheck.module.css";
+import styles from "./mymedicheck.module.css";
 
 const Mymedicheck = () => {
   const [height, setHeight] = useState("");
@@ -31,22 +31,23 @@ const Mymedicheck = () => {
   };
 
   return (
-    <div className="inner">
-      <div className="title">비만도 측정</div>
+    <div className={styles.inner}>
+      <h2 className={styles.title}>검진 정보 입력</h2>
+      <div className={styles.title__1}>비만도 측정</div>
 
-      <div className="cont-area pt00">
+      <div className="cont-area pt00z">
         <div
           className="row-table v1 box-in-table"
           data-title="비만도 측정 입력"
         >
-          <table>
-            <colgroup>
+          <table className="title__table1">
+            {/* <colgroup>
               <col width="55%" />
               <col width="45%" />
-            </colgroup>
+            </colgroup> */}
             <tbody>
               <tr>
-                <td colSpan="2">
+                <td className={styles.title__1_a} colSpan="2">
                   ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오
                 </td>
               </tr>
@@ -56,7 +57,6 @@ const Mymedicheck = () => {
                   <input
                     type="text"
                     className="input-text imp w200px"
-                    id="heightVl"
                     name="heightVl"
                     maxLength="5"
                     placeholder="신장을 입력해주세요."
@@ -129,9 +129,7 @@ const Mymedicheck = () => {
         </div>
       </div>
 
-      <div id="medi_request_02" className="tit-area">
-        검진결과 확인 및 질병예측
-      </div>
+      <div className={styles.title__2}>검진결과 확인 및 질병예측</div>
 
       <div className="cont-area">
         <div
