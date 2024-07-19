@@ -85,7 +85,7 @@ function Header() {
                 </ul>
               )}
             </li>
-            <li className={styles.titleHeader}>FAQ / 문의</li>
+            <li className={styles.titleHeader}>고객센터</li>
             <Link to="/login" className={styles.link}>
               <li className={styles.titleHeader}>로그인/회원가입</li>
             </Link>

@@ -23,7 +23,7 @@ input {
 
 .button {
   background-color: black;
-  border-radius: 10px;
+  border-radius: 40px;
   margin-top: 10px;
   color: white;
   padding-bottom: 10px;
@@ -32,9 +32,23 @@ input {
   height: 50px;
   font-size: 17px;
 }
-.section_find {
-}
+
 .section_find ul {
   list-style: none;
   display: flex;
+  justify-content: center;
+  margin: 20px 0 0 120px;
+
+  font-size: 12px;
+}
+li + li {
+  padding: 0 20px;
+}
+
+.link {
+  color: black;
+}
+
+.SNS {
+  margin-top: 40px;
 }

@@ -1,0 +1,9 @@
+.subtitle {
+  margin-top: -20px;
+  color: grey;
+}
+.line {
+  border-top: 2px dashed grey;
+  width: 24%;
+  margin: 0 auto;
+}

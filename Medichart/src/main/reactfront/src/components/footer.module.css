@@ -2,15 +2,17 @@
   background-color: #d0e5ff;
   color: #000000;
   text-align: center;
-  padding: 40px 0;
+  padding: 40px 0 0 0;
   height: 40px;
-  margin: 0;
+
   position: absolute;
-  bottom: 0; /* 페이지 하단에 고정 */
+  /* bottom: 0; */
   width: 100%; /* 페이지 너비를 가득 채움 */
+  margin-top: auto;
 }
 
 .contents {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
