@@ -80,7 +80,9 @@ html {
   background-color: #d0e5ff;
   border-radius: 7px;
 }
-
+.navigation .titleHeader {
+  padding: 0 20px;
+}
 .link:hover {
   color: #1a76d1;
 }

@@ -2,14 +2,36 @@ import "../pages/login.css";
 import { Link } from "react-router-dom";
 import kakaologo from "../kakaotalk_sharing_btn_small.png";
 import naverlogo from "../naverlogo.png";
-
+import googlelogo from "../btn_google.svg";
 function Login() {
+  //카카오
+
   const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
+  //페이지 생성 후 URL 다시 수정하기
   const K_REDIRECT_URI = `http://localhost:3001/oauth`;
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 
   const handlekakaoLogin = () => {
     window.location.href = kakaoURL; //kakaoURL로 이동
+  };
+
+  //네이버
+  const N_clientID = process.env.REACT_APP_NAVER_CLIENT_ID; //발급 받은 Client ID 입력
+  const N_REDIRECT_URI = "http://localhost:3001/naverlogin"; //작성했던 Callback URL 입력
+  const stateString = process.env.REACT_APP_NAVER_STATE; //애플리케이션 등록시 받은 시크릿 키 입력
+  const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${N_clientID}&response_type=code&redirect_uri=${N_REDIRECT_URI}&state=${stateString}`;
+
+  const handlenaverLogin = () => {
+    window.location.href = NAVER_URL; //naverURL로 이동
+  };
+
+  //구글
+  const G_ClientID = process.env.REACT_APP_GOOGLE_KEY;
+  const G_REDIRECT_URI = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
+  const G_URL = ` https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_ClientID}&redirect_uri=${G_REDIRECT_URI}&scope=openid%20email%20profile`;
+
+  const handlegoogleLogin = () => {
+    window.location.href = G_URL; //구글 URL로 이동
   };
   return (
     <div className="container">
@@ -44,7 +66,13 @@ function Login() {
               </Link>
             </li>
           </ul>
-          <p style={{ fontSize: "small", paddingTop: "20px" }}>
+          <p
+            style={{
+              fontSize: "small",
+              paddingTop: "20px",
+              marginLeft: "10px",
+            }}
+          >
             <Link to="/login/signup" style={{ color: "black" }}>
               회원가입
             </Link>{" "}
@@ -54,14 +82,15 @@ function Login() {
               color: "grey",
               display: "inline",
               borderBottom: "1px solid grey",
+              marginLeft: "10px",
             }}
           >
             SNS 로그인
           </p>
           <div className="SNS">
-            <img src={naverlogo} className="naver"></img>
+            <img onClick={handlenaverLogin} src={naverlogo}></img>
             <img onClick={handlekakaoLogin} src={kakaologo}></img>
-            <img></img>
+            <img onClick={handlegoogleLogin} src={googlelogo}></img>
           </div>
         </div>
       </div>

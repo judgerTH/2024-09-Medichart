@@ -36,15 +36,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-<<<<<<< HEAD
-=======
     implementation 'org.springframework.boot:spring-boot-starter-mail'
-<<<<<<< HEAD
-
->>>>>>> 3f4f9053c680cd1b33293c489dc40f59592e661a
-=======
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' //추가
->>>>>>> 7be90e9e7fcc6022f2981703f3d35804ac79150e
 }
 
 tasks.named('test') {
