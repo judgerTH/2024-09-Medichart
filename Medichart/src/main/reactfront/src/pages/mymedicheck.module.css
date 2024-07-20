@@ -1,13 +1,108 @@
+.common-width {
+  width: 100%; /* 디자인에 맞게 조정 */
+  max-width: 800px; /* 컨테이너의 최대 너비와 동일하게 설정 */
+}
+
 .inner {
   position: static;
   width: auto;
-  max-width: 1300px;
+  max-width: 800px;
   padding: 0 10px;
-  margin: 0 auto;
+  /* margin: auto; */
+  margin-left: 450px;
 }
 
 .title {
+  /* padding: 15px 39px; */
+  color: black;
+  /* background-color: #58606b; */
+}
+
+/* 비만도 측정 */
+.title__1 {
+  /* width: 100%; */
+  /* padding: 15px 0; */
   padding: 15px 39px;
   color: #fff;
-  background-color: #58606b;
+  background-color: #161e4b;
+}
+/* .outline {
+  padding: 10px;
+  width: 858px;
+} */
+
+/* .title__1_a {
+  padding: 10px 0 15px 0;
+  color: #4e4e4e;
+  box-sizing: border-box;
+} */
+
+.textContainer {
+  width: 100%;
+  padding-bottom: 15px;
+  color: #4e4e4e;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  padding: 10px 0 15px 0;
+  /* justify-content: space-between; */
+}
+.inputContainer_c {
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  margin-left: 15px;
+}
+p {
+  margin-right: 10px;
+}
+em {
+  margin-left: 10px;
+  color: #767676;
+  font-size: 14px;
+}
+.pb10 {
+  margin-left: 15px;
+}
+/* .title_111 {
+  width: 100px;
+  border-top: 1px solid #cccccc;
+  margin: 0;
+}
+.title_222 {
+  border-top: 1px solid #cccccc;
+  margin: 0;
+} */
+
+/* .title__1_a1 {
+  width: 100px;
+} */
+.ti_a1_1 {
+  /* border: 1px solid lightgrey;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px; */
+  border: 1px solid lightgrey;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  /* width: 200px; */
+  box-sizing: border-box;
+}
+
+/* 검진결과 확인 및 질병예측 */
+.title__2 {
+  padding: 15px 39px;
+  color: #fff;
+  background-color: #161e4b;
+}
+
+/* 옵션사항, 민간 검진기관 검진 내역 결과 입력 */
+.title__3 {
+  padding: 15px 39px;
+  color: #fff;
+  background-color: #161e4b;
 }

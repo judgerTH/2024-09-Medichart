@@ -35,28 +35,32 @@ const Mymedicheck = () => {
       <h2 className={styles.title}>검진 정보 입력</h2>
       <div className={styles.title__1}>비만도 측정</div>
 
-      <div className="cont-area pt00z">
+      <div className={styles.outline}>
         <div
           className="row-table v1 box-in-table"
           data-title="비만도 측정 입력"
         >
-          <table className="title__table1">
+          <table className={styles.title__table1}>
             {/* <colgroup>
               <col width="55%" />
               <col width="45%" />
             </colgroup> */}
-            <tbody>
+            <tbody className={styles.tbody_1}>
               <tr>
-                <td className={styles.title__1_a} colSpan="2">
-                  ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오
+                {/* <td className={styles.title__1_a}>
+                  <div className={styles.textContainer}>
+                    ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오.
+                  </div>
                 </td>
               </tr>
               <tr>
-                <td>
-                  <p className="tit pb10">신장</p>
+                <td className={styles.title_111}>
+                  <div className={styles.title__1_a1}>
+                    <p className="tit pb10">신장</p>
+                  </div>
                   <input
                     type="text"
-                    className="input-text imp w200px"
+                    className={styles.ti_a1_1}
                     name="heightVl"
                     maxLength="5"
                     placeholder="신장을 입력해주세요."
@@ -65,9 +69,10 @@ const Mymedicheck = () => {
                     onChange={(e) => setHeight(e.target.value)}
                     onBlur={calculateBmi}
                   />
-                  <em className="dash ml10">cm</em>
-                </td>
-                <td>
+                  <em className="dash ml10"> cm</em>
+                </td> 
+                
+                <td className={styles.title_222}>
                   <p className="tit pb10">체중</p>
                   <input
                     type="text"
@@ -81,11 +86,48 @@ const Mymedicheck = () => {
                     onChange={(e) => setWeight(e.target.value)}
                     onBlur={calculateBmi}
                   />
-                  <em className="dash ml10">kg</em>
+                  <em className="dash ml10"> kg</em>
+                </td> */}
+                <td className={styles.title__1_a}>
+                  <div className={styles.textContainer}>
+                    ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오.
+                  </div>
+                  <div className={styles.inputContainer}>
+                    <p className={styles.inputtext1}>신장</p>
+                    <input
+                      type="text"
+                      className={styles.ti_a1_1}
+                      name="heightVl"
+                      maxLength="5"
+                      placeholder="신장을 입력해주세요."
+                      title="신장 입력"
+                      value={height}
+                      onChange={(e) => setHeight(e.target.value)}
+                      onBlur={calculateBmi}
+                    />
+                    <em className="dash ml10">cm</em>
+                  </div>
+                </td>
+                <td className={styles.title__1_a}>
+                  <div className={styles.inputContainer_c}>
+                    <p className={styles.체중1}>체중</p>
+                    <input
+                      type="text"
+                      className={styles.ti_a1_1}
+                      name="weightVl"
+                      maxLength="5"
+                      placeholder="체중을 입력해주세요."
+                      title="체중 입력"
+                      value={weight}
+                      onChange={(e) => setWeight(e.target.value)}
+                      onBlur={calculateBmi}
+                    />
+                    <em className="dash ml10"> kg</em>
+                  </div>
                 </td>
               </tr>
               <tr>
-                <td>
+                {/* <td>
                   <p className="tit pb10">허리둘레</p>
                   <input
                     type="text"
@@ -110,8 +152,8 @@ const Mymedicheck = () => {
                     value={waistInch}
                   />
                   <em className="dash ml10">inch</em>
-                </td>
-                <td>
+                </td> 
+                 <td>
                   <p className="tit pb10">체질량지수 (BMI)</p>
                   <input
                     type="text"
@@ -122,6 +164,46 @@ const Mymedicheck = () => {
                     value={bmi}
                   />
                   <em className="dash ml10">kg/m²</em>
+                </td> */}
+                <td className={styles.title__1_a}>
+                  <div className={styles.inputContainer}>
+                    <p className="tit pb10">허리둘레</p>
+                    <input
+                      type="text"
+                      className={styles.ti_a1_1}
+                      name="waistVl"
+                      maxLength="5"
+                      placeholder="허리둘레를 입력해주세요."
+                      title="허리둘레 입력"
+                      value={waist}
+                      onChange={(e) => setWaist(e.target.value)}
+                      onBlur={() => convertWaistToInch(waist)}
+                    />
+                    <em className="dash ml10"> cm</em>
+                    <input
+                      type="text"
+                      className={styles.ti_a1_1}
+                      readOnly
+                      maxLength="3"
+                      title="허리둘레 (inch)"
+                      value={waistInch}
+                      style={{ marginLeft: "20px", width: "70px" }}
+                    />
+                    <em className="dash ml10"> inch</em>
+                  </div>
+                </td>
+                <td className={styles.title__1_a}>
+                  <div className={styles.inputContainer}>
+                    <p className={styles.pb10}>체질량지수 (BMI)</p>
+                    <input
+                      type="text"
+                      className={styles.ti_a1_1}
+                      readOnly
+                      title="체질량지수 (BMI) 입력"
+                      value={bmi}
+                    />
+                    <em className="dash ml10"> kg/m²</em>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -137,12 +219,6 @@ const Mymedicheck = () => {
           data-title="검진결과 확인 및 질병예측 입력"
         >
           <table>
-            <caption>
-              검진결과 확인 및 질병예측 입력의 항목으로 구성된 표입니다.
-            </caption>
-            <colgroup>
-              <col />
-            </colgroup>
             <tbody>
               <tr>
                 <td>
@@ -278,6 +354,115 @@ const Mymedicheck = () => {
                       />
                       <span className="inline-block">
                         mg/dL (표준 참고치 : 60이상)
+                      </span>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="medi_request_03" className={styles.title__3}>
+        옵션사항, 민간 검진기관 검진 내역 결과 입력
+      </div>
+      <div class="cont-area">
+        <div
+          class="row-table v1 box-in-table"
+          data-title="옵션사항, 민간 검진기관 검진 내역 결과 입력"
+        >
+          <table>
+            {/* <colgroup>
+              <col></col>
+            </colgroup> */}
+            <tbody>
+              <tr>
+                <td>※ 예측 프로그램에서 세부 진단용으로 사용할 수 있습니다.</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-wrap box-in-table">
+                    <p class="tit">신장질환</p>
+                    <p class="line">
+                      <em class="txt">요단백</em>
+
+                      <select
+                        class="w190px"
+                        name="oligProteCd"
+                        id="oligProteCd"
+                        title="요단백 항목 선택"
+                      >
+                        <option value=""></option>
+                        <option value="1">음성(-)</option>
+                        <option value="2">약약성(±)</option>
+                        <option value="3">양성(+1)</option>
+                        <option value="4">양성(+2)</option>
+                        <option value="5">양성(+3)</option>
+                        <option value="6">양성(+4)</option>
+                      </select>
+
+                      <span class="inline-block">(표준 참고치 : 음성)</span>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-wrap box-in-table">
+                    <p class="tit">빈혈 등</p>
+                    <p class="line">
+                      <em class="txt">혈색소</em>
+                      <input
+                        type="text"
+                        class="input-text"
+                        id="hmgVl"
+                        name="hmgVl"
+                        maxlength="4"
+                        title="혈색소 입력"
+                        onchange="fnSetVal('3')"
+                        value=""
+                      />
+                      <span class="inline-block">
+                        g/dL(표준 참고치 :남 : 13~16.5 / 여 : 12~15.5)
+                      </span>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-wrap box-in-table">
+                    <p class="tit">만성신장질환</p>
+                    <p class="line">
+                      <em class="txt">혈청크레아티닌</em>
+                      <input
+                        type="text"
+                        class="input-text"
+                        id="crtnVl"
+                        name="crtnVl"
+                        maxlength="3"
+                        title="혈청크레아티닌 입력"
+                        onchange="fnSetVal('4')"
+                        value=""
+                      />
+                      <span class="inline-block">
+                        mg/dL (표준 참고치 : 1.5이하)
+                      </span>
+                    </p>
+                    <p class="line">
+                      <em class="txt">신사구체여과율(GFR)</em>
+                      <input
+                        type="text"
+                        onchange="isNumber(this)"
+                        class="input-text"
+                        id="crtnGfrVl"
+                        name="crtnGfrVl"
+                        maxlength="3"
+                        title="신사구체여과율(GFR) 입력"
+                        value=""
+                      />
+                      <span class="inline-block">
+                        mL/min (표준 참고치 : 60이상)
                       </span>
                     </p>
                   </div>
