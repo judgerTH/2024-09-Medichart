@@ -12,39 +12,36 @@ import {
 } from 'recharts';
 
 const AdminMain = () => {
+  const [data, setData] = useState([]);
 
-  const [todaySignupCount, setTodaySignupCount] = useState(0);
-  const [data, setData] = useState([
-    { name: "7/10", 방문자: 4000, 문의사항: 2400 },
-    { name: "7/11", 방문자: 3000, 문의사항: 1398 },
-    { name: "7/12", 방문자: 2000, 문의사항: 9800 },
-    { name: "7/13", 방문자: 2780, 문의사항: 3908 },
-    { name: "7/14", 방문자: 1890, 문의사항: 4800 },
-    { name: "7/15", 방문자: 2390, 문의사항: 3800 },
-    { name: "7/16", 방문자: 3490, 문의사항: 4300 }
-  ]);
-
-  const getTodaySignupCount = async () => {
+  const getWeeklySignupData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/admin/today-signup-count');
-      setTodaySignupCount(response.data);
+      const response = await axios.get('http://localhost:8080/admin/weekly-visitor-count');
+      const rawData = response.data;
+
+      // 날짜 생성 함수
+      const generateDateLabels = (daysAgo) => {
+        const date = new Date();
+        date.setDate(date.getDate() - daysAgo);
+        return `${date.getMonth() + 1}/${date.getDate()}`;
+      };
+
+      // 데이터 변환
+      const formattedData = rawData.map((value, index) => ({
+        name: generateDateLabels(index),
+        방문자: value
+      }));
+
+      setData(formattedData);
+      console.log(formattedData);
     } catch (error) {
-      console.error('Error fetching signup count:', error);
+      console.error('Error fetching weekly visitor data:', error);
     }
   };
 
   useEffect(() => {
-    getTodaySignupCount();
+    getWeeklySignupData();
   }, []);
-
-  useEffect(() => {
-    // 첫 번째 항목의 방문자 수를 todaySignupCount로 업데이트
-    setData(prevData => {
-      const updatedData = [...prevData];
-      updatedData[0] = { ...updatedData[0], 방문자: todaySignupCount };
-      return updatedData;
-    });
-  }, [todaySignupCount]);
 
   return (
       <div className={styles.container}>
@@ -66,27 +63,26 @@ const AdminMain = () => {
           </div>
         </div>
 
-        <div style={{ flex: 1, marginLeft: '10px' }}>
-          <div className="chart-container" style={{ marginTop: '140px' }}>
-            <div style={{ textAlign: 'right', marginBottom: '10px' }}>
+        <div style={{flex: 1, marginLeft: '1px'}}>
+          <div className="chart-container" style={{marginTop: '140px'}}>
+            <div style={{textAlign: 'right', marginBottom: '10px'}}>
               <Link to="/admin/main" className={styles.button}>오늘/</Link>
               <Link to="/admin/month" className={styles.button}>월별/</Link>
               <Link to="/admin/year" className={styles.button}>연도별</Link>
             </div>
-            <ResponsiveContainer width="97%" height={600}>
+            <ResponsiveContainer width="97%" height={500}>
               <LineChart data={data}
-                         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="방문자" stroke="#8884d8" />
-                <Line type="monotone" dataKey="문의사항" stroke="#82ca9d" />
+                         margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+                <XAxis dataKey="name"/>
+                <YAxis/>
+                <Tooltip/>
+                <Line type="monotone" dataKey="방문자" stroke="#8884d8"/>
               </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
         <div className={styles.inner}>
-          <h2>오늘 가입자 수: {todaySignupCount}</h2>
+          <h2>광고배너</h2>
           <div id={styles.line}>
             <ul>
               <li>

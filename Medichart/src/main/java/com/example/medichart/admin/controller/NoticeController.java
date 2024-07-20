@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.admin.controller;
 
 import com.example.medichart.admin.entity.Notice;
@@ -64,4 +65,4 @@ public class NoticeController {
         noticeService.deleteNotice(id);
         return "redirect:/admin/notices/list";
     }
-}
+}*/
