@@ -4,17 +4,12 @@ import styles from "./footer.module.css";
 import logo from "../MediChart_clear.png";
 import PrivacyModal from "../pages/PrivacyModal.js";
 function AdminFooter() {
-<<<<<<< HEAD
   // if (window.location.pathname === "/admin") return null;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-=======
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   if (window.location.pathname === "/admin") return null;
 
->>>>>>> 6b63ca0793283925e9ad8ee03465c988695033b8
   const openModal = () => {
     setIsModalOpen(true);
   };

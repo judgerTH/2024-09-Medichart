@@ -3,10 +3,6 @@ import AdminLayout from "./components/AdminLayout";
 import Layout from "./components/layout";
 import Home from "./pages/home";
 import AdminMain from "./pages/AdminMain";
-<<<<<<< HEAD
-import Korean from "./components/korean";
-import Mymedicheck from "./pages/mymedicheck";
-=======
 import AdminMonth from "./pages/AdminMonth";
 import AdminYear from "./pages/AdminYear";
 import AdminNoticeList from "./pages/AdminNoticeList";
@@ -16,7 +12,7 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
->>>>>>> 6b63ca0793283925e9ad8ee03465c988695033b8
+import Mymedicheck from "./pages/mymedicheck";
 
 function App() {
   return (
@@ -31,18 +27,34 @@ function App() {
       />
 
       <Route
-        path="/mymedicheck"
-        element={
-          <Layout>
-            <Mymedicheck />
-          </Layout>
-        }
-      />
-      <Route
         path="/admin/main"
         element={
           <AdminLayout>
             <AdminMain />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/admin/month"
+        element={
+          <AdminLayout>
+            <AdminMonth />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/admin/year"
+        element={
+          <AdminLayout>
+            <AdminYear />
+          </AdminLayout>
+        }
+      />
+      <Route
+        path="/admin/noticeList"
+        element={
+          <AdminLayout>
+            <AdminNoticeList />
           </AdminLayout>
         }
       />
@@ -83,6 +95,14 @@ function App() {
         element={
           <Layout>
             <EmailVerification />
+          </Layout>
+        }
+      />
+      <Route
+        path="/mymedicheck"
+        element={
+          <Layout>
+            <Mymedicheck />
           </Layout>
         }
       />
