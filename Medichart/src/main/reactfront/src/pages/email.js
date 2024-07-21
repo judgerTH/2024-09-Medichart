@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../pages/email.css";
 import { Link, useLocation } from "react-router-dom";
+import Useagree from "../pages/Useagree";
 
 function Email() {
   const [name, setName] = useState("");
@@ -13,6 +14,8 @@ function Email() {
   const [allAccepted, setAllAccepted] = useState(false);
   const [errors, setErrors] = useState({});
   const location = useLocation();
+
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   const isEmailVerified = localStorage.getItem("isEmailVerified") === "true";
   useEffect(() => {
@@ -128,7 +131,7 @@ function Email() {
           )}
         </div>
         <div className="form-group">
-          <label>
+          <label style={{ fontWeight: "bold" }}>
             <input
               type="checkbox"
               checked={allAccepted}
@@ -139,27 +142,33 @@ function Email() {
           </label>
         </div>
         <div className="form-group">
-          <label>
+          <label
+            onClick={() => setIsTermsModalOpen(true)}
+            style={{ cursor: "pointer", textDecoration: "underline" }}
+          >
             <input
               type="checkbox"
               checked={termsAccepted}
               onChange={(e) => setTermsAccepted(e.target.checked)}
             />
-            이용약관동의
+            [필수] 이용약관동의
           </label>
           {errors.termsAccepted && (
             <p className="error">{errors.termsAccepted}</p>
           )}
         </div>
         <div className="form-group">
-          <label>
+          <label
+            onClick={() => setIsTermsModalOpen(true)}
+            style={{ cursor: "pointer", textDecoration: "underline" }}
+          >
             <input
               type="checkbox"
               checked={privacyAccepted}
               onChange={(e) => setPrivacyAccepted(e.target.checked)}
               required
             />
-            개인정보 수집 및 이용 동의
+            [필수] 개인정보 수집 및 이용 동의
           </label>
           {errors.privacyAccepted && (
             <p className="error">{errors.privacyAccepted}</p>
@@ -173,13 +182,18 @@ function Email() {
               checked={marketingAccepted}
               onChange={(e) => setMarketingAccepted(e.target.checked)}
             />
-            [선택] 마케팅 활용 동의 및 광고 수신 동의
+            [선택] 마케팅 정보 메일 수신 동의
           </label>
         </div>
         <button type="submit" className="submit-button">
           회원가입
         </button>
       </form>
+
+      <Useagree
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
+      />
     </div>
   );
 }
