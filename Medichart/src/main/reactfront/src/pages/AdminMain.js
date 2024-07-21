@@ -44,7 +44,6 @@ const AdminMain = () => {
   useEffect(() => {
     getWeeklySignupData();
   }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.inner}>
@@ -65,7 +64,7 @@ const AdminMain = () => {
         </div>
       </div>
 
-      <div style={{ flex: 1, marginLeft: "1px" }}>
+      <div style={{ flex: 1, marginLeft: "10px" }}>
         <div className="chart-container" style={{ marginTop: "140px" }}>
           <div style={{ textAlign: "right", marginBottom: "10px" }}>
             <Link to="/admin/main" className={styles.button}>
@@ -78,7 +77,7 @@ const AdminMain = () => {
               연도별
             </Link>
           </div>
-          <ResponsiveContainer width="97%" height={500}>
+          <ResponsiveContainer width="97%" height={600}>
             <LineChart
               data={data}
               margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
@@ -87,6 +86,7 @@ const AdminMain = () => {
               <YAxis />
               <Tooltip />
               <Line type="monotone" dataKey="방문자" stroke="#8884d8" />
+              <Line type="monotone" dataKey="문의사항" stroke="#82ca9d" />
             </LineChart>
           </ResponsiveContainer>
         </div>
