@@ -1,7 +1,7 @@
 // AdminHeader.js
 import styles from "./header.module.css";
 import { Link } from "react-router-dom";
-import logo from "../MediChart.png";
+import logo from "../MediChart_clear.png";
 import { useState } from "react";
 function AdminHeader() {
   const [dropdownOpen, setDropdownOpen] = useState([false, false]);
@@ -61,7 +61,7 @@ function AdminHeader() {
               </Link>
             </li>
             <li>
-            <Link to="/admin/main" className={styles.link}>
+              <Link to="/admin/main" className={styles.link}>
                 반갑습니다 관리자님
               </Link>
             </li>

@@ -2,12 +2,17 @@ import { Routes, Route } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
 import Layout from "./components/layout";
 import Home from "./pages/home";
-import Translate from "./pages/translate";
 import AdminMain from "./pages/AdminMain";
 import AdminMonth from "./pages/AdminMonth";
 import AdminYear from "./pages/AdminYear";
 import AdminNoticeList from "./pages/AdminNoticeList";
-import Korean from "./components/korean";
+
+import Korean from "./pages/korean";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Email from "./pages/email";
+import EmailVerification from "./pages/EmailVerification";
+
 function App() {
   return (
     <Routes>
@@ -19,22 +24,7 @@ function App() {
           </Layout>
         }
       />
-      <Route
-        path="/home"
-        element={
-          <Layout>
-            <Home />
-          </Layout>
-        }
-      />
-      <Route
-        path="/translate"
-        element={
-          <Layout>
-            <Translate />
-          </Layout>
-        }
-      />
+
       <Route
         path="/admin/main"
         element={
@@ -72,6 +62,38 @@ function App() {
         element={
           <Layout>
             <Korean />
+          </Layout>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <Layout>
+            <Login />
+          </Layout>
+        }
+      />
+      <Route
+        path="/login/signup"
+        element={
+          <Layout>
+            <Signup />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup/email"
+        element={
+          <Layout>
+            <Email />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup/email-verification"
+        element={
+          <Layout>
+            <EmailVerification />
           </Layout>
         }
       />
