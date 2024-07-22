@@ -15,6 +15,9 @@ const Mymedicheck = () => {
   const [ldlCholesterol, setLdlCholesterol] = useState("");
   const [triglycerides, setTriglycerides] = useState("");
   const [hdlCholesterol, setHdlCholesterol] = useState("");
+  const [hemoglobin, setHemoglobin] = useState("");
+  const [serumCreatinine, setSerumCreatinine] = useState("");
+  const [gfr, setGfr] = useState("");
 
   const isNumber = (value) => !isNaN(value);
 
@@ -392,12 +395,12 @@ const Mymedicheck = () => {
                           <input
                             type="text"
                             className={styles.ti_a1_1}
-                            id="hmgVl"
-                            name="hmgVl"
+                            id="hemoglobin"
+                            name="hemoglobin"
                             maxlength="4"
                             title="혈색소 입력"
-                            onchange="fnSetVal('3')"
-                            value=""
+                            value={hemoglobin}
+                            onChange={(e) => setHemoglobin(e.target.value)}
                           />
                           <em class="inline-block">g/dL</em>
                           <span className={styles.cham}>
@@ -416,12 +419,12 @@ const Mymedicheck = () => {
                           <input
                             type="text"
                             class={styles.ti_a1_1}
-                            id="crtnVl"
-                            name="crtnVl"
+                            id="serumCreatinine"
+                            name="serumCreatinine"
                             maxlength="3"
                             title="혈청크레아티닌 입력"
-                            onchange="fnSetVal('4')"
-                            value=""
+                            value={serumCreatinine}
+                            onChange={(e) => setSerumCreatinine(e.target.value)}
                           />
                           <em class="inline-block">mg/dL</em>
 
@@ -433,13 +436,13 @@ const Mymedicheck = () => {
                           <p class={styles.label}>ㅡ 신사구체여과율(GFR)</p>
                           <input
                             type="text"
-                            onchange="isNumber(this)"
                             className={styles.ti_a1_1}
-                            id="crtnGfrVl"
-                            name="crtnGfrVl"
+                            id="gfr"
+                            name="gfr"
                             maxlength="3"
                             title="신사구체여과율(GFR) 입력"
-                            value=""
+                            value={gfr}
+                            onChange={(e) => setGfr(e.target.value)}
                           />
                           <em className="inline-block">mL/min</em>
                           <span className={styles.cham}>

@@ -1,6 +1,6 @@
 .common-width {
   width: 100%; /* 디자인에 맞게 조정 */
-  max-width: 900px; /* 컨테이너의 최대 너비와 동일하게 설정 */
+  max-width: 800px; /* 컨테이너의 최대 너비와 동일하게 설정 */
 }
 .container {
   display: flex;
@@ -102,8 +102,9 @@
   padding: 15px 39px;
   color: #fff;
   background-color: #161e4b;
-  font-size: 18px;
+  font-size: 17px;
   margin-top: 20px;
+  /* font-weight: bold; */
 }
 
 .textContainer {
@@ -129,7 +130,7 @@
   /* border-bottom: 1px solid #ccc; */
   margin-left: 20px;
   padding-bottom: 10px;
-  padding-right: 170px;
+  /* padding-right: 170px; */
   padding-left: 5px;
 }
 
@@ -195,9 +196,9 @@ em {
   padding: 15px 39px;
   color: #fff;
   background-color: #161e4b;
-  font-size: 16px;
+  font-size: 17px;
   margin-top: 20px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 /* 옵션사항, 민간 검진기관 검진 내역 결과 입력 */
@@ -205,11 +206,11 @@ em {
   padding: 15px 39px;
   color: #fff;
   background-color: #161e4b;
-  font-size: 18px;
+  font-size: 17px;
   margin-top: 20px;
 }
 
-button {
+.registerButton {
   position: relative;
   border: 0;
   padding: 15px 25px;

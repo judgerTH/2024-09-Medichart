@@ -68,7 +68,10 @@ function Header() {
               {dropdownOpen[1] && (
                 <ul className={styles.dropdown}>
                   <li>
-                    <Link to="/MedicalInform" className={styles.link}>
+                    <Link
+                      to="mymedicheck/MedicalInform"
+                      className={styles.link}
+                    >
                       -건강검진정보
                     </Link>
                   </li>

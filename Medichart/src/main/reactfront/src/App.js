@@ -99,7 +99,7 @@ function App() {
         }
       />
       <Route
-        path="/mymedicheck"
+        path="/mymedicheck/medicalInform"
         element={
           <Layout>
             <Mymedicheck />
