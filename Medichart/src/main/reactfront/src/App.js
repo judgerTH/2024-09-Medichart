@@ -10,6 +10,9 @@ import AdminNoticeList from "./pages/AdminNoticeList";
 import Korean from "./pages/korean";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
+import Email from "./pages/email";
+import EmailVerification from "./pages/EmailVerification";
+import Mymedicheck from "./pages/mymedicheck";
 
 function App() {
   return (
@@ -76,6 +79,30 @@ function App() {
         element={
           <Layout>
             <Signup />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup/email"
+        element={
+          <Layout>
+            <Email />
+          </Layout>
+        }
+      />
+      <Route
+        path="/signup/email-verification"
+        element={
+          <Layout>
+            <EmailVerification />
+          </Layout>
+        }
+      />
+      <Route
+        path="/mymedicheck"
+        element={
+          <Layout>
+            <Mymedicheck />
           </Layout>
         }
       />
