@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf((csrf) -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth //"/signup",
                         .requestMatchers("/", "/oauth2/**", "/login/**", "/signup", "/css/**", "/js/**",
-                                "/findid", "/findpassword", "/verify", "/verifypassword","/admin/**","/admin/dashboard","/admin/notices","/list","/new","/edit","/delete").permitAll()
+                                "/findid","/chatbot", "/findpassword", "/verify", "/verifypassword","/admin/**","/admin/dashboard","/admin/notices","/list","/new","/edit","/delete").permitAll()
                         .requestMatchers("/admin/**","/admin/dashboard","/admin/notices","/list","/new","/edit","/delete").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .oauth2Login((auth) -> auth
