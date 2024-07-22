@@ -5,18 +5,18 @@ spring:
     username: root
     password: ${SPRING_DATASOURCE_PASSWORD}
   mail:
-      host: smtp.gmail.com
-      port: 587
-      username: sch5229@gmail.com
-      password: zwei hyub xdrt taac
+    host: smtp.gmail.com
+    port: 587
+    username: sch5229@gmail.com
+    password: zwei hyub xdrt taac
 
-      # Gmail 앱 비밀번호 또는 계정 비밀번호 입력
-      properties:
-        mail:
-          smtp:
-            auth: true
-            starttls:
-              enable: true
+    # Gmail 앱 비밀번호 또는 계정 비밀번호 입력
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   jpa:
     database: mysql
@@ -42,12 +42,12 @@ spring:
             scope: profile_nickname
 
           naver:
-              client-id: J9e7ZObddUCfs_4uICkI
-              client-secret: BGNHd8raRh
-              scope: profile,email
-              client-name: Naver
-              authorization-grant-type: authorization_code
-              redirect-uri: http://localhost:8080/login/oauth2/code/naver
+            client-id: J9e7ZObddUCfs_4uICkI
+            client-secret: BGNHd8raRh
+            scope: profile,email
+            client-name: Naver
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8080/login/oauth2/code/naver
           google:
             client-id: 709796471451-hdg13q22jmbruh79om4k0vb4t4b2plmp.apps.googleusercontent.com
             client-secret: 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
