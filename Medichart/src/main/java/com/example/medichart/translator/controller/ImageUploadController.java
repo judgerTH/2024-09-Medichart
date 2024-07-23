@@ -1,37 +1,48 @@
 package com.example.medichart.translator.controller;
 
 import com.example.medichart.translator.api.Vision;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.medichart.translator.api.TranslateService; // 추가된 부분
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ImageUploadController {
 
-    @GetMapping("/upload")
-    public String showUploadForm(Model model) {
-        return "uploadForm";
-    }
-
     @PostMapping("/upload")
-    public String handleImageUpload(@RequestParam("image") MultipartFile image, Model model) {
+    public Map<String, String> handleImageUpload(
+            @RequestParam("image") MultipartFile image,
+            @RequestParam("language") String language) {
+        Map<String, String> response = new HashMap<>();
+
         if (image.isEmpty()) {
-            model.addAttribute("message", "파일이 업로드되지 않았습니다.");
-            return "uploadForm";
+            response.put("message", "파일이 업로드되지 않았습니다.");
+            return response;
         }
 
         try {
+            // 이미지에서 텍스트 추출
             String extractedText = Vision.extractTextFromImage(image.getInputStream());
-            model.addAttribute("uploadedText", extractedText);
-            model.addAttribute("message", "이미지 업로드 성공");
-            return "uploadResult";
-        } catch (Exception e) {
+
+            // 텍스트 번역
+            String translatedText = TranslateService.translateText(extractedText, language);
+
+            // 응답 설정
+            response.put("uploadedText", extractedText);
+            response.put("translatedText", translatedText);
+            response.put("message", "이미지 업로드 및 텍스트 추출 및 번역 성공");
+
+        } catch (IOException e) {
             e.printStackTrace();
-            model.addAttribute("message", "텍스트 추출 실패: " + e.getMessage());
-            return "uploadForm";
+            response.put("message", "텍스트 추출 및 번역 실패: " + e.getMessage());
         }
+
+        return response;
     }
+
 }
