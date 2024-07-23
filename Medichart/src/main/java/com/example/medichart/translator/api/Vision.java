@@ -14,7 +14,6 @@ import com.google.protobuf.ByteString;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 public class Vision {
@@ -28,14 +27,19 @@ public class Vision {
         List<AnnotateImageRequest> requests = new ArrayList<>();
         requests.add(request);
 
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\이태현\\Desktop\\학교\\2024년도 1학기( 4-1 )\\멋쟁이사자처럼\\NSU-Likelion-haekeoton\\Medichart\\src\\main\\resources/medichart-428805-42763aa8030c.json"));
-        ImageAnnotatorSettings settings = ImageAnnotatorSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
+        try (InputStream credentialsStream = Vision.class.getResourceAsStream("/medichart-428805-42763aa8030c.json")) {
+            if (credentialsStream == null) {
+                throw new IOException("Resource not found: /medichart-428805-42763aa8030c.json");
+            }
+            GoogleCredentials credentials = GoogleCredentials.fromStream(credentialsStream);
+            ImageAnnotatorSettings settings = ImageAnnotatorSettings.newBuilder().setCredentialsProvider(FixedCredentialsProvider.create(credentials)).build();
 
-        try (ImageAnnotatorClient client = ImageAnnotatorClient.create(settings)) {
-            List<AnnotateImageResponse> responses = client.batchAnnotateImages(requests).getResponsesList();
-            for (AnnotateImageResponse res : responses) {
-                for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-                    return annotation.getDescription();
+            try (ImageAnnotatorClient client = ImageAnnotatorClient.create(settings)) {
+                List<AnnotateImageResponse> responses = client.batchAnnotateImages(requests).getResponsesList();
+                for (AnnotateImageResponse res : responses) {
+                    for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
+                        return annotation.getDescription();
+                    }
                 }
             }
         }
