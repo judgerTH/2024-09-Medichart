@@ -43,8 +43,8 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/English" className={styles.link}>
-                      -Eng
+                    <Link to="/Japanese" className={styles.link}>
+                      -日本語
                     </Link>
                   </li>
                   <li>
