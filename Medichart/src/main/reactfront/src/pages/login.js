@@ -4,11 +4,9 @@ import kakaologo from "../kakaotalk_sharing_btn_small.png";
 import naverlogo from "../naverlogo.png";
 import googlelogo from "../btn_google.svg";
 function Login() {
-  //카카오
-
   const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
-  //페이지 생성 후 URL 다시 수정하기
-  const K_REDIRECT_URI = `http://localhost:3001/oauth`;
+  const K_REDIRECT_URI = `http://localhost:3001/`;
+  //카카오 로그인 화면
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 
   const handlekakaoLogin = () => {
@@ -54,18 +52,6 @@ function Login() {
         <input type="submit" value="이메일로 로그인" className="button"></input>
 
         <div className="section_find">
-          <ul>
-            <li>
-              <Link to="id_find" className="link">
-                아이디 찾기{" "}
-              </Link>{" "}
-            </li>
-            <li>
-              <Link to="pw_find" className="link">
-                비밀번호 찾기{" "}
-              </Link>
-            </li>
-          </ul>
           <p
             style={{
               fontSize: "small",

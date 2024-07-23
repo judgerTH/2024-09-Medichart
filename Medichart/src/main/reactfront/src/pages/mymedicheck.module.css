@@ -209,7 +209,7 @@ em {
   margin-top: 20px;
 }
 
-button {
+.registerButton {
   position: relative;
   border: 0;
   padding: 15px 25px;
