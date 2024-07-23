@@ -68,10 +68,7 @@ function Header() {
               {dropdownOpen[1] && (
                 <ul className={styles.dropdown}>
                   <li>
-                    <Link
-                      to="mymedicheck/MedicalInform"
-                      className={styles.link}
-                    >
+                    <Link to="/MedicalInform" className={styles.link}>
                       -건강검진정보
                     </Link>
                   </li>
@@ -81,8 +78,8 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Find" className={styles.link}>
-                      -건강검진 센터 찾기
+                    <Link to="/checkupSearch" className={styles.link}>
+                      -건강검진기관 찾기
                     </Link>
                   </li>
                 </ul>

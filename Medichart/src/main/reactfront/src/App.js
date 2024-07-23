@@ -13,6 +13,8 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
+import CheckupSearch from "./pages/checkupSearch";
+import Prediction from "./pages/prediction";
 
 function App() {
   return (
@@ -99,10 +101,26 @@ function App() {
         }
       />
       <Route
-        path="/mymedicheck/medicalInform"
+        path="/medicalInform"
         element={
           <Layout>
             <Mymedicheck />
+          </Layout>
+        }
+      />
+      <Route
+        path="/checkupSearch"
+        element={
+          <Layout>
+            <CheckupSearch />
+          </Layout>
+        }
+      />
+      <Route
+        path="/Prediction"
+        element={
+          <Layout>
+            <Prediction />
           </Layout>
         }
       />
