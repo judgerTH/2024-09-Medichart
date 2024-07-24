@@ -39,17 +39,17 @@ function Header() {
                 <ul className={styles.dropdown}>
                   <li>
                     <Link to="/Korean" className={styles.link}>
-                      -한국어
+                      - 한국어
                     </Link>
                   </li>
                   <li>
                     <Link to="/Japanese" className={styles.link}>
-                      -日本語
+                      - 日本語
                     </Link>
                   </li>
                   <li>
                     <Link to="/Chinese" className={styles.link}>
-                      -汉文
+                      - 汉文
                     </Link>
                   </li>
                 </ul>
@@ -69,12 +69,12 @@ function Header() {
                 <ul className={styles.dropdown}>
                   <li>
                     <Link to="/MedicalInform" className={styles.link}>
-                      -건강검진정보
+                      - 건강검진정보
                     </Link>
                   </li>
                   <li>
                     <Link to="/Prediction" className={styles.link}>
-                      -질병 예측
+                      - 질병 예측
                     </Link>
                   </li>
                   <li>
