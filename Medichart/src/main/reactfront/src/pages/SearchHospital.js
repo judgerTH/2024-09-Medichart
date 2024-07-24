@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import "../pages/korean.css";
 import styles from "./mymedicheck.module.css";
+import "../pages/SearchHospital.css";
 
 // 모달 스타일 설정
 const customStyles = {
     content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-        width: '50%',
-        height: '80%',
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        width: "50%",
+        height: "80%",
         zIndex: 1000,
-        padding: '0',
+        padding: "0",
     },
     overlay: {
         zIndex: 1000,
     },
 };
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 
 function SearchHospital() {
     const [userLocation, setUserLocation] = useState(null);
@@ -35,13 +36,13 @@ function SearchHospital() {
 
     useEffect(() => {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
+            navigator.geolocation.getCurrentPosition((position) => {
                 const userLoc = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 };
                 setUserLocation(userLoc);
-                setMapCenter(userLoc); // 지도 중심을 사용자의 현재 위치로 설정
+                setMapCenter(userLoc);
             });
         }
     }, []);
@@ -54,14 +55,20 @@ function SearchHospital() {
         const callback = (result, status) => {
             if (status === kakao.maps.services.Status.OK) {
                 const sortedPlaces = result.sort((a, b) => {
-                    const distanceA = getDistance(userLocation, { lat: parseFloat(a.y), lng: parseFloat(a.x) });
-                    const distanceB = getDistance(userLocation, { lat: parseFloat(b.y), lng: parseFloat(b.x) });
+                    const distanceA = getDistance(userLocation, {
+                        lat: parseFloat(a.y),
+                        lng: parseFloat(a.x),
+                    });
+                    const distanceB = getDistance(userLocation, {
+                        lat: parseFloat(b.y),
+                        lng: parseFloat(b.x),
+                    });
                     return distanceA - distanceB;
                 });
                 setPlaces(sortedPlaces);
             }
         };
-        ps.keywordSearch('건강검진 병원', callback, {
+        ps.keywordSearch("건강검진 병원", callback, {
             location: new kakao.maps.LatLng(userLocation.lat, userLocation.lng),
             radius: 5000,
         });
@@ -71,9 +78,12 @@ function SearchHospital() {
         const R = 6371;
         const dLat = deg2rad(loc2.lat - loc1.lat);
         const dLng = deg2rad(loc2.lng - loc1.lng);
-        const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(deg2rad(loc1.lat)) * Math.cos(deg2rad(loc2.lat)) *
-            Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        const a =
+            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(deg2rad(loc1.lat)) *
+            Math.cos(deg2rad(loc2.lat)) *
+            Math.sin(dLng / 2) *
+            Math.sin(dLng / 2);
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         const distance = R * c * 1000;
         return distance;
@@ -117,12 +127,12 @@ function SearchHospital() {
                     </ul>
                 </div>
             </div>
-            <div className={styles.inner}>
-                <h2 className={styles.title}>건강검진 센터</h2>
+            <div className="outline">
+                <h2 className={styles.title}>건강검진 센터 찾기</h2>
                 {mapCenter && (
                     <Map
-                        center={mapCenter}
-                        style={{ width: "180%", height: "600px" }}
+                        center={{ lat: mapCenter.lat, lng: mapCenter.lng }}
+                        className="Map"
                         level={3}
                     >
                         {userLocation && (
@@ -130,7 +140,7 @@ function SearchHospital() {
                                 position={userLocation}
                                 title="현재 위치"
                                 image={{
-                                    src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
+                                    src: "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png", // 사용자 위치 마커 이미지 URL
                                     size: {
                                         width: 24,
                                         height: 35,
@@ -141,22 +151,32 @@ function SearchHospital() {
                         {places.map((place, index) => (
                             <MapMarker
                                 key={index}
-                                position={{ lat: parseFloat(place.y), lng: parseFloat(place.x) }}
+                                position={{
+                                    lat: parseFloat(place.y),
+                                    lng: parseFloat(place.x),
+                                }}
                                 title={place.place_name}
                             />
                         ))}
                     </Map>
                 )}
-                <ul style={{ listStyleType: 'none' }}>
+                <ul style={{ listStyleType: "none" }}>
                     {places.map((place, index) => (
-                        <li key={index} style={{ marginBottom: '5px' }}>
-                            <button onClick={() => openModal(place.place_url)} className={styles.linkButton}>
+                        <li key={index}>
+                            <button
+                                className="hospital_list"
+                                onClick={() => openModal(place.place_url)}
+                            >
                                 {place.place_name}
                             </button>
-                            ({Math.round(getDistance(userLocation, {
-                            lat: parseFloat(place.y),
-                            lng: parseFloat(place.x)
-                        }))}m)
+                            (
+                            {Math.round(
+                                getDistance(userLocation, {
+                                    lat: parseFloat(place.y),
+                                    lng: parseFloat(place.x),
+                                })
+                            )}
+                            m)
                         </li>
                     ))}
                 </ul>
@@ -166,17 +186,30 @@ function SearchHospital() {
                     style={customStyles}
                     contentLabel="Hospital Detail"
                 >
-                    <div style={{ position: 'relative', height: '100%' }}>
+                    <div style={{ position: "relative", height: "100%" }}>
                         <iframe
                             src={selectedPlaceUrl}
-                            style={{ width: '100%', height: 'calc(100% - 50px)', border: 'none' }}
+                            style={{
+                                width: "100%",
+                                height: "calc(100% - 50px)",
+                                border: "none",
+                            }}
                             title="Hospital Detail"
                         />
-                        <button onClick={closeModal} style={{
-                            position: 'absolute', top: '10px', right: '80px',
-                            padding: '5px 10px', border: 'none', backgroundColor: '#333',
-                            color: '#fff', cursor: 'pointer'
-                        }}>닫기
+                        <button
+                            onClick={closeModal}
+                            style={{
+                                position: "absolute",
+                                top: "10px",
+                                right: "80px",
+                                padding: "5px 10px",
+                                border: "none",
+                                backgroundColor: "#333",
+                                color: "#fff",
+                                cursor: "pointer",
+                            }}
+                        >
+                            닫기
                         </button>
                     </div>
                 </Modal>

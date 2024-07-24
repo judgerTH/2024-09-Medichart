@@ -3,7 +3,20 @@ import { Link } from "react-router-dom";
 import kakaologo from "../kakaotalk_sharing_btn_small.png";
 import naverlogo from "../naverlogo.png";
 import googlelogo from "../btn_google.svg";
+
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext"; //AuthContext 경로 수정
+
 function Login() {
+  const { login } = useContext(AuthContext); // AuthContext에서 login 함수 사용
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login();
+    navigate("/");
+  };
+
   const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
   const K_REDIRECT_URI = `http://localhost:3001/`;
   //카카오 로그인 화면
@@ -34,22 +47,31 @@ function Login() {
   return (
     <div className="container">
       <h3>로그인</h3>
-
+      <p style={{ color: "red", margin: " 0 0 30px 9px" }}>
+        로그인 후 이용해주세요
+      </p>
       <div className="loginForm ">
         <input
           type="email"
           id="user_id"
           placeholder="이메일을 입력하세요"
+          className="loginInput"
         ></input>
         <input
           type="password"
           id="user_password"
           placeholder="비밀번호를 입력하세요"
+          className="loginInput"
         ></input>
       </div>
 
       <div className="loginForm_bottom ">
-        <input type="submit" value="이메일로 로그인" className="button"></input>
+        <input
+          onClick={handleLogin}
+          type="submit"
+          value="이메일로 로그인"
+          className="button"
+        ></input>
 
         <div className="section_find">
           <p
