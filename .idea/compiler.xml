@@ -10,5 +10,10 @@
         <module name="Medichart.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Medichart" target="17" />
+      <module name="Medichart.main" target="17" />
+      <module name="Medichart.test" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

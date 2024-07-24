@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.entity;
 
 import jakarta.persistence.Entity;
@@ -77,3 +78,4 @@ public class FindUser {
     }
 }
 
+*/
