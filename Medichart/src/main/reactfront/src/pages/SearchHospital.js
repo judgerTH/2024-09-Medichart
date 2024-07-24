@@ -41,7 +41,7 @@ function SearchHospital() {
                     lng: position.coords.longitude,
                 };
                 setUserLocation(userLoc);
-                setMapCenter(userLoc);
+                setMapCenter(userLoc); // 지도 중심을 사용자의 현재 위치로 설정
             });
         }
     }, []);
@@ -59,9 +59,6 @@ function SearchHospital() {
                     return distanceA - distanceB;
                 });
                 setPlaces(sortedPlaces);
-                if (sortedPlaces.length > 0) {
-                    setMapCenter({ lat: parseFloat(sortedPlaces[0].y), lng: parseFloat(sortedPlaces[0].x) });
-                }
             }
         };
         ps.keywordSearch('건강검진 병원', callback, {
@@ -124,8 +121,8 @@ function SearchHospital() {
                 <h2 className={styles.title}>건강검진 센터</h2>
                 {mapCenter && (
                     <Map
-                        center={{lat: mapCenter.lat, lng: mapCenter.lng}}
-                        style={{width: "130%", height: "600px"}}
+                        center={mapCenter}
+                        style={{ width: "180%", height: "600px" }}
                         level={3}
                     >
                         {userLocation && (
@@ -133,10 +130,10 @@ function SearchHospital() {
                                 position={userLocation}
                                 title="현재 위치"
                                 image={{
-                                    src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 사용자 위치 마커 이미지 URL
+                                    src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
                                     size: {
                                         width: 24,
-                                        height: 35
+                                        height: 35,
                                     },
                                 }}
                             />
@@ -144,15 +141,15 @@ function SearchHospital() {
                         {places.map((place, index) => (
                             <MapMarker
                                 key={index}
-                                position={{lat: parseFloat(place.y), lng: parseFloat(place.x)}}
+                                position={{ lat: parseFloat(place.y), lng: parseFloat(place.x) }}
                                 title={place.place_name}
                             />
                         ))}
                     </Map>
                 )}
-                <ul style={{ listStyleType : 'none'}}>
+                <ul style={{ listStyleType: 'none' }}>
                     {places.map((place, index) => (
-                        <li key={index} style={{marginBottom: '-130px'}}>
+                        <li key={index} style={{ marginBottom: '5px' }}>
                             <button onClick={() => openModal(place.place_url)} className={styles.linkButton}>
                                 {place.place_name}
                             </button>
@@ -169,10 +166,10 @@ function SearchHospital() {
                     style={customStyles}
                     contentLabel="Hospital Detail"
                 >
-                    <div style={{position: 'relative', height: '100%'}}>
+                    <div style={{ position: 'relative', height: '100%' }}>
                         <iframe
                             src={selectedPlaceUrl}
-                            style={{width: '100%', height: 'calc(100% - 50px)', border: 'none'}}
+                            style={{ width: '100%', height: 'calc(100% - 50px)', border: 'none' }}
                             title="Hospital Detail"
                         />
                         <button onClick={closeModal} style={{
