@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.service;
 
 import com.example.medichart.login.entity.AdminUser;
@@ -29,4 +30,4 @@ public class AdminUserService implements UserDetailsService {
                 Collections.singletonList(new SimpleGrantedAuthority(adminUser.getRole()))
         );
     }
-}
+}*/

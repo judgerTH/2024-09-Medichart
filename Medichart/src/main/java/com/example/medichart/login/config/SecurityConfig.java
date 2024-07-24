@@ -1,72 +1,56 @@
 package com.example.medichart.login.config;
 
-import com.example.medichart.login.service.AdminUserService;
-import com.example.medichart.login.service.OauthUserService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.medichart.login.service.CustomOAuth2UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
-import java.io.IOException;
-import java.util.Set;
 
 @Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private AdminUserService adminUserService;
-
-    @Autowired
-    private OauthUserService oauthUserService;
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf((csrf) -> csrf.disable())
-                .authorizeHttpRequests((auth) -> auth //"/signup",
-                        .requestMatchers("/", "/oauth2/**", "/login/**", "/signup", "/css/**", "/js/**", "/api/**", "/upload", "/translate",
-                                "/findid", "/findpassword", "/verify", "/verifypassword","/admin/**","/admin/dashboard","/admin/notices","/list","/new","/edit","/delete").permitAll()
-                        .requestMatchers("/admin/**","/admin/dashboard","/admin/notices","/list","/new","/edit","/delete").hasRole("ADMIN")
-                        .anyRequest().authenticated())
-                .oauth2Login((auth) -> auth
-                        .loginPage("/login")
-                        .userInfoEndpoint(userInfoEndpointConfig ->
-                                userInfoEndpointConfig.userService(oauthUserService)))
-                .formLogin((form) -> form
-                        .loginPage("/login")
-                        .successHandler(successHandler())
-                        .permitAll())
-                .logout((logout) -> logout
-                        .permitAll());
+                .authorizeRequests(authorizeRequests ->
+                        authorizeRequests
+                                .requestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/login/**", "/oauth2/**").permitAll()
+                                .anyRequest().authenticated()
+                )
+                .formLogin(formLogin ->
+                        formLogin
+                                .loginPage("/login")
+                                .defaultSuccessUrl("/home", true)
+                                .permitAll()
+                )
+                .logout(logout ->
+                        logout
+                                .logoutSuccessUrl("/login?logout")
+                                .permitAll()
+                )
+                .oauth2Login(oauth2Login ->
+                        oauth2Login
+                                .loginPage("/login")
+                                .userInfoEndpoint(userInfoEndpoint ->
+                                        userInfoEndpoint.userService(customOAuth2UserService))
+                )
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/oauth2/**")
+                );
 
         return http.build();
     }
     @Bean
-    public AuthenticationSuccessHandler successHandler() {
-        return new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                Authentication authentication) throws IOException, ServletException {
-                Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-                if (roles.contains("ROLE_ADMIN")) {
-                    response.sendRedirect("/admin/dashboard");
-                } else {
-                    response.sendRedirect("/dashboard");
-                }
-            }
-        };
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return adminUserService;
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

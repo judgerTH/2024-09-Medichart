@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.entity;
 
 import jakarta.persistence.Entity;
@@ -48,4 +49,4 @@ public class AdminUser {
     public void setRole(String role) {
         this.role = role;
     }
-}
+}*/

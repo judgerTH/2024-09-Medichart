@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.controller;
 
 import org.springframework.security.core.Authentication;
@@ -20,3 +21,4 @@ public class MyController {
         return "my";
     }
 }
+*/

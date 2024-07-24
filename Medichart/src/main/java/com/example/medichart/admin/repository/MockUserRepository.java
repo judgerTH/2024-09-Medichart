@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.admin.repository;
 
 import java.time.LocalDate;
@@ -13,4 +14,4 @@ public interface MockUserRepository {
     List<Long> countBySignupMonthBetween(YearMonth startYearMonth, YearMonth endYearMonth);
 
     List<Long> countBySignupYearBetween(int startYear, int endYear);
-}
+}*/

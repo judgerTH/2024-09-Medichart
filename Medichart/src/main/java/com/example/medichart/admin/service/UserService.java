@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.admin.service;
 
 import com.example.medichart.login.dto.InsertMemberDTO;
@@ -19,4 +20,4 @@ public class UserService {
         UserEntity userEntity = UserEntity.toUserEntity(insertMemberDTO);
         userRepository.save(userEntity);
     }
-}
+}*/
