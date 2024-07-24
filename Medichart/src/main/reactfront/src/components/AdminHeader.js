@@ -44,16 +44,6 @@ function AdminHeader() {
                       - 공지사항 작성
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/admin/deleteNotice" className={styles.link}>
-                      - 공지사항 삭제
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/updateNotice" className={styles.link}>
-                      - 공지사항 수정
-                    </Link>
-                  </li>
                 </ul>
               )}
             </li>
