@@ -8,6 +8,8 @@ import AdminYear from "./pages/AdminYear";
 import AdminNoticeList from "./pages/AdminNoticeList";
 
 import Korean from "./pages/korean";
+import Japanese from "./pages/Japanese";
+import Chinese from "./pages/Chinese";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Email from "./pages/email";
@@ -68,6 +70,22 @@ function App() {
           </Layout>
         }
       />
+        <Route
+            path="/Japanese"
+            element={
+                <Layout>
+                    <Japanese />
+                </Layout>
+            }
+        />
+        <Route
+            path="/Chinese"
+            element={
+                <Layout>
+                    <Chinese />
+                </Layout>
+            }
+        />
       <Route
         path="/login"
         element={

@@ -43,8 +43,8 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/English" className={styles.link}>
-                      -Eng
+                    <Link to="/Japanese" className={styles.link}>
+                      -日本語
                     </Link>
                   </li>
                   <li>
@@ -79,7 +79,7 @@ function Header() {
                   </li>
                   <li>
                     <Link to="/checkupSearch" className={styles.link}>
-                      -건강검진기관 찾기
+                      -검진센터 찾기
                     </Link>
                   </li>
                 </ul>

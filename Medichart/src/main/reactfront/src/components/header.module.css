@@ -31,7 +31,7 @@ html {
 .contents {
   display: flex;
   width: 96%;
-  max-width: 1100px;
+  max-width: 125 px;
   height: 100%;
   margin: 0 auto;
   align-items: center;

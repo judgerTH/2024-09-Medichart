@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.7cb8f72c.css",
-    "main.js": "/static/js/main.e2547f41.js",
+    "main.css": "/static/css/main.1232885d.css",
+    "main.js": "/static/js/main.fcc39f12.js",
     "static/media/MediChart_clear.png": "/static/media/MediChart_clear.c776096712c231d06e38.png",
+    "static/media/btn_google.svg": "/static/media/btn_google.03f950a96f8294baafa271aedc091773.svg",
     "index.html": "/index.html",
-    "main.7cb8f72c.css.map": "/static/css/main.7cb8f72c.css.map",
-    "main.e2547f41.js.map": "/static/js/main.e2547f41.js.map"
+    "main.1232885d.css.map": "/static/css/main.1232885d.css.map",
+    "main.fcc39f12.js.map": "/static/js/main.fcc39f12.js.map"
   },
   "entrypoints": [
-    "static/css/main.7cb8f72c.css",
-    "static/js/main.e2547f41.js"
+    "static/css/main.1232885d.css",
+    "static/js/main.fcc39f12.js"
   ]
 }
