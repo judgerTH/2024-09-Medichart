@@ -2,6 +2,11 @@ import styles from "./header.module.css";
 import { Link } from "react-router-dom";
 import logo from "../MediChart_clear.png";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+import React, { useContext } from "react";
+import { AuthContext } from "../pages/AuthContext";
 
 function Header() {
   const [dropdownOpen, setDropdownOpen] = useState([false, false]);
@@ -12,7 +17,7 @@ function Header() {
     );
     setDropdownOpen(newDropdownOpen);
   };
-
+  const { isLoggedIn, logout } = useContext(AuthContext);
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
@@ -86,9 +91,19 @@ function Header() {
               )}
             </li>
             <li className={styles.titleHeader}>고객센터</li>
-            <Link to="/login" className={styles.link}>
-              <li className={styles.titleHeader}>로그인/회원가입</li>
-            </Link>
+            {isLoggedIn ? (
+              <li className={styles.titleHeader}>
+                마이페이지
+                <FontAwesomeIcon icon={faUser} id={styles.faUser} />
+                <button className={styles.logout} onClick={logout}>
+                  로그아웃
+                </button>
+              </li>
+            ) : (
+              <Link to="/login" className={styles.link}>
+                <li className={styles.titleHeader}>로그인/회원가입</li>
+              </Link>
+            )}
           </ul>
         </nav>
       </div>
