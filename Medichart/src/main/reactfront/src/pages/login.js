@@ -56,12 +56,14 @@ function Login() {
           id="user_id"
           placeholder="이메일을 입력하세요"
           className="loginInput"
+          required
         ></input>
         <input
           type="password"
           id="user_password"
           placeholder="비밀번호를 입력하세요"
           className="loginInput"
+          required
         ></input>
       </div>
 
