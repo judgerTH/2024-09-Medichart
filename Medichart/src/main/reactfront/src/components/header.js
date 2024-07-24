@@ -2,6 +2,11 @@ import styles from "./header.module.css";
 import { Link } from "react-router-dom";
 import logo from "../MediChart_clear.png";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+
+import React, { useContext } from "react";
+import { AuthContext } from "../pages/AuthContext";
 
 function Header() {
   const [dropdownOpen, setDropdownOpen] = useState([false, false]);
@@ -12,7 +17,7 @@ function Header() {
     );
     setDropdownOpen(newDropdownOpen);
   };
-
+  const { isLoggedIn, logout } = useContext(AuthContext);
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
@@ -39,17 +44,17 @@ function Header() {
                 <ul className={styles.dropdown}>
                   <li>
                     <Link to="/Korean" className={styles.link}>
-                      -한국어
+                      - 한국어
                     </Link>
                   </li>
                   <li>
                     <Link to="/Japanese" className={styles.link}>
-                      -日本語
+                      - 日本語
                     </Link>
                   </li>
                   <li>
                     <Link to="/Chinese" className={styles.link}>
-                      -汉文
+                      - 汉文
                     </Link>
                   </li>
                 </ul>
@@ -69,26 +74,41 @@ function Header() {
                 <ul className={styles.dropdown}>
                   <li>
                     <Link to="/MedicalInform" className={styles.link}>
-                      -건강검진정보
+                      - 건강검진정보
                     </Link>
                   </li>
                   <li>
                     <Link to="/Prediction" className={styles.link}>
-                      -질병 예측
+                      - 질병 예측
                     </Link>
                   </li>
                   <li>
-                    <Link to="/checkupSearch" className={styles.link}>
-                      -검진센터 찾기
+                    <Link to="/SearchHospital" className={styles.link}>
+                      - 검진센터 찾기
                     </Link>
                   </li>
                 </ul>
               )}
             </li>
             <li className={styles.titleHeader}>고객센터</li>
-            <Link to="/login" className={styles.link}>
-              <li className={styles.titleHeader}>로그인/회원가입</li>
-            </Link>
+            {isLoggedIn ? (
+              <li className={styles.titleHeader}>
+                <Link
+                  to="/Mypage"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  마이페이지
+                  <FontAwesomeIcon icon={faUser} id={styles.faUser} />
+                </Link>
+                <button className={styles.logout} onClick={logout}>
+                  로그아웃
+                </button>
+              </li>
+            ) : (
+              <Link to="/login" className={styles.link}>
+                <li className={styles.titleHeader}>로그인/회원가입</li>
+              </Link>
+            )}
           </ul>
         </nav>
       </div>

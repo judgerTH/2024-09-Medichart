@@ -1,79 +1,70 @@
 import React, { useState } from "react";
 import "../pages/Useagree.css";
 function Useagree({ isOpen, onClose }) {
-  const [agreeAll, setAgreeAll] = useState(false);
-  const [agreeTerms, setAgreeTerms] = useState(false); //이용약관 동의
-  const [agreePrivacy, setAgreePrivacy] = useState(false); //개인정보 동의
+  // const [agreeAll, setAgreeAll] = useState(false);
+  // const [agreeTerms, setAgreeTerms] = useState(false); //이용약관 동의
+  // const [agreePrivacy, setAgreePrivacy] = useState(false); //개인정보 동의
 
-  const handleAgreeAllChange = () => {
-    const newAgreeAll = !agreeAll;
-    setAgreeAll(newAgreeAll);
-    setAgreeTerms(newAgreeAll);
-    setAgreePrivacy(newAgreeAll);
-  };
+  // const handleAgreeAllChange = () => {
+  //   const newAgreeAll = !agreeAll;
+  //   setAgreeAll(newAgreeAll);
+  //   setAgreeTerms(newAgreeAll);
+  //   setAgreePrivacy(newAgreeAll);
+  // };
 
-  const handleAgreeTermsChange = () => {
-    const newAgreeTerms = !agreeTerms;
-    setAgreeTerms(newAgreeTerms);
-    setAgreeAll(newAgreeTerms && agreePrivacy);
-  };
+  // const handleAgreeTermsChange = () => {
+  //   const newAgreeTerms = !agreeTerms;
+  //   setAgreeTerms(newAgreeTerms);
+  //   setAgreeAll(newAgreeTerms && agreePrivacy);
+  // };
 
-  const handleAgreePrivacyChange = () => {
-    const newAgreePrivacy = !agreePrivacy;
-    setAgreePrivacy(newAgreePrivacy);
-    setAgreeAll(agreeTerms && newAgreePrivacy);
-  };
+  // const handleAgreePrivacyChange = () => {
+  //   const newAgreePrivacy = !agreePrivacy;
+  //   setAgreePrivacy(newAgreePrivacy);
+  //   setAgreeAll(agreeTerms && newAgreePrivacy);
+  // };
 
   //백엔드로 데이터 전송 !!
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (agreeTerms && agreePrivacy) {
-      // 추가 회원가입 처리 로직
-      try {
-        const response = await fetch("https://api.example.com/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            agreeTerms,
-            agreePrivacy,
-          }),
-        });
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   if (agreeTerms && agreePrivacy) {
+  //     // 추가 회원가입 처리 로직
+  //     try {
+  //       const response = await fetch("https://api.example.com/register", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           agreeTerms,
+  //           agreePrivacy,
+  //         }),
+  //       });
 
-        if (response.ok) {
-          alert("회원가입 완료");
-          // 추가 회원가입 처리 로직
-        } else {
-          alert("회원가입에 실패했습니다. 다시 시도해주세요.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-      }
-    } else {
-      alert("모든 필수 약관에 동의해야 합니다.");
-    }
-  };
+  //       if (response.ok) {
+  //         alert("회원가입 완료");
+  //         // 추가 회원가입 처리 로직
+  //       } else {
+  //         alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error:", error);
+  //       alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+  //     }
+  //   } else {
+  //     alert("모든 필수 약관에 동의해야 합니다.");
+  //   }
+  // };
   if (!isOpen) return null;
   return (
     <div className="modal-overlay">
       <div className="modal">
         <div className="modal-content">
           <h2>Medichart 이용약관</h2>
-          <form onSubmit={handleSubmit}>
+          <form>
+            <div className="form-group"></div>
             <div className="form-group">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={agreeAll}
-                  onChange={handleAgreeAllChange}
-                />{" "}
-                회원가입 약관에 모두 동의합니다
-              </label>
-            </div>
-            <div className="form-group">
-              <label htmlFor="terms">이용약관 동의 (필수)</label>
+              <label htmlFor="terms">이용약관</label>
               <textarea
                 id="terms"
                 readOnly
@@ -126,17 +117,9 @@ function Useagree({ isOpen, onClose }) {
   2. 회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.
                     `}
               ></textarea>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={agreeTerms}
-                  onChange={handleAgreeTermsChange}
-                />{" "}
-                동의합니다
-              </label>
             </div>
             <div className="form-group">
-              <label htmlFor="privacy">개인정보 수집 및 이용 동의 (필수)</label>
+              <label htmlFor="privacy">개인정보 수집 및 이용 동의</label>
               <textarea
                 id="privacy"
                 readOnly
@@ -166,22 +149,9 @@ function Useagree({ isOpen, onClose }) {
   회원은 언제든지 등록되어 있는 자신의 개인정보를 조회하거나 수정할 수 있으며, 개인정보 처리에 대한 동의 철회 및 회원 탈퇴를 요청할 수 있습니다.
                     `}
               ></textarea>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={agreePrivacy}
-                  onChange={handleAgreePrivacyChange}
-                />{" "}
-                동의합니다
-              </label>
             </div>
             <div className="buttons">
-              <button type="button" className="cancel-btn" onClick={onClose}>
-                CANCEL
-              </button>
-              <button type="submit" className="join-btn">
-                JOIN
-              </button>
+              <button className="join-btn">닫기</button>
             </div>
           </form>
         </div>

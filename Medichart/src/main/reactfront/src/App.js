@@ -15,134 +15,142 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
-import CheckupSearch from "./pages/checkupSearch";
-import Prediction from "./pages/prediction";
+import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 있는 페이지 설정
+import { AuthProvider } from "./pages/AuthContext";
+import SearchHospital from "./pages/SearchHospital";
+import Mypage from "./pages/Mypage";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <Home />
-          </Layout>
-        }
-      />
+    <AuthProvider>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
 
-      <Route
-        path="/admin/main"
-        element={
-          <AdminLayout>
-            <AdminMain />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/admin/month"
-        element={
-          <AdminLayout>
-            <AdminMonth />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/admin/year"
-        element={
-          <AdminLayout>
-            <AdminYear />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/admin/noticeList"
-        element={
-          <AdminLayout>
-            <AdminNoticeList />
-          </AdminLayout>
-        }
-      />
-      <Route
-        path="/Korean"
-        element={
-          <Layout>
-            <Korean />
-          </Layout>
-        }
-      />
         <Route
-            path="/Japanese"
-            element={
-                <Layout>
-                    <Japanese />
-                </Layout>
-            }
+          path="/admin/main"
+          element={
+            <AdminLayout>
+              <AdminMain />
+            </AdminLayout>
+          }
         />
         <Route
-            path="/Chinese"
-            element={
-                <Layout>
-                    <Chinese />
-                </Layout>
-            }
+          path="/admin/month"
+          element={
+            <AdminLayout>
+              <AdminMonth />
+            </AdminLayout>
+          }
         />
-      <Route
-        path="/login"
-        element={
-          <Layout>
-            <Login />
-          </Layout>
-        }
-      />
-      <Route
-        path="/login/signup"
-        element={
-          <Layout>
-            <Signup />
-          </Layout>
-        }
-      />
-      <Route
-        path="/signup/email"
-        element={
-          <Layout>
-            <Email />
-          </Layout>
-        }
-      />
-      <Route
-        path="/signup/email-verification"
-        element={
-          <Layout>
-            <EmailVerification />
-          </Layout>
-        }
-      />
-      <Route
-        path="/medicalInform"
-        element={
-          <Layout>
-            <Mymedicheck />
-          </Layout>
-        }
-      />
-      <Route
-        path="/checkupSearch"
-        element={
-          <Layout>
-            <CheckupSearch />
-          </Layout>
-        }
-      />
-      <Route
-        path="/Prediction"
-        element={
-          <Layout>
-            <Prediction />
-          </Layout>
-        }
-      />
-    </Routes>
+        <Route
+          path="/admin/year"
+          element={
+            <AdminLayout>
+              <AdminYear />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/noticeList"
+          element={
+            <AdminLayout>
+              <AdminNoticeList />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/Korean"
+          element={
+            <Layout>
+              <Korean />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Japanese"
+          element={
+            <Layout>
+              <Japanese />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Chinese"
+          element={
+            <Layout>
+              <Chinese />
+            </Layout>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Layout>
+              <Login />
+            </Layout>
+          }
+        />
+        <Route
+          path="/login/signup"
+          element={
+            <Layout>
+              <Signup />
+            </Layout>
+          }
+        />
+        <Route
+          path="/signup/email"
+          element={
+            <Layout>
+              <Email />
+            </Layout>
+          }
+        />
+        <Route
+          path="/signup/email-verification"
+          element={
+            <Layout>
+              <EmailVerification />
+            </Layout>
+          }
+        />
+        <Route
+          path="/medicalInform"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Mymedicheck />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/searchHospital"
+          element={
+            <Layout>
+              <SearchHospital />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Mypage"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Mypage />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   );
 }
 

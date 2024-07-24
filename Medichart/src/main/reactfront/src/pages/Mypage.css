@@ -1,0 +1,57 @@
+.my-page .sectionLeft {
+  float: left;
+  margin: 100px 60px 0 70px;
+  padding-left: -30px;
+  padding-right: 20px;
+  border-radius: 20px;
+  margin-right: 0;
+  width: 230px;
+}
+.my-page h2 {
+  border: 0;
+  background-color: transparent;
+  font-size: 20px;
+  padding-top: 30px;
+  padding-left: 28px;
+  font-weight: bold;
+  text-align: left;
+}
+.sectionLeft ul {
+  list-style: none;
+  text-align: left;
+}
+
+.sectionLeft #line {
+  border-top: 2px solid black;
+  margin-left: 30px;
+  padding-left: 14px;
+}
+.sectionLeft li {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  margin-left: -50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  color: #1a76d1;
+}
+.content {
+  float: right;
+  width: 900px;
+  height: 500px;
+  margin-top: 80px;
+
+  background-color: white;
+  /* border-radius: 20px; */
+  position: relative;
+  margin-bottom: 30px;
+}
+.icon {
+  width: 100px;
+}

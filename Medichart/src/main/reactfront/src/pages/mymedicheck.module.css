@@ -155,6 +155,17 @@
   /* justify-content: space-between; */
   /* border-bottom: 1px solid #ccc; */
 }
+.inputContainer2_1 {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 110px;
+}
 .inputContainer_c {
   display: flex;
   align-items: center;

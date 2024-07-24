@@ -3,12 +3,23 @@ import { Link } from "react-router-dom";
 import kakaologo from "../kakaotalk_sharing_btn_small.png";
 import naverlogo from "../naverlogo.png";
 import googlelogo from "../btn_google.svg";
+
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext"; //AuthContext 경로 수정
+
 function Login() {
-  //카카오
+  const { login } = useContext(AuthContext); // AuthContext에서 login 함수 사용
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login();
+    navigate("/");
+  };
 
   const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
-  //페이지 생성 후 URL 다시 수정하기
-  const K_REDIRECT_URI = `http://localhost:3001/oauth`;
+  const K_REDIRECT_URI = `http://localhost:3001/`;
+  //카카오 로그인 화면
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 
   const handlekakaoLogin = () => {
@@ -36,7 +47,9 @@ function Login() {
   return (
     <div className="container">
       <h3>로그인</h3>
-
+      <p style={{ color: "red", margin: " 0 0 30px 9px" }}>
+        로그인 후 이용해주세요
+      </p>
       <div className="loginForm ">
         <input
           type="email"
@@ -53,21 +66,14 @@ function Login() {
       </div>
 
       <div className="loginForm_bottom ">
-        <input type="submit" value="이메일로 로그인" className="button"></input>
+        <input
+          onClick={handleLogin}
+          type="submit"
+          value="이메일로 로그인"
+          className="button"
+        ></input>
 
         <div className="section_find">
-          <ul>
-            <li>
-              <Link to="id_find" className="link">
-                아이디 찾기{" "}
-              </Link>{" "}
-            </li>
-            <li>
-              <Link to="pw_find" className="link">
-                비밀번호 찾기{" "}
-              </Link>
-            </li>
-          </ul>
           <p
             style={{
               fontSize: "small",

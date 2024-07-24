@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.service;
 
 import com.example.medichart.login.dto.*;
@@ -50,4 +51,4 @@ public class OauthUserService extends DefaultOAuth2UserService {
         return new CustomOAuth2User(userDTO);
     }
 
-}
+}*/

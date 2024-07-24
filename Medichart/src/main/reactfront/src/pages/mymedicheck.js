@@ -476,7 +476,7 @@ const Mymedicheck = () => {
                             (표준 참고치 : 50 이하)
                           </span>
                         </div>
-                        <div className={styles.inputContainer2}>
+                        <div className={styles.inputContainer2_1}>
                           <p className={styles.label}>ㅡ 감마지티피 (γ-GTP)</p>
                           <input
                             type="text"

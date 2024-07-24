@@ -16,7 +16,7 @@ h3 {
   padding: 10px;
   border: 1px solid grey;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   width: 300px;
   height: 25px;
 }
@@ -48,8 +48,7 @@ h3 {
 }
 
 .SNS {
-  margin-top: 40px;
-  margin-left: 40px;
+  margin: 40px 0 70px 40px;
 }
 .SNS img {
   width: 34px;

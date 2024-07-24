@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.domain;
 
 import lombok.Builder;
@@ -23,3 +24,4 @@ public class User {
         this.role = role;
     }
 }
+*/

@@ -1,15 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.1232885d.css",
-    "main.js": "/static/js/main.fcc39f12.js",
+    "main.css": "/static/css/main.86ff8106.css",
+    "main.js": "/static/js/main.3000c816.js",
     "static/media/MediChart_clear.png": "/static/media/MediChart_clear.c776096712c231d06e38.png",
+    "static/media/NEXONLv1GothicRegular.ttf": "/static/media/NEXONLv1GothicRegular.3367236d2b79a849d19b.ttf",
+    "static/media/NEXONLv1GothicBold.ttf": "/static/media/NEXONLv1GothicBold.c37a61d35e694ac3c88e.ttf",
     "static/media/btn_google.svg": "/static/media/btn_google.03f950a96f8294baafa271aedc091773.svg",
     "index.html": "/index.html",
-    "main.1232885d.css.map": "/static/css/main.1232885d.css.map",
-    "main.fcc39f12.js.map": "/static/js/main.fcc39f12.js.map"
+    "main.86ff8106.css.map": "/static/css/main.86ff8106.css.map",
+    "main.3000c816.js.map": "/static/js/main.3000c816.js.map"
   },
   "entrypoints": [
-    "static/css/main.1232885d.css",
-    "static/js/main.fcc39f12.js"
+    "static/css/main.86ff8106.css",
+    "static/js/main.3000c816.js"
   ]
 }

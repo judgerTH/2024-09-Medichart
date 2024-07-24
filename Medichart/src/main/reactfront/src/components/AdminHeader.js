@@ -16,9 +16,11 @@ function AdminHeader() {
   return (
     <header className={styles.header}>
       <div className={styles.contents}>
-        <div style={{ display: "flex" }}>
-          <img className={styles.logo} src={logo} alt="Logo"></img>
-          <p>MediChart</p>
+        <div>
+          <Link to="/" className={styles.link1}>
+            <img className={styles.logo} src={logo} alt="Logo"></img>
+            <p>MediChart</p>
+          </Link>
         </div>
 
         <nav className={styles.navigation}>
@@ -26,7 +28,7 @@ function AdminHeader() {
             <li onClick={() => toggleDropdown(0)}>
               공지사항 관리
               <span
-                className={`${styles.triangle} ${
+                  className={`${styles.triangle} ${
                   dropdownOpen[0] ? styles.open : ""
                 }`}
               ></span>
@@ -40,16 +42,6 @@ function AdminHeader() {
                   <li>
                     <Link to="/admin/writeNotice" className={styles.link}>
                       - 공지사항 작성
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/deleteNotice" className={styles.link}>
-                      - 공지사항 삭제
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/admin/updateNotice" className={styles.link}>
-                      - 공지사항 수정
                     </Link>
                   </li>
                 </ul>

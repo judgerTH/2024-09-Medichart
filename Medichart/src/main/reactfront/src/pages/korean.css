@@ -5,15 +5,13 @@
 }
 
 .container .sectionLeft {
-  margin-right: 0;
-}
-.container .sectionLeft {
   float: left;
   margin: 100px 60px 0 20px;
   padding-left: -30px;
   padding-right: 20px;
-  background-color: #dfe5eb;
   border-radius: 20px;
+  margin-right: 0;
+  width: 230px;
 }
 
 .container h2 {
@@ -23,8 +21,8 @@
   padding-top: 30px;
   padding-left: 28px;
   font-weight: bold;
+  text-align: left;
 }
-
 .sectionLeft ul {
   list-style: none;
   text-align: left;
@@ -37,10 +35,9 @@
 }
 .sectionLeft li {
   padding-top: 10px;
-  margin-bottom: 20px;
-  font-size: large;
-  font-weight: bold;
+  padding-bottom: 15px;
   margin-left: -50px;
+  border-bottom: 1px solid #ccc;
 }
 
 .link {
@@ -54,12 +51,13 @@
 .container .contents {
   float: right;
   width: 900px;
-  height: 600px;
+  height: 500px;
   margin-top: 80px;
-  border: 1px solid #d0e5ff;
-  background-color: #d0e5ff;
-  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  /* border-radius: 20px; */
   position: relative;
+  margin-bottom: 30px;
 }
 .upload {
   font-size: 70px;
@@ -70,7 +68,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: rgb(141, 136, 136);
+  color: #ccc;
   font-size: 30px;
   padding: 40px;
 }
@@ -80,8 +78,8 @@
 
 .preview-image {
   width: 500px;
-  height: 500px;
-  margin-top: 60px;
+  height: 400px;
+  margin-top: 45px;
 }
 .remove-button {
   top: 5px;
