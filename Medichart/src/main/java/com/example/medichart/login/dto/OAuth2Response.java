@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.dto;
 
 public interface OAuth2Response {
@@ -6,4 +7,4 @@ public interface OAuth2Response {
     String getProviderId();  // Provider ID
     String getEmail();       // User email
     String getName();        // User name
-}
+}*/

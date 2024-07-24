@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.repository;
 
 import com.example.medichart.login.entity.FindUser;
@@ -13,3 +14,4 @@ public interface FindUserRepository extends JpaRepository<FindUser, Long> {
 
     // 추가적으로 필요한 쿼리 메서드들을 여기에 선언할 수 있습니다.
 }
+*/
