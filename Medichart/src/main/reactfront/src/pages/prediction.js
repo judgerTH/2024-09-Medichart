@@ -11,18 +11,30 @@ const Prediction = () => {
         <div id="line">
           <ul>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
+              <Link
+                to="/MedicalInform"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
                 - 건강검진정보
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
+              <Link
+                to="/Prediction"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
                 - 질병 예측
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
-                - 건강검진 센터 찾기
+              <Link
+                to="/SearchHospital"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
+                - 검진센터 찾기
               </Link>
             </li>
           </ul>

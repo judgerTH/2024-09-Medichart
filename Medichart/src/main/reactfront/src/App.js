@@ -20,7 +20,7 @@ import { AuthProvider } from "./pages/AuthContext";
 import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
-
+import Prediction from "./pages/prediction";
 function App() {
   return (
     <AuthProvider>
@@ -155,6 +155,14 @@ function App() {
           element={
             <Layout>
               <CustomerService />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Prediction"
+          element={
+            <Layout>
+              <Prediction />
             </Layout>
           }
         />
