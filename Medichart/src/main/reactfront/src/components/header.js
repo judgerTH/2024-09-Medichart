@@ -78,7 +78,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Find" className={styles.link}>
+                    <Link to="/SearchHospital" className={styles.link}>
                       -건강검진 센터 찾기
                     </Link>
                   </li>

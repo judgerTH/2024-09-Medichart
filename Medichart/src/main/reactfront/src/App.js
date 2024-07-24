@@ -15,7 +15,7 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
-
+import SearchHospital from "./pages/SearchHospital";
 function App() {
   return (
     <Routes>
@@ -124,6 +124,14 @@ function App() {
           </Layout>
         }
       />
+        <Route
+            path="/searchHospital"
+            element={
+                <Layout>
+                    <SearchHospital />
+                </Layout>
+            }
+        />
     </Routes>
   );
 }
