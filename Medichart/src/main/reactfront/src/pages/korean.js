@@ -151,18 +151,20 @@ function Korean() {
                     </button>
                   </div>
                 )}
-                {originalText && (
-                  <div className="ocr-text">
-                    <h3>원본 텍스트:</h3>
-                    <p>{originalText}</p>
-                  </div>
-                )}
-                {translatedText && (
-                  <div className="translated-text">
-                    <h3>번역된 텍스트:</h3>
-                    <p>{translatedText}</p>
-                  </div>
-                )}
+                <div style={{ marginBottom: "50px" }}>
+                  {originalText && (
+                    <div className="ocr-text">
+                      <h3>원본 텍스트:</h3>
+                      <p>{originalText}</p>
+                    </div>
+                  )}
+                  {translatedText && (
+                    <div className="translated-text">
+                      <h3>번역된 텍스트:</h3>
+                      <p>{translatedText}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

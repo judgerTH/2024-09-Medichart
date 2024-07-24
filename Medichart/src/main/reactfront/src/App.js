@@ -15,8 +15,10 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 있는 페이지 설정
 import { AuthProvider } from "./pages/AuthContext";
+import SearchHospital from "./pages/SearchHospital";
+import Mypage from "./pages/Mypage";
 
 function App() {
   return (
@@ -125,6 +127,24 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Mymedicheck />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/searchHospital"
+          element={
+            <Layout>
+              <SearchHospital />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Mypage"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Mypage />
               </Layout>
             </ProtectedRoute>
           }

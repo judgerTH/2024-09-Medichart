@@ -83,8 +83,8 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Find" className={styles.link}>
-                      - 검진 센터 찾기
+                    <Link to="/SearchHospital" className={styles.link}>
+                      - 검진센터 찾기
                     </Link>
                   </li>
                 </ul>
@@ -93,8 +93,13 @@ function Header() {
             <li className={styles.titleHeader}>고객센터</li>
             {isLoggedIn ? (
               <li className={styles.titleHeader}>
-                마이페이지
-                <FontAwesomeIcon icon={faUser} id={styles.faUser} />
+                <Link
+                  to="/Mypage"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  마이페이지
+                  <FontAwesomeIcon icon={faUser} id={styles.faUser} />
+                </Link>
                 <button className={styles.logout} onClick={logout}>
                   로그아웃
                 </button>
