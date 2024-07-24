@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.controller;
 
 import com.example.medichart.login.entity.FindUser;
@@ -121,3 +122,4 @@ public class FindUserController {
         return String.valueOf(code);
     }
 }
+*/

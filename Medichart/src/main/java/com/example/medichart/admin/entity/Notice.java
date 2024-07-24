@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.admin.entity;
 
 import lombok.Getter;
@@ -23,4 +24,4 @@ public class Notice {
         this.content = content;
         this.createdDate = createdDate;
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.dto;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -37,3 +38,4 @@ public class CustomOAuth2User implements OAuth2User {
         return userdto.getNickName();
     }
 }
+*/

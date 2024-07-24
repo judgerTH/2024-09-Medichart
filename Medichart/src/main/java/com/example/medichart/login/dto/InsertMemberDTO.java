@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.dto;
 
 import com.example.medichart.login.entity.UserEntity;
@@ -27,3 +28,4 @@ public class InsertMemberDTO {
         );
     }
 }
+*/
