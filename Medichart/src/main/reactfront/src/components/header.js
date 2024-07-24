@@ -78,7 +78,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Prediction" className={styles.link}>
+                    <Link to="/" className={styles.link}>
                       - 질병 예측
                     </Link>
                   </li>
