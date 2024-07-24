@@ -97,17 +97,17 @@ function Korean() {
             <ul>
               <li>
                 <Link to="/Korean" className="link">
-                  -한국어
+                  - 한국어
                 </Link>
               </li>
               <li>
                 <Link to="/Japanese" className="link">
-                  -日本語
+                  - 日本語
                 </Link>
               </li>
               <li>
                 <Link to="/Chinese" className="link">
-                  -汉文
+                  - 汉文
                 </Link>
               </li>
             </ul>

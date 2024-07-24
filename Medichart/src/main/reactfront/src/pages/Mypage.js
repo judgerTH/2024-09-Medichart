@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../pages/Mypage.css";
 import { Link } from "react-router-dom";
+import React from "react";
+
 function Mypage() {
   return (
     <div className="my-page">
@@ -17,27 +19,31 @@ function Mypage() {
           </ul>
         </div>
       </div>
-      <div className="content">
+      <div className="UserInformation">
         <FontAwesomeIcon icon={faUser} className="icon" />
         <div className="account-info">
           <h2>계정 정보</h2>
           <div className="info">
             <label>이름</label>
-            <input type="text" value="" readOnly />
+            <input type="text" value="이름" readOnly />
+            {/* <input type="text" value={user.name} readOnly /> */}
           </div>
           <div className="info">
             <label>생년월일</label>
-            <input type="text" value="2024-12-34" readOnly />
+            <input type="text" value="2002-01-01" readOnly />
+            {/* <input type="text" value={user.birthDate} readOnly /> */}
           </div>
           <div className="info">
             <label>연락처</label>
-            <input type="text" value="123-4567-8912" readOnly />
+            <input type="text" value="010-1234-1234" readOnly />
+            {/* <input type="text" value={user.contact} readOnly /> */}
           </div>
           <div className="info">
             <label>이메일</label>
-            <input type="text" value="abc@naver.com" readOnly />
-            <span className="verified">인증 완료</span>
+            <input type="text" value="1234@naver.com" readOnly />
+            {/* <input type="text" value={user.email} readOnly /> */}
           </div>
+          {/* <button onClick={logout}>로그아웃</button> */}
         </div>
       </div>
     </div>
