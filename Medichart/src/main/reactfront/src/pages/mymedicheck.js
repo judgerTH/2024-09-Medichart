@@ -5,16 +5,89 @@ import styles from "./mymedicheck.module.css";
 const Mymedicheck = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
+  const [heightError, setHeightError] = useState("");
+  const [weightError, setWeightError] = useState("");
   const [waist, setWaist] = useState("");
   const [waistInch, setWaistInch] = useState("");
   const [bmi, setBmi] = useState("");
   const [systolicBP, setSystolicBP] = useState("");
   const [diastolicBP, setDiastolicBP] = useState("");
   const [bloodSugar, setBloodSugar] = useState("");
-  const [totalCholesterol, setTotalCholesterol] = useState("");
-  const [ldlCholesterol, setLdlCholesterol] = useState("");
-  const [triglycerides, setTriglycerides] = useState("");
-  const [hdlCholesterol, setHdlCholesterol] = useState("");
+  const [ast, setAst] = useState("");
+  const [alt, setAlt] = useState("");
+  const [ggtp, setGgtp] = useState("");
+  // const [hdlCholesterol, setHdlCholesterol] = useState("");
+  const [hemoglobin, setHemoglobin] = useState("");
+  const [serumCreatinine, setSerumCreatinine] = useState("");
+  // const [gfr, setGfr] = useState("");
+  const [ageGroup, setAgeGroup] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [smoking, setSmoking] = useState("1");
+  const [drinking, setDrinking] = useState("1");
+
+  const handleAgeGroupChange = (e) => {
+    const value = e.target.value;
+    setAgeGroup(value);
+    if (value === "" || value % 5 === 0) {
+      setErrorMessage("");
+    } else {
+      setErrorMessage("※ 5단위로 입력해주세요.");
+    }
+  };
+
+  const handleBlur = () => {
+    if (ageGroup && ageGroup % 5 !== 0) {
+      setErrorMessage("※ 5단위로 입력해주세요.");
+    } else {
+      setErrorMessage("");
+    }
+  };
+  //여기까지 연령대
+
+  const [selectedGender, setSelectedGender] = useState("1"); // 초기값 남성으로 설정
+
+  const handleGenderChange = (event) => {
+    setSelectedGender(event.target.value);
+  };
+  //여기까지 성별
+
+  const handleHeightChange = (e) => {
+    const value = e.target.value;
+    setHeight(value);
+    if (value === "" || value % 5 === 0) {
+      setHeightError("");
+    } else {
+      setHeightError("5단위로 입력해주세요.");
+    }
+  };
+
+  const handleWeightChange = (e) => {
+    const value = e.target.value;
+    setWeight(value);
+    if (value === "" || value % 5 === 0) {
+      setWeightError("");
+    } else {
+      setWeightError("5단위로 입력해주세요.");
+    }
+  };
+
+  const handleHeightBlur = () => {
+    if (height && height % 5 !== 0) {
+      setHeightError("5단위로 입력해주세요.");
+    } else {
+      setHeightError("");
+    }
+  };
+
+  const handleWeightBlur = () => {
+    if (weight && weight % 5 !== 0) {
+      setWeightError("5단위로 입력해주세요.");
+    } else {
+      setWeightError("");
+    }
+  };
+  //여기까지 신장, 체중
 
   const isNumber = (value) => !isNaN(value);
 
@@ -39,10 +112,10 @@ const Mymedicheck = () => {
       systolicBP &&
       diastolicBP &&
       bloodSugar &&
-      totalCholesterol &&
-      ldlCholesterol &&
-      triglycerides &&
-      hdlCholesterol
+      ast &&
+      alt &&
+      ggtp
+      // hdlCholesterol
     ) {
       alert("등록되었습니다.");
     } else {
@@ -57,18 +130,30 @@ const Mymedicheck = () => {
         <div id="line">
           <ul>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
+              <Link
+                to="/MedicalInform"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
                 - 건강검진정보
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
+              <Link
+                to="/Prediction"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
                 - 질병 예측
               </Link>
             </li>
             <li>
-              <Link to="/" style={{ textDecoration: "none" }} className="link">
-                - 건강검진 센터 찾기
+              <Link
+                to="/SearchHospital"
+                style={{ textDecoration: "none" }}
+                className="link"
+              >
+                - 검진센터 찾기
               </Link>
             </li>
           </ul>
@@ -76,6 +161,74 @@ const Mymedicheck = () => {
       </div>
       <div className={styles.inner}>
         <h2 className={styles.title}>검진 정보 입력</h2>
+        <div class="standard-data col-2">
+          <div className={styles.topline}>
+            <div className={styles.dataBox}>
+              <div className={styles.inputGroup}>
+                <span className={styles.titleTop}>나이</span>
+                <input
+                  type="number"
+                  className={styles.tiA1}
+                  id="ageGroup"
+                  name="ageGroup"
+                  value={ageGroup}
+                  onChange={handleAgeGroupChange}
+                  onBlur={handleBlur}
+                  title="나이"
+                  // placeholder="연령대를 5단위로 입력"
+                />
+                <span className={styles.cham}>세</span>
+              </div>
+              {errorMessage && (
+                <div
+                  style={{
+                    color: "red",
+                    fontSize: "14px",
+                    marginLeft: "30px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {errorMessage}
+                </div>
+              )}
+              <div className={styles.textContainer_top}>
+                ※ 0~2 : 0세 / 3~7 : 5세 / 8~12 : 10세로 입력해 주십시오.
+              </div>
+            </div>
+
+            <div className={styles.dataBox}>
+              {/* <span className={styles.titleTop}>성별</span> */}
+              <div className={styles.genderGroup}>
+                <span className={styles.bgchk1}>
+                  {/* <label htmlFor="gender_1">남성</label> */}
+                  <input
+                    className={styles.radiog1}
+                    type="radio"
+                    id="gender_1"
+                    name="gender"
+                    value="1"
+                    checked={selectedGender === "1"}
+                    onChange={handleGenderChange}
+                  />
+                  <label htmlFor="gender_1">남성</label>
+                </span>
+                <span className={styles.bgchk2}>
+                  {/* <label htmlFor="gender_2">여성</label> */}
+                  <input
+                    className={styles.radiog2}
+                    type="radio"
+                    id="gender_2"
+                    name="gender"
+                    value="2"
+                    checked={selectedGender === "2"}
+                    onChange={handleGenderChange}
+                  />
+                  <label htmlFor="gender_2">여성</label>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className={styles.out}>
           <div className={styles.title__1}>비만도 측정</div>
 
@@ -86,7 +239,7 @@ const Mymedicheck = () => {
             >
               <table className={styles.title__table1}>
                 <tbody className={styles.tbody_1}>
-                  <tr>
+                  {/* <tr>
                     <td className={styles.title__1_a}>
                       <div className={styles.textContainer}>
                         ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오.
@@ -98,7 +251,6 @@ const Mymedicheck = () => {
                           className={styles.ti_a1_1}
                           name="heightVl"
                           maxLength="5"
-                          // placeholder="신장을 입력해주세요."
                           title="신장 입력"
                           value={height}
                           onChange={(e) => setHeight(e.target.value)}
@@ -115,13 +267,59 @@ const Mymedicheck = () => {
                           className={styles.ti_a1_1}
                           name="weightVl"
                           maxLength="5"
-                          // placeholder="체중을 입력해주세요."
                           title="체중 입력"
                           value={weight}
                           onChange={(e) => setWeight(e.target.value)}
                           onBlur={calculateBmi}
                         />
                         <em className="dash ml10"> kg</em>
+                      </div>
+                    </td>
+                  </tr> */}
+                  <tr>
+                    <td className={styles.title__1_a}>
+                      <div className={styles.textContainer}>
+                        ※ 신장, 체중, 허리둘레 정보를 입력해 주십시오.
+                      </div>
+                      <div className={styles.inputContainer}>
+                        <p className={styles.inputtext1}>신장</p>
+                        <input
+                          type="text"
+                          className={styles.ti_a1_1}
+                          name="heightVl"
+                          maxLength="5"
+                          // placeholder="신장을 입력해주세요."
+                          title="신장 입력"
+                          value={height}
+                          onChange={handleHeightChange}
+                          // onBlur={handleHeightBlur}
+                          onBlur={calculateBmi}
+                        />
+                        <em className="dash ml10">cm</em>
+                        {heightError && (
+                          <div className={styles.error}>{heightError}</div>
+                        )}
+                      </div>
+                    </td>
+                    <td className={styles.title__1_a}>
+                      <div className={styles.inputContainer_c}>
+                        <p className={styles.inputtext2}>체중</p>
+                        <input
+                          type="text"
+                          className={styles.ti_a1_1}
+                          name="weightVl"
+                          maxLength="5"
+                          // placeholder="체중을 입력해주세요."
+                          title="체중 입력"
+                          value={weight}
+                          onChange={handleWeightChange}
+                          // onBlur={handleWeightBlur}
+                          onBlur={calculateBmi}
+                        />
+                        <em className="dash ml10">kg</em>
+                        {weightError && (
+                          <div className={styles.error2}>{weightError}</div>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -205,7 +403,7 @@ const Mymedicheck = () => {
                           />
                           <em className="inline-block">mmHg</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 120미만)
+                            (표준 참고치 : 120 미만)
                           </span>
                         </div>
                         <div className={styles.inputContainer2}>
@@ -222,7 +420,7 @@ const Mymedicheck = () => {
                           />
                           <em className="inline-block">mmHg</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 80미만)
+                            (표준 참고치 : 80 미만)
                           </span>
                         </div>
                       </div>
@@ -246,7 +444,7 @@ const Mymedicheck = () => {
                           />
                           <em className="inline-block">mmHg</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 100미만)
+                            (표준 참고치 : 100 미만)
                           </span>
                         </div>
                       </div>
@@ -255,63 +453,59 @@ const Mymedicheck = () => {
                   <tr>
                     <td>
                       <div className="form-wrap box-in-table">
-                        <p className={styles.tit}>
-                          고혈압, 이상지질혈증, 동맥경화
-                        </p>
+                        <p className={styles.tit}>간장질환</p>
                         <div className={styles.inputContainer2}>
-                          <p className={styles.label}>ㅡ 총 콜레스테롤</p>
+                          <p className={styles.label}>ㅡ 혈청지오티 (AST) </p>
                           <input
                             type="text"
                             className={styles.ti_a1_1}
-                            id="totClstrVl"
-                            name="totClstrVl"
+                            id="ast"
+                            name="ast"
                             maxLength="3"
-                            title="총 콜레스테롤 입력"
-                            value={totalCholesterol}
-                            onChange={(e) =>
-                              setTotalCholesterol(e.target.value)
-                            }
+                            title="혈청지오티 (AST) 입력"
+                            value={ast}
+                            onChange={(e) => setAst(e.target.value)}
                           />
                           <em className="inline-block">mg/dL</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 200미만)
+                            (표준 참고치 : 40 이하)
                           </span>
                         </div>
                         <div className={styles.inputContainer2}>
-                          <p className={styles.label}>ㅡ LDL-콜레스테롤</p>
+                          <p className={styles.label}>ㅡ 혈청지피티(ALT)</p>
                           <input
                             type="text"
                             className={styles.ti_a1_1}
-                            id="ldlClstrVl"
-                            name="ldlClstrVl"
+                            id="alt"
+                            name="alt"
                             maxLength="3"
                             title="LDL-콜레스테롤 입력"
-                            value={ldlCholesterol}
-                            onChange={(e) => setLdlCholesterol(e.target.value)}
+                            value={alt}
+                            onChange={(e) => setAlt(e.target.value)}
                           />
                           <em className="inline-block">mg/dL</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 130미만)
+                            (표준 참고치 : 50 이하)
                           </span>
                         </div>
-                        <div className={styles.inputContainer2}>
-                          <p className={styles.label}>ㅡ 중성지방</p>
+                        <div className={styles.inputContainer2_1}>
+                          <p className={styles.label}>ㅡ 감마지티피 (γ-GTP)</p>
                           <input
                             type="text"
                             className={styles.ti_a1_1}
-                            id="tgClstrVl"
-                            name="tgClstrVl"
+                            id="ggtp"
+                            name="ggtp"
                             maxLength="3"
-                            title="중성지방 입력"
-                            value={triglycerides}
-                            onChange={(e) => setTriglycerides(e.target.value)}
+                            title="감마지티피 입력"
+                            value={ggtp}
+                            onChange={(e) => setGgtp(e.target.value)}
                           />
                           <em className="inline-block">mg/dL</em>
                           <sapn className={styles.cham}>
-                            (표준 참고치 : 150미만)
+                            (표준 참고치 : 남 11~63 / 여 8~35)
                           </sapn>
                         </div>
-                        <div className={styles.inputContainer2}>
+                        {/* <div className={styles.inputContainer2}>
                           <p className={styles.label}>ㅡ HDL-콜레스테롤</p>
                           <input
                             type="text"
@@ -327,7 +521,7 @@ const Mymedicheck = () => {
                           <span className={styles.cham}>
                             (표준 참고치 : 60이상)
                           </span>
-                        </div>
+                        </div> */}
                       </div>
                     </td>
                   </tr>
@@ -359,7 +553,6 @@ const Mymedicheck = () => {
                         <p class={styles.tit}>신장질환</p>
                         <div className={styles.inputContainer2}>
                           <p class={styles.label}>ㅡ 요단백</p>
-
                           <select
                             class="w190px"
                             className={styles.ti_a1_1}
@@ -375,9 +568,27 @@ const Mymedicheck = () => {
                             <option value="5">양성(+3)</option>
                             <option value="6">양성(+4)</option>
                           </select>
-
                           <span className={styles.cham}>
                             (표준 참고치 : 음성)
+                          </span>
+                        </div>
+
+                        <div className={styles.inputContainer2}>
+                          <p class={styles.label}>ㅡ 혈청크레아티닌</p>
+                          <input
+                            type="text"
+                            class={styles.ti_a1_1}
+                            id="serumCreatinine"
+                            name="serumCreatinine"
+                            maxlength="3"
+                            title="혈청크레아티닌 입력"
+                            value={serumCreatinine}
+                            onChange={(e) => setSerumCreatinine(e.target.value)}
+                          />
+                          <em class="inline-block">mg/dL</em>
+
+                          <span className={styles.cham}>
+                            (표준 참고치 : 1.5 이하)
                           </span>
                         </div>
                       </div>
@@ -392,16 +603,16 @@ const Mymedicheck = () => {
                           <input
                             type="text"
                             className={styles.ti_a1_1}
-                            id="hmgVl"
-                            name="hmgVl"
+                            id="hemoglobin"
+                            name="hemoglobin"
                             maxlength="4"
                             title="혈색소 입력"
-                            onchange="fnSetVal('3')"
-                            value=""
+                            value={hemoglobin}
+                            onChange={(e) => setHemoglobin(e.target.value)}
                           />
                           <em class="inline-block">g/dL</em>
                           <span className={styles.cham}>
-                            (표준 참고치 :남 : 13~16.5 / 여 : 12~15.5)
+                            (표준 참고치 : 남 13~16.5 / 여 12~15.5)
                           </span>
                         </div>
                       </div>
@@ -410,41 +621,103 @@ const Mymedicheck = () => {
                   <tr>
                     <td>
                       <div class="form-wrap box-in-table">
-                        <p class={styles.tit}>만성신장질환</p>
+                        <div className={styles.inputRow}>
+                          <div className={styles.inputContainer2_bottom}>
+                            <div className={styles.labelAndRadios}>
+                              <p className={styles.label_s}>ㅡ 흡연 여부</p>
+                              <div className={styles.radioGroup1}>
+                                <label className={styles.radioLabel_y}>
+                                  <input
+                                    type="radio"
+                                    name="smoking"
+                                    value="1"
+                                    checked={smoking === "1"}
+                                    onChange={(e) => setSmoking(e.target.value)}
+                                  />
+                                  예
+                                </label>
+                                <label className={styles.radioLabel_n}>
+                                  <input
+                                    className={styles.smokbtn}
+                                    type="radio"
+                                    name="smoking"
+                                    value="2"
+                                    checked={smoking === "2"}
+                                    onChange={(e) => setSmoking(e.target.value)}
+                                  />
+                                  아니오
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div className={styles.inputContainer2_bottom}>
+                            <div className={styles.labelAndRadios}>
+                              <p className={styles.label_d}>ㅡ 음주 여부</p>
+                              <div className={styles.radioGroup2}>
+                                <label className={styles.radioLabel_y}>
+                                  <input
+                                    className={styles.drinkbtn}
+                                    type="radio"
+                                    name="drinking"
+                                    value="1"
+                                    checked={drinking === "1"}
+                                    onChange={(e) =>
+                                      setDrinking(e.target.value)
+                                    }
+                                  />
+                                  예
+                                </label>
+                                <label className={styles.radioLabel_n}>
+                                  <input
+                                    type="radio"
+                                    name="drinking"
+                                    value="2"
+                                    checked={drinking === "2"}
+                                    onChange={(e) =>
+                                      setDrinking(e.target.value)
+                                    }
+                                  />
+                                  아니오
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          {/* <p class={styles.tit}>만성신장질환</p>
                         <div className={styles.inputContainer2}>
                           <p class={styles.label}>ㅡ 혈청크레아티닌</p>
                           <input
                             type="text"
                             class={styles.ti_a1_1}
-                            id="crtnVl"
-                            name="crtnVl"
+                            id="serumCreatinine"
+                            name="serumCreatinine"
                             maxlength="3"
                             title="혈청크레아티닌 입력"
-                            onchange="fnSetVal('4')"
-                            value=""
+                            value={serumCreatinine}
+                            onChange={(e) => setSerumCreatinine(e.target.value)}
                           />
                           <em class="inline-block">mg/dL</em>
 
                           <span className={styles.cham}>
-                            (표준 참고치 : 1.5이하)
+                            (표준 참고치 : 1.5 이하)
                           </span>
                         </div>
                         <div className={styles.inputContainer2}>
                           <p class={styles.label}>ㅡ 신사구체여과율(GFR)</p>
                           <input
                             type="text"
-                            onchange="isNumber(this)"
                             className={styles.ti_a1_1}
-                            id="crtnGfrVl"
-                            name="crtnGfrVl"
+                            id="gfr"
+                            name="gfr"
                             maxlength="3"
                             title="신사구체여과율(GFR) 입력"
-                            value=""
+                            value={gfr}
+                            onChange={(e) => setGfr(e.target.value)}
                           />
                           <em className="inline-block">mL/min</em>
                           <span className={styles.cham}>
-                            (표준 참고치 : 60이상)
+                            (표준 참고치 : 60 이상)
                           </span>
+                        </div> */}
                         </div>
                       </div>
                     </td>

@@ -3,39 +3,18 @@ import { Link } from "react-router-dom";
 import kakaologo from "../kakaotalk_sharing_btn_small.png";
 import naverlogo from "../naverlogo.png";
 import googlelogo from "../btn_google.svg";
-import { useContext, useState } from "react";
+
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "./AuthContext"; // AuthContext 경로 수정
+import { AuthContext } from "./AuthContext"; //AuthContext 경로 수정
 
 function Login() {
     const { login } = useContext(AuthContext); // AuthContext에서 login 함수 사용
     const navigate = useNavigate();
 
-    // 상태 관리
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleLogin = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ email, password })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                login(data); // AuthContext의 login 함수 호출
-                navigate("/");
-            } else {
-                const errorData = await response.json();
-                alert(errorData.message || "로그인에 실패했습니다.");
-            }
-        } catch (error) {
-            alert("서버와의 통신에 문제가 발생했습니다.");
-        }
+    const handleLogin = () => {
+        login();
+        navigate("/");
     };
 
     const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
@@ -65,7 +44,6 @@ function Login() {
     const handlegoogleLogin = () => {
         window.location.href = G_URL; //구글 URL로 이동
     };
-
     return (
         <div className="container">
             <h3>로그인</h3>
@@ -78,16 +56,14 @@ function Login() {
                     id="user_id"
                     placeholder="이메일을 입력하세요"
                     className="loginInput"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    required
                 ></input>
                 <input
                     type="password"
                     id="user_password"
                     placeholder="비밀번호를 입력하세요"
                     className="loginInput"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    required
                 ></input>
             </div>
 
@@ -122,9 +98,9 @@ function Login() {
                         SNS 로그인
                     </p>
                     <div className="SNS">
-                        <img onClick={handlenaverLogin} src={naverlogo} alt="naver logo"></img>
-                        <img onClick={handlekakaoLogin} src={kakaologo} alt="kakao logo"></img>
-                        <img onClick={handlegoogleLogin} src={googlelogo} alt="google logo"></img>
+                        <img onClick={handlenaverLogin} src={naverlogo}></img>
+                        <img onClick={handlekakaoLogin} src={kakaologo}></img>
+                        <img onClick={handlegoogleLogin} src={googlelogo}></img>
                     </div>
                 </div>
             </div>

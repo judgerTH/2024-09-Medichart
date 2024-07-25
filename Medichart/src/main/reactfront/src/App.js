@@ -19,7 +19,8 @@ import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 �
 import { AuthProvider } from "./pages/AuthContext";
 import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
-
+import CustomerService from "./pages/CustomerService";
+import Prediction from "./pages/prediction";
 function App() {
   return (
     <AuthProvider>
@@ -147,6 +148,22 @@ function App() {
                 <Mypage />
               </Layout>
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/CustomerService"
+          element={
+            <Layout>
+              <CustomerService />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Prediction"
+          element={
+            <Layout>
+              <Prediction />
+            </Layout>
           }
         />
       </Routes>

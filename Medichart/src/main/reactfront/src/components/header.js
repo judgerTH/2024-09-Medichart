@@ -90,13 +90,14 @@ function Header() {
                 </ul>
               )}
             </li>
-            <li className={styles.titleHeader}>고객센터</li>
+            <li className={styles.titleHeader}>
+              <Link to="/CustomerService" className={styles.link}>
+                고객센터
+              </Link>
+            </li>
             {isLoggedIn ? (
               <li className={styles.titleHeader}>
-                <Link
-                  to="/Mypage"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
+                <Link to="/Mypage" className={styles.link}>
                   마이페이지
                   <FontAwesomeIcon icon={faUser} id={styles.faUser} />
                 </Link>
