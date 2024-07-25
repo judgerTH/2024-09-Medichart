@@ -83,7 +83,10 @@ function Login() {
               marginLeft: "10px",
             }}
           >
-            <Link to="/login/signup" style={{ color: "black" }}>
+            <Link
+              to="/login/signup"
+              style={{ color: "black", fontSize: "16px" }}
+            >
               회원가입
             </Link>{" "}
           </p>
