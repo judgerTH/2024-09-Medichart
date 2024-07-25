@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/login/**", "/oauth2/**").permitAll()
+                                .requestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/login/**", "/oauth2/**", "/chatbot").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
