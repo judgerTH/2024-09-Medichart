@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCloudArrowUp, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import "../pages/korean.css";
 
 function Chinese() {
@@ -19,17 +20,31 @@ function Chinese() {
             const formData = new FormData();
             formData.append("image", file);
 
-            fetch("/api/upload?language=zh", {  // 중국어의 경우 "zh"
-                method: "POST",
-                body: formData,
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    setOriginalText(data.uploadedText);
-                    setTranslatedText(data.translatedText);
+            console.log("Form Data: ", formData);
+
+            axios
+                .post("/api/upload?language=zh", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log("Response: ", response);
+                    if (response.data.uploadedText && response.data.translatedText) {
+                        setOriginalText(response.data.uploadedText);
+                        setTranslatedText(response.data.translatedText);
+                    } else {
+                        console.error("Unexpected response format:", response.data);
+                    }
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
+                    if (error.response) {
+                        console.error("Error response:", error.response.data);
+                    } else if (error.request) {
+                        console.error("Error request:", error.request);
+                    } else {
+                        console.error("Error message:", error.message);
+                    }
                 });
 
             return () => URL.revokeObjectURL(objectUrl);
