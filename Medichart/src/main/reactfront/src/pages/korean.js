@@ -21,26 +21,33 @@ function Korean() {
       formData.append("image", file);
       formData.append("language", "ko"); // 예시로 한국어로 설정
 
+      console.log("Form Data: ", formData);
+
       // Axios POST 요청
       axios
-        .post("/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          setOriginalText(response.data.uploadedText);
-          setTranslatedText(response.data.translatedText);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.error("Error response:", error.response.data);
-          } else if (error.request) {
-            console.error("Error request:", error.request);
-          } else {
-            console.error("Error message:", error.message);
-          }
-        });
+          .post("/api/upload", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log("Response: ", response);
+            if (response.data.uploadedText && response.data.translatedText) {
+              setOriginalText(response.data.uploadedText);
+              setTranslatedText(response.data.translatedText);
+            } else {
+              console.error("Unexpected response format:", response.data);
+            }
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.error("Error response:", error.response.data);
+            } else if (error.request) {
+              console.error("Error request:", error.request);
+            } else {
+              console.error("Error message:", error.message);
+            }
+          });
 
       return () => URL.revokeObjectURL(objectUrl); // 메모리 해제
     }
@@ -89,88 +96,88 @@ function Korean() {
   };
 
   return (
-    <div className="container">
-      <div className="inner">
-        <div className="sectionLeft">
-          <h2>건강진단서 해석</h2>
-          <div id="line">
-            <ul>
-              <li>
-                <Link to="/Korean" className="link">
-                  -한국어
-                </Link>
-              </li>
-              <li>
-                <Link to="/Japanese" className="link">
-                  -日本語
-                </Link>
-              </li>
-              <li>
-                <Link to="/Chinese" className="link">
-                  -汉文
-                </Link>
-              </li>
-            </ul>
+      <div className="container">
+        <div className="inner">
+          <div className="sectionLeft">
+            <h2>건강진단서 해석</h2>
+            <div id="line">
+              <ul>
+                <li>
+                  <Link to="/Korean" className="link">
+                    -한국어
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Japanese" className="link">
+                    -日本語
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Chinese" className="link">
+                    -汉文
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div className="contents">
-          <div className="imgBox">
-            <div
-              className={`forUser ${dragging ? "dragging" : ""}`}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-            >
-              {!file && (
-                <label>
-                  <input
-                    type="file"
-                    style={{ display: "none" }}
-                    onChange={handleFileChange}
-                  />
-                  <FontAwesomeIcon icon={faCloudArrowUp} className="upload" />
-                  <p>Drag file(s) here to upload or click to select file.</p>
-                </label>
+          <div className="contents">
+            <div className="imgBox">
+              <div
+                  className={`forUser ${dragging ? "dragging" : ""}`}
+                  onDragEnter={handleDragEnter}
+                  onDragLeave={handleDragLeave}
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+              >
+                {!file && (
+                    <label>
+                      <input
+                          type="file"
+                          style={{ display: "none" }}
+                          onChange={handleFileChange}
+                      />
+                      <FontAwesomeIcon icon={faCloudArrowUp} className="upload" />
+                      <p>Drag file(s) here to upload or click to select file.</p>
+                    </label>
+                )}
+              </div>
+              {file && (
+                  <div className="file-info">
+                    {file.type.startsWith("image/") && (
+                        <div className="preview-container">
+                          <img
+                              src={preview}
+                              alt="Preview"
+                              className="preview-image"
+                          />
+                          <button
+                              onClick={handleRemoveFile}
+                              className="remove-button"
+                          >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </button>
+                        </div>
+                    )}
+                    <div style={{ marginBottom: "50px" }}>
+                      {originalText && (
+                          <div className="ocr-text">
+                            <h3>원본 텍스트:</h3>
+                            <p>{originalText}</p>
+                          </div>
+                      )}
+                      {translatedText && (
+                          <div className="translated-text">
+                            <h3>번역된 텍스트:</h3>
+                            <p>{translatedText}</p>
+                          </div>
+                      )}
+                    </div>
+                  </div>
               )}
             </div>
-            {file && (
-              <div className="file-info">
-                {file.type.startsWith("image/") && (
-                  <div className="preview-container">
-                    <img
-                      src={preview}
-                      alt="Preview"
-                      className="preview-image"
-                    />
-                    <button
-                      onClick={handleRemoveFile}
-                      className="remove-button"
-                    >
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </div>
-                )}
-                <div style={{ marginBottom: "50px" }}>
-                  {originalText && (
-                    <div className="ocr-text">
-                      <h3>원본 텍스트:</h3>
-                      <p>{originalText}</p>
-                    </div>
-                  )}
-                  {translatedText && (
-                    <div className="translated-text">
-                      <h3>번역된 텍스트:</h3>
-                      <p>{translatedText}</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
