@@ -15,12 +15,12 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
-import Prediction from "./pages/prediction";
 import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 있는 페이지 설정
 import { AuthProvider } from "./pages/AuthContext";
 import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
+import Prediction from "./pages/prediction";
 
 function App() {
   return (
@@ -157,6 +157,14 @@ function App() {
           element={
             <Layout>
               <CustomerService />
+            </Layout>
+          }
+        />
+        <Route
+          path="/Prediction"
+          element={
+            <Layout>
+              <Prediction />
             </Layout>
           }
         />
