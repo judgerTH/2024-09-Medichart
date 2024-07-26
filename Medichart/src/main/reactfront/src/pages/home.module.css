@@ -11,7 +11,7 @@
   background-color: #1a76d1;
   padding: 17px;
   border-radius: 20px;
-  width: 220px;
+  width: 270px;
   height: 230px;
   text-align: center;
   color: white;
@@ -37,4 +37,9 @@
 .mainLink {
   text-decoration: none;
   color: white;
+  display: block;
+}
+.featureContainer .featureItem:hover {
+  transform: translateY(-20px);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
 }
