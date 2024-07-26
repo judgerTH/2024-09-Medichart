@@ -95,7 +95,10 @@
 .translated-text {
   margin-top: 20px;
   text-align: left;
+  word-break: break-all; /* 긴 단어가 넘치지 않도록 단어를 분할 */
 }
 .finalText {
   margin-bottom: 50px;
+  overflow-y: auto; /* 컨텐츠가 넘칠 경우 스크롤바 표시 */
+  max-height: 400px; /* 텍스트 영역의 최대 높이 설정 */
 }

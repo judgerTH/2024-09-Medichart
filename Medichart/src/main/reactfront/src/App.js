@@ -21,6 +21,7 @@ import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
+
 function App() {
   return (
     <AuthProvider>
@@ -132,6 +133,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+
         <Route
           path="/searchHospital"
           element={
