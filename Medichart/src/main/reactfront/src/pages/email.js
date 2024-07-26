@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../pages/email.css";
 import { Link, useLocation } from "react-router-dom";
 import Useagree from "../pages/Useagree";
+// import axios from "axios";
 
 function Email() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -31,7 +34,7 @@ function Email() {
     return passwordRegex.test(password);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
 
@@ -56,19 +59,27 @@ function Email() {
     }
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0) {
-      // 제출 로직 추가하면 됨
-      console.log({
-        name,
-        email,
-        password,
-        confirmPassword,
-        termsAccepted,
-        marketingAccepted,
-        isEmailVerified,
-      });
-    }
+    //   if (Object.keys(newErrors).length === 0) {
+    //     // 제출 로직 추가
+    //     try {
+    //       const response = await axios.post("/api/signup", {
+    //         name,
+    //         email,
+    //         password,
+    //         termsAccepted,
+    //         marketingAccepted,
+    //       });
+    //       // 성공 시 처리 로직
+    //       console.log(response.data);
+    //       alert("회원가입이 완료되었습니다.");
+    //     } catch (error) {
+    //       // 실패 시 처리 로직
+    //       console.error(error);
+    //       setErrors({ submit: "회원가입 중 오류가 발생했습니다." });
+    //     }
+    //   }
   };
+
   const handleAllAcceptedChange = (e) => {
     const { checked } = e.target;
     setAllAccepted(checked);
@@ -90,6 +101,42 @@ function Email() {
             required
           />
         </div>
+        <div className="form-inline-group">
+          <div className="form-group">
+            <label>성별</label>
+            <div style={{ display: "flex" }}>
+              <label>
+                <input
+                  type="radio"
+                  value="male"
+                  checked={gender === "male"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                남
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="female"
+                  checked={gender === "female"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+                여
+              </label>
+            </div>
+          </div>
+
+          <div className="form-group birthdate">
+            <label>생년월일</label>
+            <input
+              type="date"
+              value={birthdate}
+              onChange={(e) => setBirthdate(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+
         <div className="form-group">
           <label>이메일</label>
           <input

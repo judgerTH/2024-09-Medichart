@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+// import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../pages/Mypage.css";
 import { Link } from "react-router-dom";
 import React from "react";
@@ -20,7 +20,7 @@ function Mypage() {
         </div>
       </div>
       <div className="UserInformation">
-        <FontAwesomeIcon icon={faUser} className="icon" />
+        {/* <FontAwesomeIcon icon={faUser} className="icon" /> */}
         <div className="account-info">
           <h2>계정 정보</h2>
           <div className="info">
