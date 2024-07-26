@@ -1,11 +1,8 @@
-/*
 package com.example.medichart.admin.controller;
 
 import com.example.medichart.admin.entity.Notice;
 import com.example.medichart.admin.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,13 +25,13 @@ public class NoticeController {
     public String getAllNotices(Model model) {
         List<Notice> notices = noticeService.getAllNotices();
         model.addAttribute("notices", notices);
-        return "notice-list";
+        return "notice-list";  // Thymeleaf 템플릿 이름
     }
 
     @GetMapping("/new")
     public String showNoticeForm(Model model) {
         model.addAttribute("notice", new Notice());
-        return "notice-form";
+        return "notice-form";  // Thymeleaf 템플릿 이름
     }
 
     @PostMapping("/new")
@@ -48,7 +45,7 @@ public class NoticeController {
         Optional<Notice> notice = noticeService.getNoticeById(id);
         if (notice.isPresent()) {
             model.addAttribute("notice", notice.get());
-            return "notice-form";
+            return "notice-form";  // Thymeleaf 템플릿 이름
         } else {
             return "redirect:/admin/notices/list";
         }
@@ -56,8 +53,12 @@ public class NoticeController {
 
     @PostMapping("/edit/{id}")
     public String updateNotice(@PathVariable Long id, @ModelAttribute Notice updatedNotice) {
-        noticeService.updateNotice(id, updatedNotice.getTitle(), updatedNotice.getContent());
-        return "redirect:/admin/notices/list";
+        Notice updated = noticeService.updateNotice(id, updatedNotice.getTitle(), updatedNotice.getContent());
+        if (updated != null) {
+            return "redirect:/admin/notices/list";
+        } else {
+            return "redirect:/admin/notices/list";  // 실패 시 적절한 오류 페이지로 리다이렉트
+        }
     }
 
     @GetMapping("/delete/{id}")
@@ -65,4 +66,4 @@ public class NoticeController {
         noticeService.deleteNotice(id);
         return "redirect:/admin/notices/list";
     }
-}*/
+}

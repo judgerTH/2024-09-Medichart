@@ -1,4 +1,3 @@
-/*
 package com.example.medichart.admin.service;
 
 import com.example.medichart.admin.entity.Notice;
@@ -18,4 +17,3 @@ public interface NoticeService {
 
     boolean deleteNotice(Long id);
 }
-*/
