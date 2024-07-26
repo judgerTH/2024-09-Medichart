@@ -8,6 +8,11 @@
 <body>
 <h1>공지사항 목록</h1>
 
+<form action="/admin/notices/list" method="get">
+    <input type="text" name="search" placeholder="검색어 입력" th:value="${search}"/>
+    <button type="submit">검색</button>
+</form>
+
 <a href="/admin/notices/new">새 공지사항 추가</a>
 
 <table>
@@ -21,7 +26,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="notice : ${notices}">
+    <tr th:each="notice : ${noticePage.content}">
         <td th:text="${notice.id}"></td>
         <td th:text="${notice.title}"></td>
         <td th:text="${notice.content}"></td>
@@ -33,5 +38,11 @@
     </tr>
     </tbody>
 </table>
+
+<div>
+    <a th:if="${noticePage.hasPrevious()}" th:href="@{/admin/notices/list(page=${noticePage.number - 1}, size=${noticePage.size}, search=${search})}">이전</a>
+    <span>페이지 [[${noticePage.number + 1}]]</span>
+    <a th:if="${noticePage.hasNext()}" th:href="@{/admin/notices/list(page=${noticePage.number + 1}, size=${noticePage.size}, search=${search})}">다음</a>
+</div>
 </body>
 </html>

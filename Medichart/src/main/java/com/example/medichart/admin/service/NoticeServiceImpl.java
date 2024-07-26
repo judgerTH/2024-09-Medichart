@@ -3,10 +3,11 @@ package com.example.medichart.admin.service;
 import com.example.medichart.admin.entity.Notice;
 import com.example.medichart.admin.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,11 +21,6 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public List<Notice> getAllNotices() {
-        return noticeRepository.findAll();
-    }
-
-    @Override
     public Optional<Notice> getNoticeById(Long id) {
         return noticeRepository.findById(id);
     }
@@ -35,7 +31,6 @@ public class NoticeServiceImpl implements NoticeService {
         Notice notice = new Notice();
         notice.setTitle(title);
         notice.setContent(content);
-        // createdDate는 @PrePersist로 자동 설정됨
         return noticeRepository.save(notice);
     }
 
@@ -47,7 +42,6 @@ public class NoticeServiceImpl implements NoticeService {
             Notice notice = existingNotice.get();
             notice.setTitle(title);
             notice.setContent(content);
-            // 엔티티의 상태가 변경되면 JPA가 자동으로 업데이트를 처리함
             return noticeRepository.save(notice);
         }
         return null;
@@ -61,5 +55,15 @@ public class NoticeServiceImpl implements NoticeService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Page<Notice> getAllNotices(Pageable pageable) {
+        return noticeRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Notice> searchNotices(String keyword, Pageable pageable) {
+        return noticeRepository.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(keyword, keyword, pageable);
     }
 }

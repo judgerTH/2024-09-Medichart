@@ -3,11 +3,13 @@ package com.example.medichart.admin.controller;
 import com.example.medichart.admin.entity.Notice;
 import com.example.medichart.admin.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,9 +24,20 @@ public class NoticeController {
     }
 
     @GetMapping("/list")
-    public String getAllNotices(Model model) {
-        List<Notice> notices = noticeService.getAllNotices();
-        model.addAttribute("notices", notices);
+    public String getAllNotices(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "") String search,
+            Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Notice> noticePage;
+        if (search.isEmpty()) {
+            noticePage = noticeService.getAllNotices(pageable);
+        } else {
+            noticePage = noticeService.searchNotices(search, pageable);
+        }
+        model.addAttribute("noticePage", noticePage);
+        model.addAttribute("search", search);
         return "notice-list";  // Thymeleaf 템플릿 이름
     }
 
