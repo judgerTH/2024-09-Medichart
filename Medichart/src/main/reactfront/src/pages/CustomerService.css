@@ -5,11 +5,14 @@
   text-align: center;
 }
 .banner {
-  background-color: #e0e0e0;
+  background-image: url("../021.png");
+  background-size: cover;
+  background-position: center;
   padding: 20px;
   text-align: center;
   margin-bottom: 20px;
   height: 200px;
+  margin-top: 50px;
 }
 .tabs {
   display: flex;
