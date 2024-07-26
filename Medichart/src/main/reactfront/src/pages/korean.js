@@ -151,7 +151,7 @@ function Korean() {
                     </button>
                   </div>
                 )}
-                <div style={{ marginBottom: "50px" }}>
+                <div className="finalText">
                   {originalText && (
                     <div className="ocr-text">
                       <h3>원본 텍스트:</h3>
