@@ -22,6 +22,8 @@ import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
 
+import NotFound from "./pages/NotFound";
+
 function App() {
   return (
     <AuthProvider>
@@ -34,7 +36,6 @@ function App() {
             </Layout>
           }
         />
-
         <Route
           path="/admin/main"
           element={
@@ -133,7 +134,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/searchHospital"
           element={
@@ -168,6 +168,8 @@ function App() {
             </Layout>
           }
         />
+        <Route path="/*" element={<NotFound />} />{" "}
+        {/*에러페이지가 가장 아래에 있어야 함 */}
       </Routes>
     </AuthProvider>
   );
