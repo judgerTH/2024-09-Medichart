@@ -13,6 +13,8 @@ main {
 @media (max-width: 600px) {
   main {
     /*다시 수정해*/
+    flex-direction: column;
+    align-items: stretch;
   }
 }
 

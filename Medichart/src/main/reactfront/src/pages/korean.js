@@ -11,11 +11,13 @@ function Korean() {
   const [preview, setPreview] = useState("");
   const [originalText, setOriginalText] = useState("");
   const [translatedText, setTranslatedText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
       setPreview(objectUrl);
+      setLoading(true);
 
       const formData = new FormData();
       formData.append("image", file);
@@ -152,13 +154,14 @@ function Korean() {
                   </div>
                 )}
                 <div className="finalText">
-                  {originalText && (
+                  {loading && <p>번역 중입니다. 잠시만 기다려주세요...</p>}
+                  {!loading && originalText && (
                     <div className="ocr-text">
                       <h3>원본 텍스트:</h3>
                       <p>{originalText}</p>
                     </div>
                   )}
-                  {translatedText && (
+                  {!loading && translatedText && (
                     <div className="translated-text">
                       <h3>번역된 텍스트:</h3>
                       <p>{translatedText}</p>
