@@ -37,7 +37,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' //추가
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'com.google.cloud:google-cloud-translate:2.46.0'
     implementation 'com.google.cloud:google-cloud-vision:3.44.0'
     implementation 'com.google.auth:google-auth-library-oauth2-http:1.24.0'
@@ -45,41 +45,38 @@ dependencies {
     implementation 'javax.servlet:jstl:1.2'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
-    implementation 'org.springframework.boot:spring-boot-starter-validation' //추가
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
-def frontendDir = "$projectDir/src/main/reactfront"
 
 sourceSets {
     main {
-        resources { srcDirs = ["$projectDir/src/main/resources"]
-        }
+        resources { srcDirs = ["$projectDir/src/main/resources"] }
     }
 }
 
 processResources { dependsOn "copyReactBuildFiles" }
 
 task installReact(type: Exec) {
-    workingDir "$frontendDir"
-    inputs.dir "$frontendDir"
+    workingDir "$projectDir/src/main/reactfront"
+    inputs.dir "$projectDir/src/main/reactfront"
     group = BasePlugin.BUILD_GROUP
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
         commandLine "npm.cmd", "audit", "fix"
-        commandLine 'npm.cmd', 'install' }
-    else {
-        commandLine "npm", "audit", "fix" commandLine 'npm', 'install'
+        commandLine 'npm.cmd', 'install'
+    } else {
+        commandLine "npm", "audit", "fix"
+        commandLine 'npm', 'install'
     }
 }
 
 task buildReact(type: Exec) {
     dependsOn "installReact"
-    workingDir "$frontendDir"
-    inputs.dir "$frontendDir"
+    workingDir "$projectDir/src/main/reactfront"
+    inputs.dir "$projectDir/src/main/reactfront"
     group = BasePlugin.BUILD_GROUP
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
         commandLine "npm.cmd", "run-script", "build"
@@ -90,6 +87,14 @@ task buildReact(type: Exec) {
 
 task copyReactBuildFiles(type: Copy) {
     dependsOn "buildReact"
-    from "$frontendDir/build"
+    from "$projectDir/src/main/reactfront/build"
     into "$projectDir/src/main/resources/static"
+}
+
+tasks.withType(JavaExec) {
+    classpath = files(sourceSets.main.output, configurations.runtimeClasspath)
+}
+
+tasks.withType(org.springframework.boot.gradle.tasks.run.BootRun) {
+    classpath = files(sourceSets.main.output, configurations.runtimeClasspath)
 }
