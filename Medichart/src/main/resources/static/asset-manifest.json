@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.5cac9222.css",
-    "main.js": "/static/js/main.327616b8.js",
+    "main.js": "/static/js/main.22964961.js",
     "static/media/MediChart_clear.png": "/static/media/MediChart_clear.c776096712c231d06e38.png",
     "static/media/NEXONLv1GothicRegular.ttf": "/static/media/NEXONLv1GothicRegular.3367236d2b79a849d19b.ttf",
     "static/media/NEXONLv1GothicBold.ttf": "/static/media/NEXONLv1GothicBold.c37a61d35e694ac3c88e.ttf",
@@ -10,10 +10,10 @@
     "static/media/btn_google.svg": "/static/media/btn_google.03f950a96f8294baafa271aedc091773.svg",
     "index.html": "/index.html",
     "main.5cac9222.css.map": "/static/css/main.5cac9222.css.map",
-    "main.327616b8.js.map": "/static/js/main.327616b8.js.map"
+    "main.22964961.js.map": "/static/js/main.22964961.js.map"
   },
   "entrypoints": [
     "static/css/main.5cac9222.css",
-    "static/js/main.327616b8.js"
+    "static/js/main.22964961.js"
   ]
 }
