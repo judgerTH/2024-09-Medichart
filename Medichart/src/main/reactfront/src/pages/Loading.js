@@ -1,5 +1,6 @@
 import React from "react";
-import Spinner from "..loadingif/";
+// import Spinner from "../loadSpinner/Spinner.gif";
+import Spinner from "../Spinner.gif";
 
 const Loading = () => {
   return (
