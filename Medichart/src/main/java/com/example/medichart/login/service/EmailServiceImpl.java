@@ -1,3 +1,4 @@
+/*
 package com.example.medichart.login.service;
 
 import jakarta.mail.MessagingException;
@@ -26,4 +27,5 @@ public class EmailServiceImpl implements EmailService {
             throw new RuntimeException(e);
         }
     }
-}
+}*/
+

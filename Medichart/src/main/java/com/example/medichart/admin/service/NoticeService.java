@@ -12,5 +12,5 @@ public interface NoticeService {
     Notice updateNotice(Long id, String title, String content);
     boolean deleteNotice(Long id);
     Page<Notice> getAllNotices(Pageable pageable);
-    Page<Notice> searchNotices(String keyword, Pageable pageable); // 추가
+    Page<Notice> searchNotices(String keyword, Pageable pageable);
 }

@@ -1,20 +1,55 @@
-import "./App.css";
-import Home from "./components/home";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Translate from "./translate";
+// src/App.jsx
+import { Routes, Route } from "react-router-dom";
+import AdminLayout from "./components/AdminLayout";
+import Layout from "./components/layout";
+import Home from "./pages/home";
+import AdminMain from "./pages/AdminMain";
+import AdminMonth from "./pages/AdminMonth";
+import AdminYear from "./pages/AdminYear";
+import AdminNoticeList from "./pages/AdminNoticeList";
+import AdminNoticeNew from "./pages/AdminNoticeNew"; // 수정된 공지사항 폼 페이지 추가
+
+import Korean from "./pages/korean";
+import Japanese from "./pages/Japanese";
+import Chinese from "./pages/Chinese";
+import Login from "./pages/login";
+import Signup from "./pages/signup";
+import Email from "./pages/email";
+import EmailVerification from "./pages/EmailVerification";
+import Mymedicheck from "./pages/mymedicheck";
+import ProtectedRoute from "./pages/ProtectedRoute"; // 로그인 필요 페이지 설정
+import { AuthProvider } from "./pages/AuthContext";
+import SearchHospital from "./pages/SearchHospital";
+import Mypage from "./pages/Mypage";
+import CustomerService from "./pages/CustomerService";
+import Prediction from "./pages/prediction";
 
 function App() {
-  return (
-    <div className="App">
-      <Home />
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/translate" element={<Translate />} />
-        </Routes>
-      </BrowserRouter> */}
-    </div>
-  );
+    return (
+        <AuthProvider>
+            <Routes>
+                <Route path="/" element={<Layout><Home /></Layout>} />
+                <Route path="/admin/main" element={<AdminLayout><AdminMain /></AdminLayout>} />
+                <Route path="/admin/month" element={<AdminLayout><AdminMonth /></AdminLayout>} />
+                <Route path="/admin/year" element={<AdminLayout><AdminYear /></AdminLayout>} />
+                <Route path="/admin/noticeList" element={<AdminLayout><AdminNoticeList /></AdminLayout>} />
+                <Route path="/admin/notice/new" element={<AdminLayout><AdminNoticeNew /></AdminLayout>} /> {/* 새 공지사항 작성 페이지 */}
+                <Route path="/admin/notice/edit/:id" element={<AdminLayout><AdminNoticeNew /></AdminLayout>} /> {/* 수정 페이지 */}
+                <Route path="/Korean" element={<Layout><Korean /></Layout>} />
+                <Route path="/Japanese" element={<Layout><Japanese /></Layout>} />
+                <Route path="/Chinese" element={<Layout><Chinese /></Layout>} />
+                <Route path="/login" element={<Layout><Login /></Layout>} />
+                <Route path="/login/signup" element={<Layout><Signup /></Layout>} />
+                <Route path="/signup/email" element={<Layout><Email /></Layout>} />
+                <Route path="/signup/email-verification" element={<Layout><EmailVerification /></Layout>} />
+                <Route path="/medicalInform" element={<ProtectedRoute><Layout><Mymedicheck /></Layout></ProtectedRoute>} />
+                <Route path="/searchHospital" element={<Layout><SearchHospital /></Layout>} />
+                <Route path="/Mypage" element={<ProtectedRoute><Layout><Mypage /></Layout></ProtectedRoute>} />
+                <Route path="/CustomerService" element={<Layout><CustomerService /></Layout>} />
+                <Route path="/Prediction" element={<Layout><Prediction /></Layout>} />
+            </Routes>
+        </AuthProvider>
+    );
 }
 
 export default App;

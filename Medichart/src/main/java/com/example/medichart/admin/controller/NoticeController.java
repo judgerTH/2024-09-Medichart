@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/admin/notices")
+@RestController
+@RequestMapping("/api/admin/notices")
+@CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 주소로 수정
 public class NoticeController {
 
     private final NoticeService noticeService;
@@ -23,12 +23,11 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
 
-    @GetMapping("/list")
-    public String getAllNotices(
+    @GetMapping
+    public ResponseEntity<Page<Notice>> getAllNotices(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false, defaultValue = "") String search,
-            Model model) {
+            @RequestParam(required = false, defaultValue = "") String search) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Notice> noticePage;
         if (search.isEmpty()) {
@@ -36,47 +35,34 @@ public class NoticeController {
         } else {
             noticePage = noticeService.searchNotices(search, pageable);
         }
-        model.addAttribute("noticePage", noticePage);
-        model.addAttribute("search", search);
-        return "notice-list";  // Thymeleaf 템플릿 이름
+        return ResponseEntity.ok(noticePage);
     }
 
-    @GetMapping("/new")
-    public String showNoticeForm(Model model) {
-        model.addAttribute("notice", new Notice());
-        return "notice-form";  // Thymeleaf 템플릿 이름
+    @PostMapping
+    public ResponseEntity<Notice> createNotice(@RequestBody Notice notice) {
+        Notice createdNotice = noticeService.createNotice(notice.getTitle(), notice.getContent());
+        return ResponseEntity.ok(createdNotice);
     }
 
-    @PostMapping("/new")
-    public String createNotice(@ModelAttribute Notice notice) {
-        noticeService.createNotice(notice.getTitle(), notice.getContent());
-        return "redirect:/admin/notices/list";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Notice> getNoticeById(@PathVariable Long id) {
         Optional<Notice> notice = noticeService.getNoticeById(id);
-        if (notice.isPresent()) {
-            model.addAttribute("notice", notice.get());
-            return "notice-form";  // Thymeleaf 템플릿 이름
-        } else {
-            return "redirect:/admin/notices/list";
-        }
+        return notice.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateNotice(@PathVariable Long id, @ModelAttribute Notice updatedNotice) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Notice> updateNotice(@PathVariable Long id, @RequestBody Notice updatedNotice) {
         Notice updated = noticeService.updateNotice(id, updatedNotice.getTitle(), updatedNotice.getContent());
         if (updated != null) {
-            return "redirect:/admin/notices/list";
+            return ResponseEntity.ok(updated);
         } else {
-            return "redirect:/admin/notices/list";  // 실패 시 적절한 오류 페이지로 리다이렉트
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteNotice(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteNotice(@PathVariable Long id) {
         noticeService.deleteNotice(id);
-        return "redirect:/admin/notices/list";
+        return ResponseEntity.noContent().build();
     }
 }
