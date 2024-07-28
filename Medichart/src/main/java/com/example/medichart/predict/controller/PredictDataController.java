@@ -161,10 +161,12 @@ public class PredictDataController {
                     logger.warn("Model: {} returned no probability", modelName);
                 }
             }
-
+            // 사용자 ID 임의부여
+            predictResult.setUserID("testIdNum1");
 
             // PredictData 객체 생성 및 저장
             PredictData predictData = new PredictData();
+            predictData.setUserID("testIdNum1");
             predictData.setAge(predictDataRequest.getAge());
             predictData.setSex(predictDataRequest.getSex());
             predictData.setBmi(predictDataRequest.getBmi());

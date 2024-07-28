@@ -15,6 +15,7 @@ public class PredictResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String userID;
     private double diabetes; // 당뇨병 확률
     private double obesity; // 비만 확률
     private double heartDisease; // 심장병 확률
