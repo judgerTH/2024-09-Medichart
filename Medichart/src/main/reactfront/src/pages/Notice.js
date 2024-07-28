@@ -13,7 +13,11 @@ const Notice = () => {
   const fetchNotices = async () => {
     try {
       const response = await axios.get('/api/admin/notices');
-      setNotices(response.data.content);
+      if (response.data && response.data.content) {
+        setNotices(response.data.content);
+      } else {
+        console.error('Unexpected response structure', response.data);
+      }
     } catch (error) {
       console.error('Failed to fetch notices', error);
     }

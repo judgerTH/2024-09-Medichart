@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -9,14 +8,13 @@ const AdminNoticeNew = () => {
     const [content, setContent] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const { id } = useParams();
-    const navigate = useNavigate(); //
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (id) {
-
             const fetchNotice = async () => {
                 try {
-                    const response = await axios.get(`/api/admin/notices/${id}`);
+                    const response = await axios.get(`/api/admin/notice/${id}`);
                     const notice = response.data;
                     setTitle(notice.title);
                     setContent(notice.content);
@@ -36,12 +34,10 @@ const AdminNoticeNew = () => {
         e.preventDefault();
         try {
             if (isEditing) {
-                // 수정 요청
-                await axios.put(`/api/admin/notices/${id}`, { title, content });
+                await axios.put(`/api/admin/notice/${id}`, { title, content });
                 alert('공지사항이 수정되었습니다.');
             } else {
-                // 추가 요청
-                await axios.post('/api/admin/notices', { title, content });
+                await axios.post('/api/admin/notice', { title, content });
                 alert('공지사항이 추가되었습니다.');
             }
             navigate('/admin/noticeList');

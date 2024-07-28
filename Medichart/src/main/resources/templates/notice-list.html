@@ -8,12 +8,12 @@
 <body>
 <h1>공지사항 목록</h1>
 
-<form action="/admin/notices/list" method="get">
+<form action="/admin/noticeList" method="get">
     <input type="text" name="search" placeholder="검색어 입력" th:value="${search}"/>
     <button type="submit">검색</button>
 </form>
 
-<a href="/admin/notices/new">새 공지사항 추가</a>
+<a href="/admin/notice/new">새 공지사항 추가</a>
 
 <table>
     <thead>

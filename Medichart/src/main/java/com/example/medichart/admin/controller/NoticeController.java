@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/admin/notices")
+@RequestMapping("/api/admin/notice")
 @CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 주소로 수정
 public class NoticeController {
 

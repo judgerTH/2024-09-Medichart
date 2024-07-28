@@ -1,4 +1,3 @@
-
 import { Routes, Route } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
 import Layout from "./components/layout";
@@ -24,6 +23,8 @@ import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
 
+import NotFound from "./pages/NotFound";
+
 function App() {
     return (
         <AuthProvider>
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/Mypage" element={<ProtectedRoute><Layout><Mypage /></Layout></ProtectedRoute>} />
                 <Route path="/CustomerService" element={<Layout><CustomerService /></Layout>} />
                 <Route path="/Prediction" element={<Layout><Prediction /></Layout>} />
+                <Route path="/*" element={<NotFound />} /> {/* 에러 페이지 */}
             </Routes>
         </AuthProvider>
     );

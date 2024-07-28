@@ -16,13 +16,17 @@ const AdminNoticeList = () => {
 
     const fetchNotices = async () => {
         try {
-            const response = await axios.get('/api/admin/notices', {
+            const response = await axios.get('/api/admin/notice', {
                 params: { page, size, search }
             });
-            setNotices(response.data.content);
-            setTotalPages(response.data.totalPages);
+            if (response.data && response.data.content) {
+                setNotices(response.data.content);
+                setTotalPages(response.data.totalPages);
+            } else {
+                console.error('Unexpected response structure', response.data);
+            }
         } catch (error) {
-            console.error('Failed to fetch notices', error);
+            console.error('Failed to fetch notice', error);
         }
     };
 
@@ -38,7 +42,7 @@ const AdminNoticeList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`/api/admin/notices/${id}`);
+            await axios.delete(`/api/admin/notice/${id}`);
             fetchNotices();
         } catch (error) {
             console.error('Failed to delete notice', error);
