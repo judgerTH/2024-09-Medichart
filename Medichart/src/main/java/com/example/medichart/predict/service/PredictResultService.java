@@ -5,6 +5,8 @@ import com.example.medichart.predict.repository.PredictResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PredictResultService {
 
@@ -21,5 +23,9 @@ public class PredictResultService {
         } catch (Exception e) {
             throw new RuntimeException("Error saving PredictResult", e);
         }
+    }
+
+    public List<PredictResult> getPredictResultsByUserId(String userId) {
+        return predictResultRepository.findByUserID(userId);
     }
 }

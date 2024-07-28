@@ -16,7 +16,7 @@ public class PredictData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     // userID 추가예정
-
+    private String userID;
     private Integer age; // Integer로 변경
     private Double alt; // Double로 변경
     private Double ast; // Double로 변경
