@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import { Routes, Route } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
 import Layout from "./components/layout";

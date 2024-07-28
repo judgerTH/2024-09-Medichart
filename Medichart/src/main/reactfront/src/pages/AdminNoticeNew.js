@@ -1,4 +1,4 @@
-// src/pages/AdminNoticeNew.jsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -8,12 +8,12 @@ const AdminNoticeNew = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [isEditing, setIsEditing] = useState(false);
-    const { id } = useParams(); // URL 파라미터에서 ID를 가져옴
-    const navigate = useNavigate(); // 네비게이션 기능
+    const { id } = useParams();
+    const navigate = useNavigate(); //
 
     useEffect(() => {
         if (id) {
-            // 수정 모드일 때 공지사항 데이터를 가져옴
+
             const fetchNotice = async () => {
                 try {
                     const response = await axios.get(`/api/admin/notices/${id}`);
@@ -28,7 +28,7 @@ const AdminNoticeNew = () => {
             };
             fetchNotice();
         } else {
-            setIsEditing(false); // 새 공지사항 작성 모드
+            setIsEditing(false);
         }
     }, [id]);
 
@@ -44,7 +44,7 @@ const AdminNoticeNew = () => {
                 await axios.post('/api/admin/notices', { title, content });
                 alert('공지사항이 추가되었습니다.');
             }
-            navigate('/admin/noticeList'); // 목록 페이지로 네비게이션
+            navigate('/admin/noticeList');
         } catch (error) {
             console.error('Failed to save notice', error);
             alert('공지사항 저장 실패');

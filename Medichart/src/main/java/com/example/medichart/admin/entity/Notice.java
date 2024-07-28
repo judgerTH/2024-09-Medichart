@@ -11,13 +11,13 @@ public class Notice {
     private Long id;
 
     @Column(nullable = false)
-    private String content;  // 공지 내용
+    private String content;
 
     @Column(name = "created_date", nullable = false, updatable = false)
-    private LocalDateTime createdDate;  // 생성일
+    private LocalDateTime createdDate;
 
     @Column(nullable = false)
-    private String title;  // 제목
+    private String title;
 
     // 기본 생성자
     public Notice() {}
@@ -55,7 +55,7 @@ public class Notice {
         this.title = title;
     }
 
-    // 엔티티가 저장되기 전에 생성일 설정
+
     @PrePersist
     protected void onCreate() {
         this.createdDate = LocalDateTime.now();
