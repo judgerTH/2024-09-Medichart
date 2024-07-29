@@ -7,7 +7,7 @@ const AdminNoticeList = () => {
     const [notices, setNotices] = useState([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(0);
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(10); // Use this if needed
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const AdminNoticeList = () => {
                 console.error('Unexpected response structure', response.data);
             }
         } catch (error) {
-            console.error('Failed to fetch notice', error);
+            console.error('Failed to fetch notices', error);
         }
     };
 
@@ -36,7 +36,7 @@ const AdminNoticeList = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        setPage(0);
+        setPage(0); // Reset to first page on search
         fetchNotices();
     };
 

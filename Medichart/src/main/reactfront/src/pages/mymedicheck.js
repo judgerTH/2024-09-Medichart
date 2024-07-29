@@ -146,7 +146,7 @@ const Mymedicheck = () => {
 
       console.log('Response:', response); // 응답 확인
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         alert("등록되었습니다.");
       } else {
         alert("서버 오류입니다. 나중에 다시 시도해주세요.");
