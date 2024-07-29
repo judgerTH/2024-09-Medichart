@@ -21,30 +21,35 @@ function Korean() {
 
       const formData = new FormData();
       formData.append("image", file);
-      formData.append("language", "ko"); // 예시로 한국어로 설정
 
-      // Axios POST 요청
       axios
-        .post("/api/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          setOriginalText(response.data.uploadedText);
-          setTranslatedText(response.data.translatedText);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.error("Error response:", error.response.data);
-          } else if (error.request) {
-            console.error("Error request:", error.request);
-          } else {
-            console.error("Error message:", error.message);
-          }
-        });
+          .post("/api/upload?language=ko", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            setLoading(false); // 요청이 완료되면 로딩 상태를 false로 설정
+            console.log("Response: ", response);
+            if (response.data.uploadedText && response.data.translatedText) {
+              setOriginalText(response.data.uploadedText);
+              setTranslatedText(response.data.translatedText);
+            } else {
+              console.error("Unexpected response format:", response.data);
+            }
+          })
+          .catch((error) => {
+            setLoading(false); // 에러가 발생해도 로딩 상태를 false로 설정
+            if (error.response) {
+              console.error("Error response:", error.response.data);
+            } else if (error.request) {
+              console.error("Error request:", error.request);
+            } else {
+              console.error("Error message:", error.message);
+            }
+          });
 
-      return () => URL.revokeObjectURL(objectUrl); // 메모리 해제
+      return () => URL.revokeObjectURL(objectUrl);
     }
   }, [file]);
 
