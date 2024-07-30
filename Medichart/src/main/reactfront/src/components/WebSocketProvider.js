@@ -9,36 +9,30 @@ export const WebSocketProvider = ({ children }) => {
     useEffect(() => {
         const connectUserSocket = () => {
             const ws = new WebSocket('ws://localhost:8080/user');
+            ws.onopen = () => console.log('User WebSocket connected');
+            ws.onmessage = (event) => console.log('User WebSocket message:', event.data);
+            ws.onerror = (error) => console.error('User WebSocket error:', error);
+            ws.onclose = (event) => console.log('User WebSocket closed', event);
             setUserSocket(ws);
-
-            ws.onopen = () => console.log('User WebSocket 연결 성공');
-            ws.onmessage = (event) => console.log('User WebSocket 메시지:', event.data);
-            ws.onerror = (error) => console.error('User WebSocket 에러:', error);
-            ws.onclose = () => console.log('User WebSocket 연결 종료');
-
-            return ws;
         };
 
         const connectAdminSocket = () => {
             const ws = new WebSocket('ws://localhost:8080/admin');
+            ws.onopen = () => console.log('Admin WebSocket connected');
+            ws.onmessage = (event) => console.log('Admin WebSocket message:', event.data);
+            ws.onerror = (error) => console.error('Admin WebSocket error:', error);
+            ws.onclose = (event) => console.log('Admin WebSocket closed', event);
             setAdminSocket(ws);
-
-            ws.onopen = () => console.log('Admin WebSocket 연결 성공');
-            ws.onmessage = (event) => console.log('Admin WebSocket 메시지:', event.data);
-            ws.onerror = (error) => console.error('Admin WebSocket 에러:', error);
-            ws.onclose = () => console.log('Admin WebSocket 연결 종료');
-
-            return ws;
         };
 
-        const userWs = connectUserSocket();
-        const adminWs = connectAdminSocket();
+        connectUserSocket();
+        connectAdminSocket();
 
         return () => {
-            userWs.close();
-            adminWs.close();
+            if (userSocket) userSocket.close();
+            if (adminSocket) adminSocket.close();
         };
-    }, []);
+    }, [userSocket, adminSocket]);
 
     return (
         <WebSocketContext.Provider value={{ userSocket, adminSocket }}>

@@ -31,6 +31,7 @@ public class SecurityConfig {
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/login/**", "/oauth2/**", "/api/**", "/chatbot").permitAll()
+                                .requestMatchers("/ws/**", "/user/**", "/admin/**").permitAll() // WebSocket 경로 허용
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -51,7 +52,7 @@ public class SecurityConfig {
                                         userInfoEndpoint.userService(customOAuth2UserService))
                 )
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/oauth2/**", "/api/**")  // API 엔드포인트를 CSRF 무시 목록에 추가
+                        .ignoringRequestMatchers("/register", "/verify-email", "/verify", "/forgotPassword", "/resetPassword", "/findEmails", "/oauth2/**", "/api/**", "/ws/**", "/user/**", "/admin/**")  // API 엔드포인트를 CSRF 무시 목록에 추가
                 );
 
         return http.build();

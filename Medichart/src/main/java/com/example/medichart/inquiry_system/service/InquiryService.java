@@ -5,15 +5,20 @@ import com.example.medichart.inquiry_system.repository.InquiryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Service
 public class InquiryService {
+
+    private final InquiryRepository inquiryRepository;
+
     @Autowired
-    private InquiryRepository inquiryRepository;
+    public InquiryService(InquiryRepository inquiryRepository) {
+        this.inquiryRepository = inquiryRepository;
+    }
 
     public Inquiry saveInquiry(Inquiry inquiry) {
-        inquiry.setCreatedAt(new Date());
+        inquiry.setCreatedAt(LocalDateTime.now());
         return inquiryRepository.save(inquiry);
     }
 }

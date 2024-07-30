@@ -1,7 +1,9 @@
 package com.example.medichart.inquiry_system.model;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,8 +15,8 @@ public class Inquiry {
     private String title;
     private String content;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     public Long getId() {
         return id;
@@ -40,11 +42,11 @@ public class Inquiry {
         this.content = content;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }
