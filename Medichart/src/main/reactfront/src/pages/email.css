@@ -43,7 +43,7 @@
 }
 
 .form-inline-group .birthdate {
-  margin-left: 45%;
+  margin-left: 35%;
 }
 .submit-button {
   width: 100%;
@@ -64,7 +64,56 @@
   margin-top: 5px;
 }
 
-.verify-button {
-  text-decoration: none;
-  color: blue;
+/* 기본 달력 스타일을 덮어쓰기 위한 CSS */
+
+.react-datepicker {
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__header {
+  background-color: #007bff;
+  border-bottom: 1px solid #f0f0f0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  color: white;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.react-datepicker__day--today {
+  font-weight: bold;
+  border: 1px solid #007bff;
+}
+
+.react-datepicker__day {
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.react-datepicker__day:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.react-datepicker__day--outside-month {
+  color: #ccc;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #fff;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #fff;
 }
