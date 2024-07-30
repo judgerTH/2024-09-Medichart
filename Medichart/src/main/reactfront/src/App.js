@@ -14,7 +14,6 @@ import Chinese from './pages/Chinese';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Email from './pages/email';
-import EmailVerification from './pages/EmailVerification';
 import Mymedicheck from './pages/mymedicheck';
 import ProtectedRoute from './pages/ProtectedRoute';
 import { AuthProvider } from './pages/AuthContext';
@@ -62,7 +61,6 @@ function App() {
                         <Route path="/login" element={<Layout><Login /></Layout>} />
                         <Route path="/login/signup" element={<Layout><Signup /></Layout>} />
                         <Route path="/signup/email" element={<Layout><Email /></Layout>} />
-                        <Route path="/signup/email-verification" element={<Layout><EmailVerification /></Layout>} />
                         <Route path="/medicalInform" element={<ProtectedRoute><Layout><Mymedicheck /></Layout></ProtectedRoute>} />
                         <Route path="/searchHospital" element={<Layout><SearchHospital /></Layout>} />
                         <Route path="/Mypage" element={<ProtectedRoute><Layout><Mypage /></Layout></ProtectedRoute>} />
