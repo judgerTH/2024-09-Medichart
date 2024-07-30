@@ -1,7 +1,7 @@
 /*
 package com.example.medichart.login.dto;
 
-import com.example.medichart.login.entity.UserEntity;
+import com.example.medichart.login.entity.mail.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
