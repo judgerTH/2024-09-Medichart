@@ -4,8 +4,8 @@ import "../pages/Notice.css";
 const notices = [
   {
     title: "공지사항 1",
-    date: "2024-07-24",
-    content: "공지사항 내용 1임 배고파",
+    date: "2024-07-22",
+    content: "공지사항 내용 1",
   },
   {
     title: "공지사항 2",
@@ -14,7 +14,7 @@ const notices = [
   },
   {
     title: "공지사항 3",
-    date: "2024-07-22",
+    date: "2024-07-24",
     content: "공지사항 내용 3...",
   },
 ];

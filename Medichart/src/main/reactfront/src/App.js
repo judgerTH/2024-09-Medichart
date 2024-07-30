@@ -13,7 +13,7 @@ import Chinese from "./pages/Chinese";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Email from "./pages/email";
-import EmailVerification from "./pages/EmailVerification";
+
 import Mymedicheck from "./pages/mymedicheck";
 import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 있는 페이지 설정
 import { AuthProvider } from "./pages/AuthContext";
@@ -113,14 +113,6 @@ function App() {
           element={
             <Layout>
               <Email />
-            </Layout>
-          }
-        />
-        <Route
-          path="/signup/email-verification"
-          element={
-            <Layout>
-              <EmailVerification />
             </Layout>
           }
         />

@@ -50,14 +50,14 @@
   position: relative;
 }
 
-.account-info h2 {
-  margin-bottom: 20px;
-}
 .account-info {
   border: 1px solid #ccc;
   padding: 10px 40px;
+  margin: 30px 20px 30px 130px;
 }
-
+.account-info h2 {
+  margin-bottom: 20px;
+}
 .info {
   display: flex;
   align-items: center;
@@ -70,11 +70,14 @@
 .info label {
   width: 100px;
   font-weight: bold;
+  background-color: rgb(196, 241, 244);
+  padding: 5px;
 }
 
 .info input {
   flex-grow: 1;
   padding: 5px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  /* background-color: rgb(228, 243, 249); */
+  height: 19px;
 }

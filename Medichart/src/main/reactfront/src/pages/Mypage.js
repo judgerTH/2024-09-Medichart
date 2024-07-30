@@ -1,10 +1,29 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "../pages/Mypage.css";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 function Mypage() {
+  const [user, setUser] = useState({
+    name: "홍길동",
+    birthDate: "2002-01-01",
+    gender: "남자",
+    contact: "010-1234-1234",
+    email: "1234@naver.com",
+  });
+
+  useEffect(() => {
+    // ex. api호출로 사용자 데이터 가져올 수 있음
+    // setUser({
+    //   name: fetchedName,
+    //   birthDate: fetchedBirthDate,
+    //   gender: fetchedGender,
+    //   contact: fetchedContact,
+    //   email: fetchedEmail
+    // });
+  }, []);
+
   return (
     <div className="my-page">
       <div className="sectionLeft">
@@ -25,23 +44,25 @@ function Mypage() {
           <h2>계정 정보</h2>
           <div className="info">
             <label>이름</label>
-            <input type="text" value="이름" readOnly />
-            {/* <input type="text" value={user.name} readOnly /> */}
+
+            <input type="text" value={user.name} readOnly />
           </div>
           <div className="info">
             <label>생년월일</label>
-            <input type="text" value="2002-01-01" readOnly />
-            {/* <input type="text" value={user.birthDate} readOnly /> */}
+            <input type="text" value={user.birthDate} readOnly />
+          </div>
+          <div className="info">
+            <label>성별</label>
+
+            <input type="text" value={user.gender} readOnly />
           </div>
           <div className="info">
             <label>연락처</label>
-            <input type="text" value="010-1234-1234" readOnly />
-            {/* <input type="text" value={user.contact} readOnly /> */}
+            <input type="text" value={user.contact} readOnly />
           </div>
           <div className="info">
             <label>이메일</label>
-            <input type="text" value="1234@naver.com" readOnly />
-            {/* <input type="text" value={user.email} readOnly /> */}
+            <input type="text" value={user.email} readOnly />
           </div>
           {/* <button onClick={logout}>로그아웃</button> */}
         </div>

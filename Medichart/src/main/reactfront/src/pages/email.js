@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../pages/email.css";
-import { Link, useLocation } from "react-router-dom";
 import Useagree from "../pages/Useagree";
-// import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { getYear, getMonth } from "date-fns";
+import range from "lodash/range";
+import axios from "axios";
 
 function Email() {
   const [name, setName] = useState("");
@@ -16,16 +19,7 @@ function Email() {
   const [marketingAccepted, setMarketingAccepted] = useState(false);
   const [allAccepted, setAllAccepted] = useState(false);
   const [errors, setErrors] = useState({});
-  const location = useLocation();
-
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
-
-  const isEmailVerified = localStorage.getItem("isEmailVerified") === "true";
-  useEffect(() => {
-    if (location.state && location.state.isEmailVerified) {
-      localStorage.setItem("isEmailVerified", "true");
-    }
-  }, [location.state]);
 
   //비밀번호 유효성 검사
   const validatePassword = (password) => {
@@ -54,30 +48,38 @@ function Email() {
       newErrors.privacyAccepted = "개인정보 수집 및 이용에 동의해야 합니다.";
     }
 
-    if (!isEmailVerified) {
-      newErrors.email = "이메일 인증이 필요합니다.";
-    }
     setErrors(newErrors);
 
-    //   if (Object.keys(newErrors).length === 0) {
-    //     // 제출 로직 추가
-    //     try {
-    //       const response = await axios.post("/api/signup", {
-    //         name,
-    //         email,
-    //         password,
-    //         termsAccepted,
-    //         marketingAccepted,
-    //       });
-    //       // 성공 시 처리 로직
-    //       console.log(response.data);
-    //       alert("회원가입이 완료되었습니다.");
-    //     } catch (error) {
-    //       // 실패 시 처리 로직
-    //       console.error(error);
-    //       setErrors({ submit: "회원가입 중 오류가 발생했습니다." });
-    //     }
-    //   }
+    if (Object.keys(newErrors).length === 0) {
+      // 제출 로직 추가
+      try {
+        console.log("Submitting data:", {
+          name,
+          email,
+          password,
+          birthdate,
+          confirmPassword,
+          termsAccepted,
+          marketingAccepted,
+        });
+        const response = await axios.post("/api/users/register", {
+          name,
+          email,
+          password,
+          birthdate,
+          confirmPassword,
+          termsAccepted,
+          marketingAccepted,
+        });
+        // 성공 시 처리 로직
+        console.log(response.data);
+        alert("회원가입이 완료되었습니다.");
+      } catch (error) {
+        // 실패 시 처리 로직
+        console.error("Error during submission:", error);
+        setErrors({ submit: "회원가입 중 오류가 발생했습니다." });
+      }
+    }
   };
 
   const handleAllAcceptedChange = (e) => {
@@ -87,6 +89,23 @@ function Email() {
     setPrivacyAccepted(checked);
     setMarketingAccepted(checked);
   };
+
+  const years = range(1900, getYear(new Date()) + 1, 1);
+  const months = [
+    "1월",
+    "2월",
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월",
+  ];
+
   return (
     <div className="email-signup-container">
       <h2>이메일 회원가입</h2>
@@ -128,11 +147,46 @@ function Email() {
 
           <div className="form-group birthdate">
             <label>생년월일</label>
-            <input
-              type="date"
-              value={birthdate}
-              onChange={(e) => setBirthdate(e.target.value)}
+            <DatePicker
+              selected={birthdate}
+              showDateSelect
+              onChange={(date) => setBirthdate(date)}
+              dateFormat="yyyy년 MM월 dd일"
+              placeholderText="생년월일 선택"
               required
+              renderCustomHeader={({ date, changeYear, changeMonth }) => (
+                <div
+                  style={{
+                    margin: 10,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <select
+                    value={getYear(date)}
+                    onChange={({ target: { value } }) => changeYear(value)}
+                  >
+                    {years.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={months[getMonth(date)]}
+                    onChange={({ target: { value } }) =>
+                      changeMonth(months.indexOf(value))
+                    }
+                  >
+                    {months.map((month) => (
+                      <option key={month} value={month}>
+                        {month}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
             />
           </div>
         </div>
@@ -146,13 +200,9 @@ function Email() {
             placeholder="이메일을 입력하세요"
             required
           />
-          <Link
-            to={{ pathname: "/signup/email-verification", state: { email } }}
-            className="verify-button"
-          >
-            이메일 인증하기
-          </Link>
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
+
         <div className="form-group">
           <label>비밀번호</label>
           <input
