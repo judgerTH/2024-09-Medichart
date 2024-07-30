@@ -28,7 +28,7 @@
     "react-kakao-maps-sdk": "^1.1.27",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "recharts": "^2.12.7",
     "styled-components": "^6.1.12",
     "tesseract.js": "^5.1.0",
