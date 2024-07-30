@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // 페이지 로드 시 세션 체크
-    fetch('http://localhost:3001/profile', { credentials: 'include' })
+    fetch('http://localhost:3000/profile', { credentials: 'include' })
         .then(response => response.json())
         .then(data => {
           if (data.userId) {
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    fetch('http://localhost:3001/logout', {
+    fetch('http://localhost:3000/logout', {
       method: 'POST',
       credentials: 'include'
     })
