@@ -1,58 +1,69 @@
-/*
 package com.example.medichart.admin.service;
 
 import com.example.medichart.admin.entity.Notice;
+import com.example.medichart.admin.repository.NoticeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
-    private List<Notice> noticeList = new ArrayList<>();
-    private Long nextId = 1L;
+    private final NoticeRepository noticeRepository;
 
-    @Override
-    public List<Notice> getAllNotices() {
-        return noticeList;
+    @Autowired
+    public NoticeServiceImpl(NoticeRepository noticeRepository) {
+        this.noticeRepository = noticeRepository;
     }
 
     @Override
     public Optional<Notice> getNoticeById(Long id) {
-        return noticeList.stream()
-                .filter(notice -> notice.getId().equals(id))
-                .findFirst();
+        return noticeRepository.findById(id);
     }
 
     @Override
+    @Transactional
     public Notice createNotice(String title, String content) {
-        Notice newNotice = new Notice(nextId++, title, content);
-        noticeList.add(newNotice);
-        return newNotice;
+        Notice notice = new Notice();
+        notice.setTitle(title);
+        notice.setContent(content);
+        return noticeRepository.save(notice);
     }
 
     @Override
+    @Transactional
     public Notice updateNotice(Long id, String title, String content) {
-        Optional<Notice> optionalNotice = getNoticeById(id);
-        if (optionalNotice.isPresent()) {
-            Notice existingNotice = optionalNotice.get();
-            existingNotice.setTitle(title);
-            existingNotice.setContent(content);
-            return existingNotice;
+        Optional<Notice> existingNotice = noticeRepository.findById(id);
+        if (existingNotice.isPresent()) {
+            Notice notice = existingNotice.get();
+            notice.setTitle(title);
+            notice.setContent(content);
+            return noticeRepository.save(notice);
         }
         return null;
     }
 
     @Override
+    @Transactional
     public boolean deleteNotice(Long id) {
-        Optional<Notice> optionalNotice = getNoticeById(id);
-        if (optionalNotice.isPresent()) {
-            noticeList.remove(optionalNotice.get());
+        if (noticeRepository.existsById(id)) {
+            noticeRepository.deleteById(id);
             return true;
         }
         return false;
     }
+
+    @Override
+    public Page<Notice> getAllNotices(Pageable pageable) {
+        return noticeRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Notice> searchNotices(String keyword, Pageable pageable) {
+        return noticeRepository.findByTitleContainingIgnoreCaseOrContentContainingIgnoreCase(keyword, keyword, pageable);
+    }
 }
-*/

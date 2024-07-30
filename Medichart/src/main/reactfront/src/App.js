@@ -8,6 +8,7 @@ import AdminMain from "./pages/AdminMain";
 import AdminMonth from "./pages/AdminMonth";
 import AdminYear from "./pages/AdminYear";
 import AdminNoticeList from "./pages/AdminNoticeList";
+import AdminNoticeNew from "./pages/AdminNoticeNew";
 
 import Korean from "./pages/korean";
 import Japanese from "./pages/Japanese";
@@ -17,7 +18,7 @@ import Signup from "./pages/signup";
 import Email from "./pages/email";
 import EmailVerification from "./pages/EmailVerification";
 import Mymedicheck from "./pages/mymedicheck";
-import ProtectedRoute from "./pages/ProtectedRoute"; //로그인하면 볼 수 있는 페이지 설정
+import ProtectedRoute from "./pages/ProtectedRoute";
 import { AuthProvider } from "./pages/AuthContext";
 import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
@@ -85,6 +86,22 @@ function App() {
             element={
               <AdminLayout>
                 <AdminNoticeList />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/admin/notice/new"
+            element={
+              <AdminLayout>
+                <AdminNoticeNew />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/admin/notice/edit/:id"
+            element={
+              <AdminLayout>
+                <AdminNoticeNew />
               </AdminLayout>
             }
           />
@@ -188,9 +205,7 @@ function App() {
               </Layout>
             }
           />
-          <Route path="/*" element={<NotFound />} />{" "}
-          {/*에러페이지가 가장 아래에 있어야 함 */}
-          <Route path="/chatbot" element={<ChatbotComponent />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </ChatbotProvider>
     </AuthProvider>

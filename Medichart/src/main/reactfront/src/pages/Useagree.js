@@ -1,74 +1,86 @@
 import React, { useState } from "react";
 import "../pages/Useagree.css";
+
 function Useagree({ isOpen, onClose }) {
-  // const [agreeAll, setAgreeAll] = useState(false);
-  // const [agreeTerms, setAgreeTerms] = useState(false); //이용약관 동의
-  // const [agreePrivacy, setAgreePrivacy] = useState(false); //개인정보 동의
+  const [agreeAll, setAgreeAll] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(false); // 이용약관 동의
+  const [agreePrivacy, setAgreePrivacy] = useState(false); // 개인정보 동의
 
-  // const handleAgreeAllChange = () => {
-  //   const newAgreeAll = !agreeAll;
-  //   setAgreeAll(newAgreeAll);
-  //   setAgreeTerms(newAgreeAll);
-  //   setAgreePrivacy(newAgreeAll);
-  // };
+  const handleAgreeAllChange = () => {
+    const newAgreeAll = !agreeAll;
+    setAgreeAll(newAgreeAll);
+    setAgreeTerms(newAgreeAll);
+    setAgreePrivacy(newAgreeAll);
+  };
 
-  // const handleAgreeTermsChange = () => {
-  //   const newAgreeTerms = !agreeTerms;
-  //   setAgreeTerms(newAgreeTerms);
-  //   setAgreeAll(newAgreeTerms && agreePrivacy);
-  // };
+  const handleAgreeTermsChange = () => {
+    const newAgreeTerms = !agreeTerms;
+    setAgreeTerms(newAgreeTerms);
+    setAgreeAll(newAgreeTerms && agreePrivacy);
+  };
 
-  // const handleAgreePrivacyChange = () => {
-  //   const newAgreePrivacy = !agreePrivacy;
-  //   setAgreePrivacy(newAgreePrivacy);
-  //   setAgreeAll(agreeTerms && newAgreePrivacy);
-  // };
+  const handleAgreePrivacyChange = () => {
+    const newAgreePrivacy = !agreePrivacy;
+    setAgreePrivacy(newAgreePrivacy);
+    setAgreeAll(agreeTerms && newAgreePrivacy);
+  };
 
-  //백엔드로 데이터 전송 !!
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (agreeTerms && agreePrivacy) {
-  //     // 추가 회원가입 처리 로직
-  //     try {
-  //       const response = await fetch("https://api.example.com/register", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           agreeTerms,
-  //           agreePrivacy,
-  //         }),
-  //       });
+  // 백엔드로 데이터 전송
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (agreeTerms && agreePrivacy) {
+      // 추가 회원가입 처리 로직
+      try {
+        const response = await fetch("https://api.example.com/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            agreeTerms,
+            agreePrivacy,
+          }),
+        });
 
-  //       if (response.ok) {
-  //         alert("회원가입 완료");
-  //         // 추가 회원가입 처리 로직
-  //       } else {
-  //         alert("회원가입에 실패했습니다. 다시 시도해주세요.");
-  //       }
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //       alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-  //     }
-  //   } else {
-  //     alert("모든 필수 약관에 동의해야 합니다.");
-  //   }
-  // };
+        if (response.ok) {
+          alert("회원가입 완료");
+          onClose(); // 모달 닫기
+        } else {
+          alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    } else {
+      alert("모든 필수 약관에 동의해야 합니다.");
+    }
+  };
+
   if (!isOpen) return null;
+
   return (
-    <div className="modal-overlay">
-      <div className="modal">
-        <div className="modal-content">
-          <h2>Medichart 이용약관</h2>
-          <form>
-            <div className="form-group"></div>
-            <div className="form-group">
-              <label htmlFor="terms">이용약관</label>
-              <textarea
-                id="terms"
-                readOnly
-                value={`  제1조 (목적)
+      <div className="modal-overlay">
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Medichart 이용약관</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>
+                  <input
+                      type="checkbox"
+                      checked={agreeAll}
+                      onChange={handleAgreeAllChange}
+                  />
+                  전체 동의
+                </label>
+              </div>
+              <div className="form-group">
+                <label htmlFor="terms">이용약관</label>
+                <textarea
+                    id="terms"
+                    readOnly
+                    value={`  제1조 (목적)
   본 약관은 Medichart(이하 '회사')가 제공하는 건강 진단서 해석 및 질병 예측 서비스(이하 '서비스')의 이용조건 및 절차, 회원과 회사의 권리와 의무, 책임사항 등을 규정함을 목적으로 합니다.
   제2조 (정의)
   1. "회원"이라 함은 본 약관에 동의하고 회사와 서비스 이용 계약을 체결한 자를 말합니다.
@@ -116,14 +128,14 @@ function Useagree({ isOpen, onClose }) {
   1. 회사는 천재지변, 불가항력 또는 이에 준하는 사유로 인해 서비스를 제공할 수 없는 경우에는 서비스 제공에 대한 책임이 면제됩니다.
   2. 회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.
                     `}
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <label htmlFor="privacy">개인정보 수집 및 이용 동의</label>
-              <textarea
-                id="privacy"
-                readOnly
-                value={`  제1조 (개인정보의 수집 항목 및 수집 방법)
+                ></textarea>
+              </div>
+              <div className="form-group">
+                <label htmlFor="privacy">개인정보 수집 및 이용 동의</label>
+                <textarea
+                    id="privacy"
+                    readOnly
+                    value={`  제1조 (개인정보의 수집 항목 및 수집 방법)
   1. 회사는 다음의 개인정보를 수집하고 있습니다:
     - 필수 항목: 성명, 생년월일, 성별, 이메일 주소
     - 선택 항목: 건강 진단서 정보, 의료 기록
@@ -148,15 +160,36 @@ function Useagree({ isOpen, onClose }) {
   제6조 (회원의 권리)
   회원은 언제든지 등록되어 있는 자신의 개인정보를 조회하거나 수정할 수 있으며, 개인정보 처리에 대한 동의 철회 및 회원 탈퇴를 요청할 수 있습니다.
                     `}
-              ></textarea>
-            </div>
-            <div className="buttons">
-              <button className="join-btn">닫기</button>
-            </div>
-          </form>
+                ></textarea>
+              </div>
+              <div className="form-group">
+                <label>
+                  <input
+                      type="checkbox"
+                      checked={agreeTerms}
+                      onChange={handleAgreeTermsChange}
+                  />
+                  이용약관에 동의합니다
+                </label>
+              </div>
+              <div className="form-group">
+                <label>
+                  <input
+                      type="checkbox"
+                      checked={agreePrivacy}
+                      onChange={handleAgreePrivacyChange}
+                  />
+                  개인정보 수집 및 이용에 동의합니다
+                </label>
+              </div>
+              <div className="buttons">
+                <button type="submit" className="join-btn">제출</button>
+                <button type="button" className="close-btn" onClick={onClose}>닫기</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 
