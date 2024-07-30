@@ -1,20 +1,20 @@
 package com.example.medichart.login.dto;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
-    private Long userId;
+
+    private Long userid;
 
     @NotBlank(message = "이메일은 필수입니다.")
     @Email(message = "이메일 형식이 잘못되었습니다.")
@@ -24,18 +24,27 @@ public class UserDTO {
     private String name;
 
     @NotBlank(message = "비밀번호는 필수입니다.")
+    @Size(min = 6, message = "비밀번호는 최소 6자 이상이어야 합니다.")
     private String password;
 
+    @NotBlank(message = "비밀번호 확인은 필수입니다.")
+    private String confirmPassword;
+
     @NotNull(message = "생년월일은 필수입니다.")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthdate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate birthdate;
 
     private String status;
-    private String loginMethod; // 로그인 방법 (예: '일반', '카카오', '네이버', '구글')
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date createdAt;
-
+    private String loginMethod;
     private String role;
-    private Boolean emailVerified;
+
+    @NotBlank(message = "성별은 필수입니다.")
+    private String gender;
+
+    private Boolean emailVerified = false;
+
+    @AssertTrue(message = "비밀번호와 비밀번호 확인이 일치하지 않습니다.")
+    public boolean isPasswordMatching() {
+        return password != null && password.equals(confirmPassword);
+    }
 }
