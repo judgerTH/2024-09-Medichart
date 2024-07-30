@@ -14,21 +14,75 @@ function CustomerService() {
 
   useEffect(() => {
     if (adminSocket) {
-      adminSocket.onmessage = (event) => {
-        setMessages(prevMessages => [...prevMessages, event.data]);
+      const handleAdminMessage = (event) => {
+        try {
+          const message = JSON.parse(event.data);
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            `${message.title}: ${message.content}`,
+          ]);
+        } catch (error) {
+          console.error("Admin WebSocket message parsing error:", error);
+        }
+      };
+
+      const handleAdminOpen = () => {
+        console.log("Admin WebSocket connection established");
+      };
+
+      const handleAdminClose = () => {
+        console.log("Admin WebSocket connection closed");
+      };
+
+      const handleAdminError = (error) => {
+        console.error("Admin WebSocket error:", error);
+      };
+
+      adminSocket.onmessage = handleAdminMessage;
+      adminSocket.onopen = handleAdminOpen;
+      adminSocket.onclose = handleAdminClose;
+      adminSocket.onerror = handleAdminError;
+
+      return () => {
+        adminSocket.close();
       };
     }
-    return () => {
-      if (adminSocket) {
-        adminSocket.close();
-      }
-    };
   }, [adminSocket]);
 
-  const handleSubmitInquiry = (content) => {
+  useEffect(() => {
     if (userSocket) {
-      userSocket.send(content);
+      const handleUserOpen = () => {
+        console.log("User WebSocket connection established");
+      };
+
+      const handleUserClose = () => {
+        console.log("User WebSocket connection closed");
+      };
+
+      const handleUserError = (error) => {
+        console.error("User WebSocket error:", error);
+      };
+
+      userSocket.onopen = handleUserOpen;
+      userSocket.onclose = handleUserClose;
+      userSocket.onerror = handleUserError;
+
+      return () => {
+        userSocket.close();
+      };
+    }
+  }, [userSocket]);
+
+  const handleSubmitInquiry = (content) => {
+    if (userSocket && userSocket.readyState === WebSocket.OPEN) {
+      const inquiryMessage = JSON.stringify({
+        title: "New Inquiry",
+        content,
+      });
+      userSocket.send(inquiryMessage);
       setInquiryContent(""); // 폼 리셋
+    } else {
+      console.error("User WebSocket is not open or has an error.");
     }
   };
 
@@ -59,9 +113,7 @@ function CustomerService() {
           {activeTab === "faq" && <FAQ />}
           {activeTab === "inquiry" && (
               <>
-                <Inquiry
-                    addInquriy={(content) => handleSubmitInquiry(content)}
-                />
+                <Inquiry addInquriy={(content) => handleSubmitInquiry(content)} />
                 <div className="inquiry-messages">
                   <h3>Recent Messages:</h3>
                   <ul>

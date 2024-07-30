@@ -1,50 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from 'react';
+import { WebSocketContext } from './WebSocketProvider';
 
 const AdminDashboard = () => {
     const [messages, setMessages] = useState([]);
-    const [socket, setSocket] = useState(null);
+    const { adminSocket } = useContext(WebSocketContext);
 
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:8080/admin');
+        if (adminSocket) {
+            adminSocket.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    setMessages((prevMessages) => [...prevMessages, message]);
+                } catch (error) {
+                    console.error('메시지 파싱 에러:', error);
+                }
+            };
 
-        ws.onopen = () => {
-            console.log('Admin WebSocket connected');
-        };
+            adminSocket.onclose = () => {
+                console.log('웹소켓 연결 종료');
+            };
 
-        ws.onmessage = (event) => {
-            try {
-                const message = JSON.parse(event.data);
-                setMessages((prevMessages) => [...prevMessages, message]);
-            } catch (error) {
-                console.error('Error parsing message:', error);
-            }
-        };
-
-        ws.onclose = () => {
-            console.log('Admin WebSocket closed');
-        };
-
-        ws.onerror = (error) => {
-            console.error('Admin WebSocket error:', error);
-        };
-
-        setSocket(ws);
-
-        return () => {
-            if (socket) socket.close();
-        };
-    }, [socket]);
+            adminSocket.onerror = (error) => {
+                console.error('웹소켓 에러:', error);
+            };
+        }
+    }, [adminSocket]);
 
     return (
         <div>
-            <h2>Admin Dashboard</h2>
+            <h2>관리자 대시보드</h2>
             <div>
                 {messages.length > 0 ? (
                     messages.map((msg, index) => (
-                        <p key={index}>{msg.message}</p>
+                        <p key={index}>{msg.title}: {msg.content}</p>
                     ))
                 ) : (
-                    <p>No messages.</p>
+                    <p>메시지가 없습니다.</p>
                 )}
             </div>
         </div>

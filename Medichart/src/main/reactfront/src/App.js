@@ -22,6 +22,8 @@ import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
 import NotFound from "./pages/NotFound";
 import { WebSocketProvider } from "./components/WebSocketProvider"; // Import WebSocketProvider
+import UserInquiryPage from "./pages/UserInquiryPage"; // Import UserInquiryPage
+import AdminDashboard from "./components/AdminDashboard"; // Import AdminDashboard
 
 function App() {
     return (
@@ -166,6 +168,22 @@ function App() {
                             <Layout>
                                 <Prediction />
                             </Layout>
+                        }
+                    />
+                    <Route
+                        path="/user-inquiry"
+                        element={
+                            <Layout>
+                                <UserInquiryPage />
+                            </Layout>
+                        }
+                    />
+                    <Route
+                        path="/admin-dashboard"
+                        element={
+                            <AdminLayout>
+                                <AdminDashboard />
+                            </AdminLayout>
                         }
                     />
                     <Route path="/*" element={<NotFound />} />{" "}

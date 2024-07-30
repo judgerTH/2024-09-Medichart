@@ -14,22 +14,18 @@ public class UserWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        System.out.println("User WebSocket connection established: " + session.getId());
+        System.out.println("User WebSocket connection established");
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println("User WebSocket message received: " + message.getPayload());
-        for (WebSocketSession s : sessions) {
-            if (s.isOpen()) {
-                s.sendMessage(message);
-            }
-        }
+        AdminWebSocketHandler.sendMessageToAdmins(message.getPayload());
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         sessions.remove(session);
-        System.out.println("User WebSocket connection closed: " + session.getId());
+        System.out.println("User WebSocket connection closed");
     }
 }
