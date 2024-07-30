@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "../pages/Inquiry.css";
+import InquiryList from "../pages/InquiryList";
 
-const Inquiry = ({ addInquriy }) => {
+const Inquiry = ({}) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [inquiries, setInquiries] = useState([]); // 문의사항 리스트를 저장할 상태
+  const [showList, setShowList] = useState(false); // 접수 내역 표시 상태
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -16,9 +19,17 @@ const Inquiry = ({ addInquriy }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("접수되었습니다.");
-    // 폼 제출 처리코드 넣으면 됨(서버로 데이터 전송)
+
+    //폼 제출 처리 코드 추가?
+
+    // 새로운 문의사항을 리스트에 추가
+    setInquiries([...inquiries, { title, content }]);
+    //입력 필드 초기화
     setTitle("");
     setContent("");
+
+    //접수 내역 표시
+    setShowList(true);
   };
 
   return (
@@ -58,6 +69,9 @@ const Inquiry = ({ addInquriy }) => {
 
         <button type="submit">접수</button>
       </form>
+
+      {/* showList 상태가 true일 때만 InquiryList 컴포넌트를 렌더링 */}
+      {showList && <InquiryList inquiries={inquiries} />}
     </section>
   );
 };

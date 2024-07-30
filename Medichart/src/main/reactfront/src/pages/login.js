@@ -18,11 +18,18 @@ function Login() {
     const handleLogin = async (event) => {
         event.preventDefault();
 
+<<<<<<< HEAD
+  const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
+  const K_REDIRECT_URI = `http://localhost:3000/`;
+  //카카오 로그인 화면
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
+=======
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', {
                 email: email,   // 수정된 부분
                 password: password
             });
+>>>>>>> master
 
             if (response.data.status === 'success') {
                 login(response.data.data); // 사용자 정보를 AuthContext에 저장
