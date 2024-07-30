@@ -15,7 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
@@ -29,7 +31,8 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())  // CSRF 보호를 비활성화합니다. 이는 클라이언트와 서버 간의 테스트에서 유용할 수 있지만, 실제 환경에서는 활성화하는 것이 좋습니다.
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/users/register", "/api/users/verify-email", "/api/users/login").permitAll()  // 특정 경로는 인증 없이 접근 가능하게 설정합니다.
+                                .requestMatchers("/api/users/register", "/api/users/verify-email", "/api/users/login").permitAll()
+                                .requestMatchers("/ws/**", "/user/**", "/admin/**").permitAll()
                                 .anyRequest().authenticated()  // 나머지 요청은 인증이 필요합니다.
                 )
                 .formLogin(formLogin ->
@@ -64,6 +67,7 @@ public class SecurityConfig {
 
         return http.build();  // 설정을 적용하여 SecurityFilterChain을 빌드합니다.
     }
+
 
     // AuthenticationManager 빈을 설정합니다.
     @Bean
