@@ -1,8 +1,9 @@
+/*
 package com.example.medichart.login.service;
 
 import com.example.medichart.login.dto.OAuthAttributes;
-import com.example.medichart.login.entity.UserEntity;
-import com.example.medichart.login.repository.UserRepository;
+import com.example.medichart.login.entity.mail.UserEntity;
+import com.example.medichart.login.repository.mail.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -65,4 +66,4 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         UserEntity userEntity = attributes.toEntity(registrationId);
         return userRepository.save(userEntity);
     }
-}
+}*/

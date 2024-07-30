@@ -2,8 +2,8 @@
 package com.example.medichart.login.service;
 
 import com.example.medichart.login.dto.*;
-import com.example.medichart.login.entity.UserEntity;
-import com.example.medichart.login.repository.UserRepository;  // 추가
+import com.example.medichart.login.entity.mail.UserEntity;
+import com.example.medichart.login.repository.mail.UserRepository;  // 추가
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
