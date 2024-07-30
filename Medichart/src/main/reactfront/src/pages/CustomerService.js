@@ -114,14 +114,6 @@ function CustomerService() {
           {activeTab === "inquiry" && (
               <>
                 <Inquiry addInquriy={(content) => handleSubmitInquiry(content)} />
-                <div className="inquiry-messages">
-                  <h3>Recent Messages:</h3>
-                  <ul>
-                    {messages.map((msg, index) => (
-                        <li key={index}>{msg}</li>
-                    ))}
-                  </ul>
-                </div>
               </>
           )}
           {activeTab === "notice" && <Notice />}
