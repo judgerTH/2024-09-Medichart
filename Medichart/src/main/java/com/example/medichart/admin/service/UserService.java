@@ -2,8 +2,8 @@
 //package com.example.medichart.admin.service;
 //
 //import com.example.medichart.login.dto.InsertMemberDTO;
-//import com.example.medichart.login.entity.UserEntity;
-//import com.example.medichart.login.repository.UserRepository;
+//import com.example.medichart.login.entity.mail.UserEntity;
+//import com.example.medichart.login.repository.mail.UserRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Service;
 //

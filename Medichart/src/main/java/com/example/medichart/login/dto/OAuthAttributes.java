@@ -1,6 +1,7 @@
+/*
 package com.example.medichart.login.dto;
 
-import com.example.medichart.login.entity.UserEntity;
+import com.example.medichart.login.entity.mail.UserEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -77,3 +78,4 @@ public class OAuthAttributes {
         return userEntity;
     }
 }
+*/
