@@ -32,8 +32,8 @@ spring:
       client:
         registration:
           kakao:
-            client-id: ac0bf21e8738e7d12e2cb62b2b089e38
-            client-secret: Jg0L0ETqFxUPsLT3WHb9Z7v98zVzdRvP
+            client-id: fce473f392ddd4530306ee0c3531eba0
+            client-secret: xQE07NJoTlDu46UKa9ckQ8FWl8rf2o2q
             authorization-grant-type: authorization_code
             client-authentication-method: client_secret_post
             client-name: Oauth2
@@ -74,7 +74,7 @@ spring:
             authorization-uri: https://accounts.google.com/o/oauth2/auth
             token-uri: https://oauth2.googleapis.com/token
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
-            user-name-attribute: id
+            user-name-attribute: sub
 
     user:
       name: 1111
