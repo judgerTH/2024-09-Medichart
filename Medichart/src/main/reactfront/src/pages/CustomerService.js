@@ -73,14 +73,15 @@ function CustomerService() {
     }
   }, [userSocket]);
 
-  const handleSubmitInquiry = (content) => {
+  const handleSubmitInquiry = (title, content) => {
     if (userSocket && userSocket.readyState === WebSocket.OPEN) {
       const inquiryMessage = JSON.stringify({
-        title: "New Inquiry",
+        title,
         content,
       });
       userSocket.send(inquiryMessage);
       setInquiryContent(""); // 폼 리셋
+      console.log('Inquiry sent:', inquiryMessage);
     } else {
       console.error("User WebSocket is not open or has an error.");
     }
@@ -112,9 +113,9 @@ function CustomerService() {
           </nav>
           {activeTab === "faq" && <FAQ />}
           {activeTab === "inquiry" && (
-              <>
-                <Inquiry addInquiry={(content) => handleSubmitInquiry(content)} />
-              </>
+              <Inquiry
+                  addInquiry={(title, content) => handleSubmitInquiry(title, content)}
+              />
           )}
           {activeTab === "notice" && <Notice />}
           <div className="messages">
