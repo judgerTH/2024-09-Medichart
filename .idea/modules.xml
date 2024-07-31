@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Medichart.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Medichart.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Medichart.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Medichart.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/NSU-Likelion-haekeoton.iml" filepath="$PROJECT_DIR$/.idea/NSU-Likelion-haekeoton.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.Medichart.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.Medichart.main.iml" />
     </modules>
