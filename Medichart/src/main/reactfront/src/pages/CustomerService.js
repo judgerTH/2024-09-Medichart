@@ -113,10 +113,15 @@ function CustomerService() {
           {activeTab === "faq" && <FAQ />}
           {activeTab === "inquiry" && (
               <>
-                <Inquiry addInquriy={(content) => handleSubmitInquiry(content)} />
+                <Inquiry addInquiry={(content) => handleSubmitInquiry(content)} />
               </>
           )}
           {activeTab === "notice" && <Notice />}
+          <div className="messages">
+            {messages.map((msg, index) => (
+                <div key={index}>{msg}</div>
+            ))}
+          </div>
         </main>
       </div>
   );

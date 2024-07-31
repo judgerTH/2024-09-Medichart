@@ -25,22 +25,8 @@ import NotFound from './pages/NotFound';
 import { WebSocketProvider } from './components/WebSocketProvider';
 import UserInquiryPage from './pages/UserInquiryPage';
 import AdminDashboard from './components/AdminDashboard';
-import Chatbot from 'react-chatbot-kit';
-import 'react-chatbot-kit/build/main.css';
-import ActionProvider from './pages/chatbot/ActionProvider';
-import MessageParser from './pages/chatbot/MessageParser';
-import config from './pages/chatbot/config';
-import { ChatbotProvider } from './pages/chatbot/ChatbotContext';
-
-function ChatbotComponent() {
-    return (
-        <Chatbot
-            config={config}
-            messageParser={MessageParser}
-            actionProvider={ActionProvider}
-        />
-    );
-}
+import { ChatbotProvider } from './contexts/ChatbotContext';
+import ChatbotComponent from './components/ChatbotComponent'; // 추가
 
 function App() {
     return (
@@ -70,6 +56,7 @@ function App() {
                         <Route path="/admin-dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
                         <Route path="/*" element={<NotFound />} />
                     </Routes>
+                    <ChatbotComponent /> {/* 챗봇 컴포넌트 추가 */}
                 </ChatbotProvider>
             </WebSocketProvider>
         </AuthProvider>

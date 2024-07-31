@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ChatbotContext } from "./ChatbotContext";
+import { ChatbotContext } from "../../contexts/ChatbotContext";
 
 const ChatbotIcon = () => {
   const { toggleChatbot } = useContext(ChatbotContext);

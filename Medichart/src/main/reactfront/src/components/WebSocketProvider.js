@@ -6,7 +6,6 @@ export const WebSocketProvider = ({ children }) => {
     const [userSocket, setUserSocket] = useState(null);
     const [adminSocket, setAdminSocket] = useState(null);
 
-    useEffect(() => {
         const connectUserSocket = () => {
             const ws = new WebSocket('ws://localhost:8080/user');
             setUserSocket(ws);
@@ -31,12 +30,13 @@ export const WebSocketProvider = ({ children }) => {
             return ws;
         };
 
+    useEffect(() => {
         const userWs = connectUserSocket();
         const adminWs = connectAdminSocket();
 
         return () => {
-            if (userWs) userWs.close();
-            if (adminWs) adminWs.close();
+            userWs.close();
+            adminWs.close();
         };
     }, []);
 
