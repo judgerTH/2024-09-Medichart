@@ -25,7 +25,7 @@ public class PredictResultService {
         }
     }
 
-    public List<PredictResult> getPredictResultsByUserId(String userId) {
-        return predictResultRepository.findByUserID(userId);
+    public List<PredictResult> getPredictResultsByUsername(String username) {
+        return predictResultRepository.findByUsername(username);
     }
 }

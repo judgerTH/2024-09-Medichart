@@ -5,6 +5,8 @@ import com.example.medichart.predict.service.PredictResultService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +25,12 @@ public class PredictResultSendController {
     }
 
     @GetMapping
-    public List<PredictResult> getPredictionResultsByUserId(@RequestParam String userId) {
-        List<PredictResult> results = predictResultService.getPredictResultsByUserId(userId);
-        logger.info("Fetched prediction results: {}", results);
-        return results;
+    public ResponseEntity<List<PredictResult>> getPredictionResultsByUserId(@RequestParam String username) {
+        List<PredictResult> results = predictResultService.getPredictResultsByUsername(username);
+        if (results == null) {
+            return ResponseEntity.notFound().build(); // 404 Not Found
+        }
+        return ResponseEntity.ok(results); // 200 OK
     }
+
 }

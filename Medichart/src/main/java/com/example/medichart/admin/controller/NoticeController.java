@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -24,7 +26,7 @@ public class NoticeController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Notice>> getAllNotices(
+    public ResponseEntity<Map<String, Object>> getAllNotices(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false, defaultValue = "") String search) {
@@ -35,7 +37,14 @@ public class NoticeController {
         } else {
             noticePage = noticeService.searchNotices(search, pageable);
         }
-        return ResponseEntity.ok(noticePage);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("content", noticePage.getContent());
+        response.put("totalElements", noticePage.getTotalElements());
+        response.put("totalPages", noticePage.getTotalPages());
+        response.put("currentPage", noticePage.getNumber());
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping

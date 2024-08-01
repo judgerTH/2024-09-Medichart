@@ -16,11 +16,11 @@ export const AuthProvider = ({ children }) => {
                 return response.json();
             })
             .then(data => {
-                console.log('Fetched profile data:', data); // 응답 데이터 로그
-                if (data.username) { // userId가 아니라 username으로 체크해보세요
+                console.log('Fetched profile data:', data);
+                if (data.username) {
                     setIsLoggedIn(true);
-                    setUserId(data.userId); // userId가 데이터에 포함되어야 함
-                    setUsername(data.username || '');
+                    setUserId(data.userId); // 데이터에 userId가 포함되어 있어야 함
+                    setUsername(data.username);
                 } else {
                     setIsLoggedIn(false);
                     setUserId(null);
@@ -35,12 +35,10 @@ export const AuthProvider = ({ children }) => {
             });
     }, []);
 
-
-
     const login = (userId, username) => {
         setIsLoggedIn(true);
         setUserId(userId);
-        setUsername(username); // 로그인 시 사용자 이름 설정
+        setUsername(username);
     };
 
     const logout = () => {
@@ -51,7 +49,7 @@ export const AuthProvider = ({ children }) => {
             .then(() => {
                 setIsLoggedIn(false);
                 setUserId(null);
-                setUsername(''); // 로그아웃 시 사용자 이름 초기화
+                setUsername('');
             })
             .catch(err => console.error('Failed to log out:', err));
     };

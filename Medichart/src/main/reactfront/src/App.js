@@ -8,6 +8,7 @@ import AdminMonth from './pages/AdminMonth';
 import AdminYear from './pages/AdminYear';
 import AdminNoticeList from './pages/AdminNoticeList';
 import AdminNoticeNew from './pages/AdminNoticeNew';
+import AdminInquiryList from "./pages/AdminInquiryList";
 import Korean from './pages/korean';
 import Japanese from './pages/Japanese';
 import Chinese from './pages/Chinese';
@@ -41,6 +42,7 @@ function App() {
                         <Route path="/admin/noticeList" element={<AdminLayout><AdminNoticeList /></AdminLayout>} />
                         <Route path="/admin/notice/new" element={<AdminLayout><AdminNoticeNew /></AdminLayout>} />
                         <Route path="/admin/notice/edit/:id" element={<AdminLayout><AdminNoticeNew /></AdminLayout>} />
+                        <Route path="/admin/inquiryList" element={<AdminLayout><AdminInquiryList/></AdminLayout>} />
                         <Route path="/Korean" element={<Layout><Korean /></Layout>} />
                         <Route path="/Japanese" element={<Layout><Japanese /></Layout>} />
                         <Route path="/Chinese" element={<Layout><Chinese /></Layout>} />

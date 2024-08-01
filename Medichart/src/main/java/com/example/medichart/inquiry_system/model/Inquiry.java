@@ -1,12 +1,15 @@
 package com.example.medichart.inquiry_system.model;
 
 import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class Inquiry {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,39 +17,11 @@ public class Inquiry {
 
     private String title;
     private String content;
+    private String username;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
 }

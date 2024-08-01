@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./prediction.module.css";
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {
   BarChart,
   Bar,
@@ -13,6 +13,8 @@ import {
 } from "recharts";
 import Loading from "./Loading";
 import Modal from "react-modal";
+import {AuthContext} from "./AuthContext";
+
 
 // 날짜 포맷 함수
 const formatDate = (dateString) => {
@@ -55,20 +57,24 @@ const Prediction = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [pastResults, setPastResults] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-
-  const userId = "testIdNum1"; // 실제로는 로그인된 사용자 ID를 사용해야 합니다.
-
+  const { isLoggedIn, username } = useContext(AuthContext);
+  console.log(username);
   useEffect(() => {
     if (showChart) {
       setLoading(true);
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:8080/api/predictions?userId=${userId}`);
+          const response = await fetch(`http://localhost:8080/api/predictions?username=${username}`);
+
+          // Check if response status is OK
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
           const result = await response.json();
-          console.log("Fetched data:", result); // 데이터 확인
+          console.log("Fetched data:", result);
 
           setPastResults(result);
-          // 초기 상태에서 아무 데이터도 표시하지 않음
           setChartData([]);
         } catch (error) {
           console.error("Error fetching data: ", error);
@@ -78,7 +84,7 @@ const Prediction = () => {
       };
       fetchData();
     }
-  }, [showChart, userId]);
+  }, [showChart, username]);
 
   const handleButtonClick = () => {
     setShowChart(true);

@@ -161,12 +161,12 @@ public class PredictDataController {
                     logger.warn("Model: {} returned no probability", modelName);
                 }
             }
-            // 사용자 ID 임의부여
-            predictResult.setUserID("testIdNum1");
+            // PredictResult에 username 설정
+            predictResult.setUsername(predictDataRequest.getUsername());
 
             // PredictData 객체 생성 및 저장
             PredictData predictData = new PredictData();
-            predictData.setUserID("testIdNum1");
+            predictData.setUsername(predictDataRequest.getUsername()); // username을 UserID로 사용
             predictData.setAge(predictDataRequest.getAge());
             predictData.setSex(predictDataRequest.getSex());
             predictData.setBmi(predictDataRequest.getBmi());
@@ -182,6 +182,7 @@ public class PredictDataController {
             predictData.setSmoke(predictDataRequest.getSmoke());
             predictData.setDrink(predictDataRequest.getDrink());
             predictData.setProteinuria(predictDataRequest.getProteinuria());
+            predictData.setUsername(predictDataRequest.getUsername()); // username 설정
 
             // PredictData 및 PredictResult 객체 저장
             predictDataService.savePredictData(predictData);
@@ -194,4 +195,6 @@ public class PredictDataController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error: " + e.getMessage());
         }
     }
+
+
 }
