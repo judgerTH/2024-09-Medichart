@@ -1,3 +1,4 @@
+package com.example.medichart.login.entity.mail;/*
 package com.example.medichart.login.entity.mail;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -23,4 +24,4 @@ public class TermsAgreementEntity {
 
     @Column(name = "marketing_accepted")
     private Boolean marketingAccepted;
-}
+}*/

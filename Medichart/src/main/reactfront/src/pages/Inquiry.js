@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../pages/Inquiry.css";
 import InquiryList from "../pages/InquiryList";
 
-const Inquiry = () => {
+const Inquiry = ({ addInquiry }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [inquiries, setInquiries] = useState([]); // 문의사항 리스트를 저장할 상태
@@ -21,6 +21,8 @@ const Inquiry = () => {
     if (title && content) {
       // 새로운 문의사항을 리스트에 추가
       setInquiries([...inquiries, { title, content }]);
+      // 웹소켓 메시지 전송
+      addInquiry(title, content);
       // 입력 필드 초기화
       setTitle("");
       setContent("");
@@ -68,9 +70,6 @@ const Inquiry = () => {
           </div>
           <button type="submit">접수</button>
         </form>
-
-        {/* showList 상태가 true일 때만 InquiryList 컴포넌트를 렌더링 */}
-        {showList && <InquiryList inquiries={inquiries} />}
       </section>
   );
 };

@@ -21,7 +21,7 @@ import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
-// import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound";
 import { WebSocketProvider } from "./components/WebSocketProvider";
 import UserInquiryPage from "./pages/UserInquiryPage";
 import AdminDashboard from "./components/AdminDashboard";
@@ -122,7 +122,6 @@ function App() {
                 </Layout>
               }
             />
-
             <Route
               path="/login/signup"
               element={
@@ -199,7 +198,7 @@ function App() {
                 </AdminLayout>
               }
             />
-            {/* <Route path="/*" element={<NotFound />} /> */}
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <ChatbotComponent /> {/* 챗봇 컴포넌트 추가 */}
         </ChatbotProvider>
