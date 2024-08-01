@@ -1,15 +1,14 @@
 package com.example.medichart.OAuth.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
@@ -18,8 +17,15 @@ public class UserEntity {
 
     private String username;
     private String name;
-
     private String email;
-
     private String role;
+
+    @Column(name = "created_date", nullable = false, updatable = false)
+    private LocalDateTime createdDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdDate = LocalDateTime.now();
+    }
 }
+

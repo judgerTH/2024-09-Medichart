@@ -26,7 +26,6 @@ public class SecurityConfig {
     private final JWTUtil jwtUtil;
 
     public SecurityConfig(CustomOAuth2UserService customOAuth2UserService, CustomSuccessHandler customSuccessHandler, JWTUtil jwtUtil) {
-
         this.customOAuth2UserService = customOAuth2UserService;
         this.customSuccessHandler = customSuccessHandler;
         this.jwtUtil = jwtUtil;
@@ -37,59 +36,46 @@ public class SecurityConfig {
 
         http
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
-
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-
                         CorsConfiguration configuration = new CorsConfiguration();
-
                         configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
                         configuration.setAllowedMethods(Collections.singletonList("*"));
                         configuration.setAllowCredentials(true);
                         configuration.setAllowedHeaders(Collections.singletonList("*"));
                         configuration.setMaxAge(3600L);
-
                         configuration.setExposedHeaders(Collections.singletonList("Set-Cookie"));
                         configuration.setExposedHeaders(Collections.singletonList("Authorization"));
-
                         return configuration;
                     }
                 }));
 
-        //csrf disable
+        // CSRF, formLogin, httpBasic 모두 비활성화
         http
-                .csrf((auth) -> auth.disable());
+                .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(httpBasic -> httpBasic.disable());
 
-        //From 로그인 방식 disable
-        http
-                .formLogin((auth) -> auth.disable());
-
-        //HTTP Basic 인증 방식 disable
-        http
-                .httpBasic((auth) -> auth.disable());
-
-        //JWTFilter 추가
+        // JWTFilter 추가
         http
                 .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
 
-        //oauth2
+        // OAuth2 설정
         http
-                .oauth2Login((oauth2) -> oauth2
-                        .userInfoEndpoint((userInfoEndpointConfig) -> userInfoEndpointConfig
+                .oauth2Login(oauth2 -> oauth2
+                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
                                 .userService(customOAuth2UserService))
                         .successHandler(customSuccessHandler)
                 );
 
-        //경로별 인가 작업
+        // 모든 요청 허용
         http
-                .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/").permitAll()
-                        .requestMatchers("my").hasRole("USER")
-                        .anyRequest().authenticated());
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/**").permitAll());
 
-        //세션 설정 : STATELESS
+        // 세션 설정: STATELESS
         http
-                .sessionManagement((session) -> session
+                .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         return http.build();

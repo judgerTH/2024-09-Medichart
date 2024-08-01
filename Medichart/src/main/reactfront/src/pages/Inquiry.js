@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import "../pages/Inquiry.css";
-import InquiryList from "../pages/InquiryList";
 
-const Inquiry = ({ addInquiry }) => {
+const Inquiry = ({ username }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [inquiries, setInquiries] = useState([]); // 문의사항 리스트를 저장할 상태
-  const [showList, setShowList] = useState(false); // 접수 내역 표시 상태
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -16,19 +14,22 @@ const Inquiry = ({ addInquiry }) => {
     setContent(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && content) {
-      // 새로운 문의사항을 리스트에 추가
-      setInquiries([...inquiries, { title, content }]);
-      // 웹소켓 메시지 전송
-      addInquiry(title, content);
-      // 입력 필드 초기화
-      setTitle("");
-      setContent("");
-      // 접수 내역 표시
-      setShowList(true);
-      alert("접수되었습니다.");
+      try {
+        await axios.post('/api/admin/inquiries', {
+          title,
+          content,
+          username
+        });
+        setTitle("");
+        setContent("");
+        alert("접수되었습니다.");
+      } catch (error) {
+        console.error("Error while submitting inquiry:", error);
+        alert("문의 접수에 실패했습니다.");
+      }
     } else {
       alert("제목과 내용을 모두 입력해주세요.");
     }

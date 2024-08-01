@@ -5,10 +5,10 @@ import G_signup from "../G_signup.png";
 import { Link } from "react-router-dom";
 
 function Signup() {
-  const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
-  const K_REDIRECT_URI = `http://localhost:3001/`;
-  //카카오 로그인 화면
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
+  // 카카오
+  const K_REST_API_KEY = "fce473f392ddd4530306ee0c3531eba0";
+  const K_REDIRECT_URI = "http://localhost:8080/login/oauth2/code/kakao";
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${encodeURIComponent(K_REDIRECT_URI)}&response_type=code`;
 
   const handlekakaoLogin = () => {
     window.location.href = kakaoURL; //kakaoURL로 이동

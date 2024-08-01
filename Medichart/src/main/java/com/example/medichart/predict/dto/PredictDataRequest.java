@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class PredictDataRequest {
-    private String userID;
+    private String username;
     private Integer age; // Integer로 변경
     private Double alt; // Double로 변경
     private Double ast; // Double로 변경

@@ -2,14 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import FAQ from "./FAQ";
 import Inquiry from "./Inquiry"; // 1:1 문의
 import Notice from "./Notice"; // 공지사항
+import InquiryList from "./InquiryList"; // 문의 내역
 import { WebSocketContext } from "../components/WebSocketProvider"; // 웹소켓 컨텍스트 가져오기
 import "../pages/CustomerService.css";
+import { AuthContext } from "./AuthContext";
 
 function CustomerService() {
   const [activeTab, setActiveTab] = useState("faq");
   const [messages, setMessages] = useState([]);
-  const [inquiryContent, setInquiryContent] = useState("");
-
+  const { isLoggedIn, username } = useContext(AuthContext);
   const { userSocket, adminSocket } = useContext(WebSocketContext);
 
   useEffect(() => {
@@ -26,22 +27,10 @@ function CustomerService() {
         }
       };
 
-      const handleAdminOpen = () => {
-        console.log("Admin WebSocket connection established");
-      };
-
-      const handleAdminClose = () => {
-        console.log("Admin WebSocket connection closed");
-      };
-
-      const handleAdminError = (error) => {
-        console.error("Admin WebSocket error:", error);
-      };
-
       adminSocket.onmessage = handleAdminMessage;
-      adminSocket.onopen = handleAdminOpen;
-      adminSocket.onclose = handleAdminClose;
-      adminSocket.onerror = handleAdminError;
+      adminSocket.onopen = () => {};
+      adminSocket.onclose = () => {};
+      adminSocket.onerror = (error) => console.error("Admin WebSocket error:", error);
 
       return () => {
         adminSocket.close();
@@ -51,21 +40,9 @@ function CustomerService() {
 
   useEffect(() => {
     if (userSocket) {
-      const handleUserOpen = () => {
-        console.log("User WebSocket connection established");
-      };
-
-      const handleUserClose = () => {
-        console.log("User WebSocket connection closed");
-      };
-
-      const handleUserError = (error) => {
-        console.error("User WebSocket error:", error);
-      };
-
-      userSocket.onopen = handleUserOpen;
-      userSocket.onclose = handleUserClose;
-      userSocket.onerror = handleUserError;
+      userSocket.onopen = () => {};
+      userSocket.onclose = () => {};
+      userSocket.onerror = (error) => console.error("User WebSocket error:", error);
 
       return () => {
         userSocket.close();
@@ -78,9 +55,9 @@ function CustomerService() {
       const inquiryMessage = JSON.stringify({
         title,
         content,
+        username, // 사용자 이름 포함
       });
       userSocket.send(inquiryMessage);
-      setInquiryContent(""); // 폼 리셋
       console.log('Inquiry sent:', inquiryMessage);
     } else {
       console.error("User WebSocket is not open or has an error.");
@@ -112,12 +89,16 @@ function CustomerService() {
             </h2>
           </nav>
           {activeTab === "faq" && <FAQ />}
-          {activeTab === "inquiry" && (
-              <Inquiry
-                  addInquiry={(title, content) => handleSubmitInquiry(title, content)}
-              />
-          )}
           {activeTab === "notice" && <Notice />}
+          {activeTab === "inquiry" && (
+              <>
+                <Inquiry
+                    addInquiry={(title, content) => handleSubmitInquiry(title, content)}
+                    username={username} // username 전달
+                />
+                <InquiryList username={username} /> {/* 1:1 문의 탭에서만 문의 내역을 보여줌 */}
+              </>
+          )}
           <div className="messages">
             {messages.map((msg, index) => (
                 <div key={index}>{msg}</div>

@@ -12,7 +12,7 @@ const Notice = () => {
 
   const fetchNotices = async () => {
     try {
-      const response = await axios.get('/api/admin/notices');
+      const response = await axios.get('/api/admin/notice'); // URL 수정
       if (response.data && response.data.content) {
         setNotices(response.data.content);
       } else {
@@ -22,6 +22,7 @@ const Notice = () => {
       console.error('Failed to fetch notices', error);
     }
   };
+
 
   const handleToggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PredictResultRepository extends JpaRepository<PredictResult, Long> {
-    List<PredictResult> findByUserID(String userID);
+    List<PredictResult> findByUsername(String username);
 }

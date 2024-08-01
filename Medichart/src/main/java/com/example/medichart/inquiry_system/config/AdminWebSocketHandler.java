@@ -7,7 +7,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class AdminWebSocketHandler extends TextWebSocketHandler {
     private static final List<WebSocketSession> sessions = new ArrayList<>();
 
