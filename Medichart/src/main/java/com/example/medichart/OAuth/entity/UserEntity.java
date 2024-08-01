@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "users") // 테이블 이름을 명시적으로 지정
 @Getter
 @Setter
 public class UserEntity {
@@ -18,8 +20,6 @@ public class UserEntity {
 
     private String username;
     private String name;
-
     private String email;
-
     private String role;
 }

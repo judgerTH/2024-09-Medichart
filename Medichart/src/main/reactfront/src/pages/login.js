@@ -53,8 +53,8 @@ function Login() {
         window.location.href = NAVER_URL;
     };
 
-    const G_ClientID = process.env.REACT_APP_GOOGLE_KEY;
-    const G_REDIRECT_URI = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
+    const G_ClientID = "709796471451-hdg13q22jmbruh79om4k0vb4t4b2plmp.apps.googleusercontent.com";
+    const G_REDIRECT_URI = "http://localhost:8080/login/oauth2/code/google";
     const G_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_ClientID}&redirect_uri=${encodeURIComponent(G_REDIRECT_URI)}&scope=openid%20email%20profile`;
 
     const handlegoogleLogin = () => {

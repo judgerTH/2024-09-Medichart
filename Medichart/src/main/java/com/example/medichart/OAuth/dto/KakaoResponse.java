@@ -7,8 +7,7 @@ public class KakaoResponse implements OAuth2Response {
     private final Map<String, Object> attribute;
 
     public KakaoResponse(Map<String, Object> attribute) {
-        // 카카오 응답에서 사용자의 정보를 포함하는 "properties" 또는 유사한 키를 사용한다고 가정합니다.
-        this.attribute = (Map<String, Object>) attribute.get("kakao_account");
+        this.attribute = attribute;  // 직접 "kakao_account"를 사용하지 않고 attribute 전체를 사용합니다.
     }
 
     @Override
@@ -18,16 +17,31 @@ public class KakaoResponse implements OAuth2Response {
 
     @Override
     public String getProviderId() {
-        return attribute.get("id").toString();  // "id" 필드가 attribute 맵에 직접 포함되어 있다고 가정합니다.
+        // "id"는 최상위 레벨에 있으므로 직접 접근
+        Object id = attribute.get("id");
+        if (id == null) {
+            throw new IllegalArgumentException("Provider ID is missing");
+        }
+        return id.toString();
     }
 
     @Override
     public String getEmail() {
-        return attribute.get("email").toString();
+        // "email"은 "kakao_account" 내부에 위치
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
+        if (kakaoAccount == null || kakaoAccount.get("email") == null) {
+            throw new IllegalArgumentException("Email is missing");
+        }
+        return kakaoAccount.get("email").toString();
     }
 
     @Override
     public String getName() {
-        return attribute.get("nickname").toString();  // 사용자의 이름으로 "nickname" 키를 사용한다고 가정합니다.
+        // "name"은 "kakao_account" 내부에 위치
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attribute.get("kakao_account");
+        if (kakaoAccount == null || kakaoAccount.get("name") == null) {
+            throw new IllegalArgumentException("Name is missing");
+        }
+        return kakaoAccount.get("name").toString();
     }
 }
