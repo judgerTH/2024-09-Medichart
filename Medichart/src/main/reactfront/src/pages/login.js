@@ -40,7 +40,7 @@ function Login() {
   };
 
   const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
-  const K_REDIRECT_URI = `http://localhost:3000/oauth`;
+  const K_REDIRECT_URI = `http://localhost:3000/login/oauth2/code/kakao`;
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
 
   const handlekakaoLogin = () => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AdminLayout from "./components/AdminLayout";
-import Layout from "./components/layout";
-import Home from "./pages/home";
+import Layout from "./components/layout"; // Ensure this matches the exact filename
+import Home from "./pages/home"; // Ensure this matches the exact filename
 import AdminMain from "./pages/AdminMain";
 import AdminMonth from "./pages/AdminMonth";
 import AdminYear from "./pages/AdminYear";
@@ -21,26 +21,12 @@ import SearchHospital from "./pages/SearchHospital";
 import Mypage from "./pages/Mypage";
 import CustomerService from "./pages/CustomerService";
 import Prediction from "./pages/prediction";
-import NotFound from "./pages/NotFound";
+// import NotFound from "./pages/NotFound";
 import { WebSocketProvider } from "./components/WebSocketProvider";
 import UserInquiryPage from "./pages/UserInquiryPage";
 import AdminDashboard from "./components/AdminDashboard";
-import Chatbot from "react-chatbot-kit";
-import "react-chatbot-kit/build/main.css";
-import ActionProvider from "./pages/chatbot/ActionProvider";
-import MessageParser from "./pages/chatbot/MessageParser";
-import config from "./pages/chatbot/config";
-import { ChatbotProvider } from "./pages/chatbot/ChatbotContext";
-
-function ChatbotComponent() {
-  return (
-    <Chatbot
-      config={config}
-      messageParser={MessageParser}
-      actionProvider={ActionProvider}
-    />
-  );
-}
+import { ChatbotProvider } from "./contexts/ChatbotContext";
+import ChatbotComponent from "./components/ChatbotComponent"; // 추가
 
 function App() {
   return (
@@ -136,6 +122,7 @@ function App() {
                 </Layout>
               }
             />
+
             <Route
               path="/login/signup"
               element={
@@ -212,8 +199,9 @@ function App() {
                 </AdminLayout>
               }
             />
-            <Route path="/*" element={<NotFound />} />
+            {/* <Route path="/*" element={<NotFound />} /> */}
           </Routes>
+          <ChatbotComponent /> {/* 챗봇 컴포넌트 추가 */}
         </ChatbotProvider>
       </WebSocketProvider>
     </AuthProvider>

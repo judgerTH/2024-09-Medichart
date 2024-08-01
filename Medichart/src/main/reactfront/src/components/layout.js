@@ -4,7 +4,7 @@ import Footer from "./footer";
 import styles from "./layout.module.css";
 
 import ChatbotIcon from "../pages/chatbot/ChatbotIcon";
-import ChatbotComponent from "../pages/chatbot/ChatbotComponent";
+import ChatbotComponent from "./ChatbotComponent";
 
 const Layout = (props: { children: React.ReactNode }) => {
   return (
