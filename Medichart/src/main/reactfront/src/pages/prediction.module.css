@@ -25,6 +25,9 @@
 .link:hover {
   color: #1a76d1;
 }
+.link {
+  color: black;
+}
 
 .side {
   font-size: 18px;
