@@ -20,7 +20,7 @@ function Login() {
 
         try {
             const response = await axios.post('http://localhost:8080/api/users/login', {
-                email: email,   // 수정된 부분
+                email: email,
                 password: password
             });
 
@@ -36,18 +36,18 @@ function Login() {
         }
     };
 
-    const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
-    const K_REDIRECT_URI = `http://localhost:3001/`;
-    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
+    const K_REST_API_KEY = "fce473f392ddd4530306ee0c3531eba0";
+    const K_REDIRECT_URI = "http://localhost:8080/login/oauth2/code/kakao";
+    const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${encodeURIComponent(K_REDIRECT_URI)}&response_type=code&scope=profile_nickname,account_email`;
 
     const handlekakaoLogin = () => {
         window.location.href = kakaoURL;
     };
 
-    const N_clientID = process.env.REACT_APP_NAVER_CLIENT_ID;
-    const N_REDIRECT_URI = "http://localhost:3001/naverlogin";
+    const N_clientID = "J9e7ZObddUCfs_4uICkI";
+    const N_REDIRECT_URI = "http://localhost:3000/login/oauth2/code/naver";
     const stateString = process.env.REACT_APP_NAVER_STATE;
-    const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${N_clientID}&response_type=code&redirect_uri=${N_REDIRECT_URI}&state=${stateString}`;
+    const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${N_clientID}&response_type=code&redirect_uri=${encodeURIComponent(N_REDIRECT_URI)}&state=${stateString}`;
 
     const handlenaverLogin = () => {
         window.location.href = NAVER_URL;
@@ -55,7 +55,7 @@ function Login() {
 
     const G_ClientID = process.env.REACT_APP_GOOGLE_KEY;
     const G_REDIRECT_URI = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
-    const G_URL = ` https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_ClientID}&redirect_uri=${G_REDIRECT_URI}&scope=openid%20email%20profile`;
+    const G_URL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${G_ClientID}&redirect_uri=${encodeURIComponent(G_REDIRECT_URI)}&scope=openid%20email%20profile`;
 
     const handlegoogleLogin = () => {
         window.location.href = G_URL;
@@ -64,10 +64,10 @@ function Login() {
     return (
         <div className="container">
             <h3>로그인</h3>
-            <p style={{ color: "red", margin: " 0 0 30px 9px" }}>
+            <p style={{ color: "red", margin: "0 0 30px 9px" }}>
                 로그인 후 이용해주세요
             </p>
-            <div className="loginForm ">
+            <div className="loginForm">
                 <input
                     type="email"
                     id="user_id"
@@ -76,7 +76,7 @@ function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                ></input>
+                />
                 <input
                     type="password"
                     id="user_password"
@@ -85,46 +85,30 @@ function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                ></input>
+                />
             </div>
 
-            <div className="loginForm_bottom ">
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+            <div className="loginForm_bottom">
                 <input
                     onClick={handleLogin}
                     type="submit"
                     value="이메일로 로그인"
                     className="button"
-                ></input>
+                />
 
                 <div className="section_find">
-                    <p
-                        style={{
-                            fontSize: "small",
-                            paddingTop: "20px",
-                            marginLeft: "10px",
-                        }}
-                    >
-                        <Link
-                            to="/login/signup"
-                            style={{ color: "black", fontSize: "16px" }}
-                        >
-                            회원가입
-                        </Link>
+                    <p style={{ fontSize: "small", paddingTop: "20px", marginLeft: "10px" }}>
+                        <Link to="/login/signup" style={{ color: "black", fontSize: "16px" }}>회원가입</Link>
                     </p>
-                    <p
-                        style={{
-                            color: "grey",
-                            display: "inline",
-                            borderBottom: "1px solid grey",
-                            marginLeft: "10px",
-                        }}
-                    >
+                    <p style={{ color: "grey", display: "inline", borderBottom: "1px solid grey", marginLeft: "10px" }}>
                         SNS 로그인
                     </p>
                     <div className="SNS">
-                        <img onClick={handlenaverLogin} src={naverlogo} alt="Naver Login"></img>
-                        <img onClick={handlekakaoLogin} src={kakaologo} alt="Kakao Login"></img>
-                        <img onClick={handlegoogleLogin} src={googlelogo} alt="Google Login"></img>
+                        <img onClick={handlenaverLogin} src={naverlogo} alt="Naver Login" />
+                        <img onClick={handlekakaoLogin} src={kakaologo} alt="Kakao Login" />
+                        <img onClick={handlegoogleLogin} src={googlelogo} alt="Google Login" />
                     </div>
                 </div>
             </div>
