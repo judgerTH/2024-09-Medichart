@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./mymedicheck.module.css";
+import { Link } from "react-router-dom";
+import style from "./AdminNotice.module.css";
 
 const AdminNoticeNew = () => {
   const [title, setTitle] = useState("");
@@ -48,29 +50,61 @@ const AdminNoticeNew = () => {
   };
 
   return (
-    <section className={styles.noticeForm}>
-      <h2>{isEditing ? "공지사항 수정" : "새 공지사항 작성"}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>제목</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
+    <div className={styles.Container}>
+      {/* // <div className={style.All_Container}> */}
+      <section className={style.noticeForm}>
+        <div className={style.sectionLeft}>
+          <h2 className={styles.side}>공지사항 관리</h2>
+          <div id="line">
+            <ul>
+              <li>
+                <Link
+                  to="/admin/noticeList"
+                  style={{ textDecoration: "none" }}
+                  className="link"
+                >
+                  - 공지사항 목록
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/admin/notice/new"
+                  style={{ textDecoration: "none" }}
+                  className="link"
+                >
+                  - 공지사항 작성
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div>
-          <label>내용</label>
-          <textarea
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          />
+        <div className={style.Container2}>
+          <h2>{isEditing ? "공지사항 수정" : "새 공지사항 작성"}</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>제목</label>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+                className={style.noticetitle}
+              />
+            </div>
+            <div>
+              <label>내용</label>
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
+                className={style.noticetitle}
+              />
+            </div>
+            <button type="submit">{isEditing ? "수정" : "제출"}</button>
+          </form>
         </div>
-        <button type="submit">{isEditing ? "수정" : "제출"}</button>
-      </form>
-    </section>
+      </section>
+    </div>
   );
 };
 
