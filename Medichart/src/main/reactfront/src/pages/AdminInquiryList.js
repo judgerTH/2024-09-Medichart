@@ -55,17 +55,12 @@ const AdminInquiryList = () => {
     return (
         <div className={styles.container}>
             <div className={styles.sectionLeft}>
-                <h2 className={styles.side}>공지사항 관리</h2>
+                <h2 className={styles.side}>문의사항 관리</h2>
                 <div id="line">
                     <ul>
                         <li>
-                            <Link to="/admin/noticeList" style={{ textDecoration: 'none' }} className="link">
-                                - 공지사항 목록
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/admin/notice/new" style={{ textDecoration: 'none' }} className="link">
-                                - 공지사항 작성
+                            <Link to="/admin/inquiryList" style={{ textDecoration: 'none' }} className="link">
+                                - 문의사항 목록
                             </Link>
                         </li>
                     </ul>

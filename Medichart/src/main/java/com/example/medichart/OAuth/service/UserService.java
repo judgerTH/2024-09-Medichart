@@ -4,6 +4,7 @@ import com.example.medichart.OAuth.entity.UserEntity;
 import com.example.medichart.OAuth.dto.UserProfile;
 import com.example.medichart.OAuth.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -34,5 +35,10 @@ public class UserService {
             user.setCreatedDate(LocalDateTime.now());
         }
         userRepository.save(user);
+    }
+
+    @Transactional(readOnly = true)
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

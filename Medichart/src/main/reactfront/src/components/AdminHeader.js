@@ -40,7 +40,7 @@ function AdminHeader() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/admin/writeNotice" className={styles.link}>
+                    <Link to="/admin/notice/new" className={styles.link}>
                       - 공지사항 작성
                     </Link>
                   </li>
