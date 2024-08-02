@@ -1,0 +1,83 @@
+.my-page {
+  display: flex;
+}
+.my-page .sectionLeft {
+  margin: 100px 60px 0 70px;
+  padding-left: -30px;
+  padding-right: 20px;
+  border-radius: 20px;
+  margin-right: 0;
+  width: 230px;
+}
+.my-page .sectionLeft h2 {
+  border: 0;
+  background-color: transparent;
+  padding-top: 30px;
+  padding-left: 30px;
+  font-weight: bold;
+  text-align: left;
+}
+.sectionLeft ul {
+  list-style: none;
+  text-align: left;
+}
+
+.sectionLeft #line {
+  border-top: 2px solid black;
+  margin-left: 30px;
+  padding-left: 14px;
+}
+.sectionLeft li {
+  padding-top: 10px;
+  padding-bottom: 15px;
+  margin-left: -50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  color: #1a76d1;
+}
+.UserInformation {
+  height: 500px;
+  margin: 80px 50px 40px 200px;
+  background-color: white;
+
+  position: relative;
+}
+
+.account-info {
+  border: 1px solid #ccc;
+  padding: 10px 40px;
+  margin: 30px 20px 30px 130px;
+}
+.account-info h2 {
+  margin-bottom: 20px;
+}
+.info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-right: 60px;
+}
+.UserInfromation .account-info {
+  margin-right: 500px;
+}
+.info label {
+  width: 100px;
+  font-weight: bold;
+  background-color: rgb(196, 241, 244);
+  padding: 5px;
+}
+
+.info input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  /* background-color: rgb(228, 243, 249); */
+  height: 19px;
+}

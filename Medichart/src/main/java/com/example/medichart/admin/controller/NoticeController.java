@@ -1,20 +1,21 @@
-/*
 package com.example.medichart.admin.controller;
 
 import com.example.medichart.admin.entity.Notice;
 import com.example.medichart.admin.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
-@Controller
-@RequestMapping("/admin/notices")
+@RestController
+@RequestMapping("/api/admin/notice")
+@CrossOrigin(origins = "http://localhost:3000") // 프론트엔드 주소로 수정
 public class NoticeController {
 
     private final NoticeService noticeService;
@@ -24,45 +25,53 @@ public class NoticeController {
         this.noticeService = noticeService;
     }
 
-    @GetMapping("/list")
-    public String getAllNotices(Model model) {
-        List<Notice> notices = noticeService.getAllNotices();
-        model.addAttribute("notices", notices);
-        return "notice-list";
-    }
-
-    @GetMapping("/new")
-    public String showNoticeForm(Model model) {
-        model.addAttribute("notice", new Notice());
-        return "notice-form";
-    }
-
-    @PostMapping("/new")
-    public String createNotice(@ModelAttribute Notice notice) {
-        noticeService.createNotice(notice.getTitle(), notice.getContent());
-        return "redirect:/admin/notices/list";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        Optional<Notice> notice = noticeService.getNoticeById(id);
-        if (notice.isPresent()) {
-            model.addAttribute("notice", notice.get());
-            return "notice-form";
+    @GetMapping
+    public ResponseEntity<Map<String, Object>> getAllNotices(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "") String search) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Notice> noticePage;
+        if (search.isEmpty()) {
+            noticePage = noticeService.getAllNotices(pageable);
         } else {
-            return "redirect:/admin/notices/list";
+            noticePage = noticeService.searchNotices(search, pageable);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("content", noticePage.getContent());
+        response.put("totalElements", noticePage.getTotalElements());
+        response.put("totalPages", noticePage.getTotalPages());
+        response.put("currentPage", noticePage.getNumber());
+
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<Notice> createNotice(@RequestBody Notice notice) {
+        Notice createdNotice = noticeService.createNotice(notice.getTitle(), notice.getContent());
+        return ResponseEntity.ok(createdNotice);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Notice> getNoticeById(@PathVariable Long id) {
+        Optional<Notice> notice = noticeService.getNoticeById(id);
+        return notice.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Notice> updateNotice(@PathVariable Long id, @RequestBody Notice updatedNotice) {
+        Notice updated = noticeService.updateNotice(id, updatedNotice.getTitle(), updatedNotice.getContent());
+        if (updated != null) {
+            return ResponseEntity.ok(updated);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
-    @PostMapping("/edit/{id}")
-    public String updateNotice(@PathVariable Long id, @ModelAttribute Notice updatedNotice) {
-        noticeService.updateNotice(id, updatedNotice.getTitle(), updatedNotice.getContent());
-        return "redirect:/admin/notices/list";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteNotice(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteNotice(@PathVariable Long id) {
         noticeService.deleteNotice(id);
-        return "redirect:/admin/notices/list";
+        return ResponseEntity.noContent().build();
     }
-}*/
+}

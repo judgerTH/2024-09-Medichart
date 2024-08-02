@@ -31,7 +31,7 @@ html {
 .contents {
   display: flex;
   width: 96%;
-  max-width: 1100px;
+  max-width: 1250px;
   height: 100%;
   margin: 0 auto;
   align-items: center;
@@ -126,6 +126,14 @@ html {
   border-bottom: 5px solid black; /* 드롭다운이 열렸을 때의 삼각형 */
 }
 
+.logout {
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+#faUser {
+  margin-left: 10px;
+}
 /* Responsive Design using Media Queries */
 @media (max-width: 768px) {
   .header {

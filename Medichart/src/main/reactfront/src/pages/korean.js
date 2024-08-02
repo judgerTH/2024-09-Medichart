@@ -1,18 +1,53 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faCloudArrowUp, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 import "../pages/korean.css";
 
-function Translate() {
+function Korean() {
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState("");
+  const [originalText, setOriginalText] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (file) {
       const objectUrl = URL.createObjectURL(file);
       setPreview(objectUrl);
+      setLoading(true);
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      axios
+          .post("/api/upload?language=ko", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            setLoading(false); // 요청이 완료되면 로딩 상태를 false로 설정
+            console.log("Response: ", response);
+            if (response.data.uploadedText && response.data.translatedText) {
+              setOriginalText(response.data.uploadedText);
+              setTranslatedText(response.data.translatedText);
+            } else {
+              console.error("Unexpected response format:", response.data);
+            }
+          })
+          .catch((error) => {
+            setLoading(false); // 에러가 발생해도 로딩 상태를 false로 설정
+            if (error.response) {
+              console.error("Error response:", error.response.data);
+            } else if (error.request) {
+              console.error("Error request:", error.request);
+            } else {
+              console.error("Error message:", error.message);
+            }
+          });
 
       return () => URL.revokeObjectURL(objectUrl);
     }
@@ -53,6 +88,13 @@ function Translate() {
     }
   };
 
+  const handleRemoveFile = () => {
+    setFile(null);
+    setPreview("");
+    setOriginalText("");
+    setTranslatedText("");
+  };
+
   return (
     <div className="container">
       <div className="inner">
@@ -62,17 +104,17 @@ function Translate() {
             <ul>
               <li>
                 <Link to="/Korean" className="link">
-                  -한국어
+                  - 한국어
                 </Link>
               </li>
               <li>
-                <Link to="/English" className="link">
-                  -Eng
+                <Link to="/Japanese" className="link">
+                  - 日本語
                 </Link>
               </li>
               <li>
                 <Link to="/Chinese" className="link">
-                  -汉文
+                  - 汉文
                 </Link>
               </li>
             </ul>
@@ -87,22 +129,50 @@ function Translate() {
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
-              <label>
-                <input
-                  type="file"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                ></input>
-
-                <FontAwesomeIcon icon={faCloudArrowUp} className="upload" />
-                <p>Drag file(s) here to upload or click to select file.</p>
-              </label>
+              {!file && (
+                <label>
+                  <input
+                    type="file"
+                    style={{ display: "none" }}
+                    onChange={handleFileChange}
+                  />
+                  <FontAwesomeIcon icon={faCloudArrowUp} className="upload" />
+                  <p>Drag file(s) here to upload or click to select file.</p>
+                </label>
+              )}
             </div>
             {file && (
               <div className="file-info">
                 {file.type.startsWith("image/") && (
-                  <img src={preview} alt="Preview" className="preview-image" />
+                  <div className="preview-container">
+                    <img
+                      src={preview}
+                      alt="Preview"
+                      className="preview-image"
+                    />
+                    <button
+                      onClick={handleRemoveFile}
+                      className="remove-button"
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                  </div>
                 )}
+                <div className="finalText">
+                  {loading && <p>번역 중입니다. 잠시만 기다려주세요...</p>}
+                  {!loading && originalText && (
+                    <div className="ocr-text">
+                      <h3>원본 텍스트:</h3>
+                      <p>{originalText}</p>
+                    </div>
+                  )}
+                  {!loading && translatedText && (
+                    <div className="translated-text">
+                      <h3>번역된 텍스트:</h3>
+                      <p>{translatedText}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
@@ -112,4 +182,4 @@ function Translate() {
   );
 }
 
-export default Translate;
+export default Korean;

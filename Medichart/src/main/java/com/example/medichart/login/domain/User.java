@@ -1,3 +1,4 @@
+package com.example.medichart.login.domain;/*
 package com.example.medichart.login.domain;
 
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class User {
+
+//    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -23,3 +26,4 @@ public class User {
         this.role = role;
     }
 }
+*/
