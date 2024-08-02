@@ -28,4 +28,3 @@ public class UserEntity {
         this.createdDate = LocalDateTime.now();
     }
 }
-
