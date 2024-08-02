@@ -2,17 +2,8 @@ package com.example.medichart.OAuth.dto;
 
 public class UserProfile {
     private String username;
-    private String name;
     private String email;
-    private String role;
-
-    // 생성자
-    public UserProfile(String username, String name, String email, String role) {
-        this.username = username;
-        this.name = name;
-        this.email = email;
-        this.role = role;
-    }
+    private String name;
 
     // Getters and Setters
     public String getUsername() {
@@ -23,14 +14,6 @@ public class UserProfile {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -39,11 +22,11 @@ public class UserProfile {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
-}
+    }

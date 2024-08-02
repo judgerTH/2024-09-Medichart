@@ -48,7 +48,7 @@ function AdminHeader() {
               )}
             </li>
             <li>
-              <Link to="/admin/inquityList" className={styles.link}>
+              <Link to="/admin/inquiryList" className={styles.link}>
                 문의사항 관리
               </Link>
             </li>

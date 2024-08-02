@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from './AuthContext';
 import styles from "./mymedicheck.module.css";
 import axios from "axios";
 const Mymedicheck = () => {
+  const { isLoggedIn, username } = useContext(AuthContext);
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [heightError, setHeightError] = useState("");
@@ -118,6 +120,7 @@ const Mymedicheck = () => {
 
     // 서버에 보낼 데이터
     const data = {
+      username: username, // 추가된 부분
       age: ageForServer,
       sex: genderForServer,
       bmi: bmiForServer,
@@ -156,6 +159,7 @@ const Mymedicheck = () => {
       alert("서버와의 연결에 문제가 있습니다.");
     }
   };
+
 
 
 

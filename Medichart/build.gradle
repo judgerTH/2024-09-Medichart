@@ -53,7 +53,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
 
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    //Jwt
+    // Jwt
     implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
@@ -71,7 +71,9 @@ sourceSets {
     }
 }
 
-processResources { dependsOn "copyReactBuildFiles" }
+processResources {
+    dependsOn "copyReactBuildFiles"
+}
 
 task installReact(type: Exec) {
     workingDir frontendDir
@@ -104,9 +106,9 @@ task buildReact(type: Exec) {
     group = BasePlugin.BUILD_GROUP
 
     if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
-        commandLine "npm.cmd", "run-script", "build"
+        commandLine "npm.cmd", "run", "build"
     } else {
-        commandLine "npm", "run-script", "build"
+        commandLine "npm", "run", "build"
     }
 }
 
