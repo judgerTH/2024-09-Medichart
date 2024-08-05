@@ -14,7 +14,7 @@
 |정형진<br/>[@JeongBuBu](https://github.com/JeongBuBu)|김민재<br/>[@KnD0715](https://github.com/KnD0715)|윤주찬<br/>[@jjuchan](https://github.com/jjuchan)|이태현<br/>[@judgerTH](https://github.com/judgerTH)|박계영<br/>[@himelons](https://github.com/himelons)|최혜빈<br/>[@h9421](https://github.com/h9421)|
 |백엔드|백엔드|백엔드|백엔드/프론트엔드|프론트엔드|프론트엔드|
 
-
+</br>
 
 ## :round_pushpin:주요 기능 
 ### [로그인/회원가입]
