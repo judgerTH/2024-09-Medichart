@@ -1,27 +1,18 @@
+# 🧑‍⚕️현대인의 건강을 위한 플랫폼 MediChart
+[프로젝트 소개] <br/>
+-Medichart는 건강검진이 의무화가 됐음에도 불구하고 바쁜 일상으로 인해 자신의 건강을 놓치는 현대인들을 위해 기획된 질병 예측 및 건강진단서 해석 플랫폼입니다.
+## :blue_heart: ABOUT US
+안녕하세요! 메디차트를 기확한 응답없음 팀 입니다:) 
 
-## 응답없음 팀 메디차트 헤커톤 BE , FE
-
-#### 정형진, 이태현, 윤주찬, 김민재, 박계영, 최혜빈
-
-- 성향 유형: 디자이너, 프론트엔드, 백엔드
-- 사용 기술: SpringBoot, Spring Data JPA, MySQL, JAVA17 ,
-- 직장인 분들의 위한 건강검진 차트를 이용해서 웹사이트 에서 검진결과를 예측하며 영문 진단기록서를 해석해주는 플랫폼 제작.
+### 👨‍💻팀원 소개
+|<img src="https://avatars.githubusercontent.com/u/112332792?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/163969011?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/163832764?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/130521454?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/102974568?v=4" width="150" height="150"/>|<img src="https://avatars.githubusercontent.com/u/164338512?v=4" width="150" height="150"/>|
+|:-:|:-:|:-:|:-:|:-:|:-:|
+|[@JeongBuBu](https://github.com/JeongBuBu)|[@KnD0715](https://github.com/KnD0715)|[@jjuchan](https://github.com/jjuchan)|[@judgerTH](https://github.com/judgerTH)|[@himelons](https://github.com/himelons)|[@h9421](https://github.com/h9421)|
+|백엔드|백엔드|백엔드|백엔드/프론트엔드|프론트엔드|프론트엔드|
 
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center"><a href=""><img src="width="100px;" alt=""/><br /><sub><b>FE 팀장 : </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>FE 팀원 : </b></sub></a><br /></td>
-     <tr/>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 부팀장 : </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="100px;" alt=""/><br /><sub><b>BE 팀원 : </b></sub></a><br /></td>
-    </tr>
-  </tbody>
-</table>
+
+## :round_pushpin:주요 기능 
 
 
 ### ✔️Common development
