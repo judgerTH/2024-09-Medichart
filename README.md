@@ -21,10 +21,8 @@
 ### [메인페이지]
  #### ✨  MediChart의 주요 기능 3가지를 소개하는 페이지입니다. 
 ![image](https://github.com/user-attachments/assets/b14b2326-5f00-465b-a72c-ad3b98bfdb9f)
-### [로그인/회원가입]
-   ![image](https://github.com/user-attachments/assets/98aa098c-2633-4930-a7d4-2de7943a546b) ![image](https://github.com/user-attachments/assets/bf3a9a58-a9f1-42a3-a4ef-9055b7b207cc)
-  
 
+ 
 ### [건강진단서 해석] 
  #### ✨ 어려운 의학용어로 된 건강진단서를 쉽게 이해할 수 있도록 해석해 주는 페이지입니다.<br/> 
  ● 원하는 언어를 선택합니다. (한국어/일본어/중국어) <br/>
