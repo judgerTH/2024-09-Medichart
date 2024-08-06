@@ -17,6 +17,9 @@
 </br>
 
 ## :round_pushpin:주요 기능 
+### [메인페이지]
+ #### ✨  MediChart의 주요 기능 3가지를 소개하는 페이지입니다. 
+![image](https://github.com/user-attachments/assets/82c98931-9426-41cb-86c7-ac486cff0c49) 
 ### [로그인/회원가입]
    ![image](https://github.com/user-attachments/assets/98aa098c-2633-4930-a7d4-2de7943a546b) ![image](https://github.com/user-attachments/assets/bf3a9a58-a9f1-42a3-a4ef-9055b7b207cc)
   
