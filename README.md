@@ -1,9 +1,9 @@
 # 🧑‍⚕️현대인의 건강을 위한 플랫폼 MediChart 
 ### [프로젝트 소개] 
 - Medichart는 건강검진이 의무화가 됐음에도 불구하고 바쁜 일상으로 인해 자신의 건강을 놓치는 현대인들을 위해 기획된 질병 예측 및 건강진단서 해석 플랫폼입니다.
-- 프로젝트 URL :
-- 프로젝트 기간 : 2024.07.05 ~ 2024.08.03
-- 건강진단서 해석 페이지는 테스트용 사진을 첨부해주세요.
+- 프로젝트 URL : 223.130.155.178
+- 프로젝트 기간 : 2024.07.05 ~ 2024.08.06
+- 건강진단서 해석 페이지는 첨부된 테스트용 사진을 사용용해주세요.
 </br></br>
 ## :blue_heart: ABOUT US
 #### 안녕하세요! 메디차트를 기획한 응답없음 팀 입니다:) 
@@ -18,11 +18,23 @@
 </br>
 
 ## :round_pushpin:주요 기능 
+✔ 로그인</br>
+✔ 건강진단서 해석</br>
+✔ 검진정보 입력</br>
+✔ 질병 예측</br>
+✔ 관리자 페이지</br>
+✔ 소셜로그인 (구현 예정)</br>
+✔ AI 챗봇 (구현 예정)</br>
+✔ 검진센터 찾기 (구현 예정)</br>
+</br>
 ### [메인페이지]
  #### ✨  MediChart의 주요 기능 3가지를 소개하는 페이지입니다. 
 ![image](https://github.com/user-attachments/assets/b14b2326-5f00-465b-a72c-ad3b98bfdb9f)
 
- 
+### [로그인 및 회원가입]
+![스크린샷 2024-08-05 184113](https://github.com/user-attachments/assets/f6520993-f2f5-49e5-9423-83ad66963b08)
+![스크린샷 2024-08-05 184127](https://github.com/user-attachments/assets/d84c89d9-10a2-4252-bb50-3854d975daa6)
+
 ### [건강진단서 해석] 
  #### ✨ 어려운 의학용어로 된 건강진단서를 쉽게 이해할 수 있도록 해석해 주는 페이지입니다.<br/> 
  ● 원하는 언어를 선택합니다. (한국어/일본어/중국어) <br/>
@@ -41,11 +53,27 @@
 ● 그래프는 주의, 경고, 위험 순으로 질병의 발병 확률을 표시합니다.<br/>
 ● 당뇨병, 심장병, 고혈압, 신장질환, 비만, 뇌졸증의 발병 확률을 예측합니다.
 ![image](https://github.com/user-attachments/assets/ca8d020b-3aba-4e12-a468-c80fedcf91d5) 
+
+###  [공지사항 & 고객센터]
+![image](https://github.com/user-attachments/assets/e6221bc6-ae70-4ea7-bd60-5282c99eee4f)
+
 ###  [관리자페이지]
 #### ✨ 공지사항 및 가입자 수를 관리하는 페이지입니다.
+- 관리자페이지 버튼은 푸터에 기입되어 있습니다.
 ![관리자 페이지](https://github.com/user-attachments/assets/3fe31b03-b6d3-4fde-bc39-1665f5e28b2b)
 </br></br>
 
+# 구현 예정
+
+###  [AI 챗봇]
+#### ✨ 언제 어디서나 건강 관련 질문을 실시간으로 답변 받을 수 있습니다.
+● 정보를 입력하고 등록 버튼을 누르면 저장되었다는 문구가 페이지 상단에 표시됩니다. <br/>
+● 등록 버튼 클릭 후 모든 정보가 입력되지 않았을 경우 입력해달라는 경고 문구가 페이지 상단에 나타납니다.<br/>
+<img src="https://github.com/user-attachments/assets/42b3d121-071c-4a7d-ab18-96a439de2b9b" width="400" height="600"/>
+
+###  [검진센터 찾기]
+#### ✨ 자신의 위치에서 가까운 병원을 찾을 수 있습니다.
+![image](https://github.com/user-attachments/assets/92eb5c97-8c7d-48e0-9615-ff7fac7434fa)
 
 ## 🛸 TECH STACKS
 ### ✔️Common development
