@@ -41,7 +41,8 @@
  #### ✨ 언제 어디서나 건강 관련 질문에 대해 실시간으로 답변을 받을 수 있습니다.
 ● 페이지 오른쪽 하단의 챗봇을 클릭하면 상담할 수 있는 채팅창이 표시됩니다. <br/>
 ● 건강과 관련된 질문을 입력하면 그에 맞는 의심 질병 및 주요 원인을 설명해줍니다. 
-![챗봇상담png](https://github.com/user-attachments/assets/d3f2e4d6-ebec-414f-819c-63c7264ff722)
+
+<img src="https://github.com/user-attachments/assets/d3f2e4d6-ebec-414f-819c-63c7264ff722" width="400" height="500"/>
 
 
 
