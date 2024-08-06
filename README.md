@@ -19,6 +19,8 @@
 ## :round_pushpin:주요 기능 
 ### [로그인/회원가입]
    ![image](https://github.com/user-attachments/assets/98aa098c-2633-4930-a7d4-2de7943a546b) ![image](https://github.com/user-attachments/assets/bf3a9a58-a9f1-42a3-a4ef-9055b7b207cc)
+  
+
 ### [건강진단서 해석] 
  #### ✨ 어려운 의학용어로 된 건강진단서를 쉽게 이해할 수 있도록 해석해 주는 페이지입니다.<br/> 
  ● 원하는 언어를 선택합니다. (한국어/일본어/중국어) <br/>
@@ -43,7 +45,7 @@
 ● 건강과 관련된 질문을 입력하면 그에 맞는 의심 질병 및 주요 원인을 설명해줍니다. 
 
 <img src="https://github.com/user-attachments/assets/d3f2e4d6-ebec-414f-819c-63c7264ff722" width="400" height="500"/>
-
+</br></br>
 
 
 ## 🛸 TECH STACKS
