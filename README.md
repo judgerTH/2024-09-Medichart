@@ -43,12 +43,9 @@
 ● 그래프는 주의, 경고, 위험 순으로 질병의 발병 확률을 표시합니다.<br/>
 ● 당뇨병, 심장병, 고혈압, 신장질환, 비만, 뇌졸증의 발병 확률을 예측합니다.
 ![image](https://github.com/user-attachments/assets/ca8d020b-3aba-4e12-a468-c80fedcf91d5) 
-###  [AI 챗봇 상담]
- #### ✨ 언제 어디서나 건강 관련 질문에 대해 실시간으로 답변을 받을 수 있습니다.
-● 페이지 오른쪽 하단의 챗봇을 클릭하면 상담할 수 있는 채팅창이 표시됩니다. <br/>
-● 건강과 관련된 질문을 입력하면 그에 맞는 의심 질병 및 주요 원인을 설명해줍니다. 
-
-<img src="https://github.com/user-attachments/assets/d3f2e4d6-ebec-414f-819c-63c7264ff722" width="400" height="500"/>
+###  [관리자페이지]
+#### ✨ 공지사항 및 가입자 수를 관리하는 페이지입니다.
+![관리자 페이지](https://github.com/user-attachments/assets/3fe31b03-b6d3-4fde-bc39-1665f5e28b2b)
 </br></br>
 
 
