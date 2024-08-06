@@ -3,6 +3,7 @@
 - Medichart는 건강검진이 의무화가 됐음에도 불구하고 바쁜 일상으로 인해 자신의 건강을 놓치는 현대인들을 위해 기획된 질병 예측 및 건강진단서 해석 플랫폼입니다.
 - 프로젝트 URL :
 - 프로젝트 기간 : 2024.07.05 ~ 2024.08.03
+- * 건강진단서 해석 페이지는 테스트용 사진을 첨부해주세요.
 </br></br>
 ## :blue_heart: ABOUT US
 #### 안녕하세요! 메디차트를 기획한 응답없음 팀 입니다:) 
@@ -19,7 +20,7 @@
 ## :round_pushpin:주요 기능 
 ### [메인페이지]
  #### ✨  MediChart의 주요 기능 3가지를 소개하는 페이지입니다. 
-![image](https://github.com/user-attachments/assets/82c98931-9426-41cb-86c7-ac486cff0c49) 
+![image](https://github.com/user-attachments/assets/b14b2326-5f00-465b-a72c-ad3b98bfdb9f)
 ### [로그인/회원가입]
    ![image](https://github.com/user-attachments/assets/98aa098c-2633-4930-a7d4-2de7943a546b) ![image](https://github.com/user-attachments/assets/bf3a9a58-a9f1-42a3-a4ef-9055b7b207cc)
   
